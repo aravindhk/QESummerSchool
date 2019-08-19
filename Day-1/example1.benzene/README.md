@@ -1,15 +1,17 @@
-Purpose of the exercise: plot molecular orbitals of benzene
-                         ( actually sign(psi(r)) * |psi(r)|^2 )
+PURPOSE OF THE EXERCISE
+How to calculate and plot molecular orbitals of benzene
+( actually sign(psi(r)) * |psi(r)|^2 )
+-------------------------------------------------------
 
 Steps to perform:
 
-#1) pw.x SCF calculation as to calculated Kohn-Sham states
+#1) pw.x SCF calculation as to calculate Kohn-Sham states
 
        pw.x < pw.benzene.scf.in > pw.benzene.scf.out
 
 
-#2) pp.x (post-processing) clauclation of all valnce-LUMO molecular
-    orbitals ( actually sign(psi(r)) * |psi(r)|^2 )
+#2) pp.x (post-processing) calculation of all valence and LUMO
+    molecular orbitals ( actually sign(psi(r)) * |psi(r)|^2 )
 
        pp.x < pp.benzene.psi2.in > pp.benzene.psi2.out
 
@@ -19,7 +21,7 @@ Steps to perform:
 
 #3) plot one of those XSF files with xcrysden, e.g.:
 
-       xcrrysden --xsf psi2.benzene_K001_B006.xsf
+       xcrysden --xsf psi2.benzene_K001_B006.xsf
 
     and make a fancy display of molecular-orbital (follow the
     instructions of tutor). Then save the current displayed state via

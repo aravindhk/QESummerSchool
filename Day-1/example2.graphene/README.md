@@ -1,9 +1,11 @@
-Purpose of the exercise: plot density-of-states (DOS) and band
-                         structure (spaghetti) of a graphene sheet
+PURPOSE OF THE EXERCISE
+How to calculate and plot density-of-states (DOS) and band structure
+(spaghetti) of a graphene sheet.
+--------------------------------------------------------------------
 
 Steps to perform:
 
-#1) pw.x SCF calculation as to calculated Kohn-Sham states
+#1) pw.x SCF calculation as to calculate Kohn-Sham states
 
        pw.x < pw.graphene.scf.in > pw.graphene.scf.out
 
