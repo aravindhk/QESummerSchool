@@ -1,0 +1,34 @@
+Exercise 4: Study a convergence of the absorption spectrum of Na2 molecule
+
+Study the convergence of the absorption spectrum of Na2 with respect to:
+
+a) The number of Lanczos iterations itermax = 50, 100, 150, ...
+   without using the extrapolation (extrapolation='no');  
+b) The number of Lanczos iterations when the extrapolation 
+   is used (extrapolation='osc');
+c) The size of the supercell: celldm(1) = 20, 30, 40, ...
+
+
+Step 1. Runc the SCF ground-state calculation
+
+   mpirun -np 2 /scratch/timrov/QE_tmp7_6.0/qe-6.0/bin/pw.x < Na2.scf.in > Na2.scf.out
+
+Step 2. Perform Lanczos recursions
+
+   mpirun -np 2 /scratch/timrov/QE_tmp7_6.0/qe-6.0/bin/turbo_lanczos.x < Na2.lanczos.in > Na2.lanczos.out
+
+Step 3. Run the spectrum calculation
+
+   /scratch/timrov/QE_tmp7_6.0/qe-6.0/bin/turbo_spectrum.x < Na2.tddfpt_pp.in > Na2.tddfpt_pp.out
+
+Step 4. Plot the spectrum
+
+    Note, in this example we compute the response of the system along three directions (X,Y,Z).
+    Therefore, extract the oscillator strength S(E) from the file Na2.plot_chi.dat:
+
+    grep 'S(E)' Na2.plot_chi.dat > Na2.plot_S.dat 
+
+    gnuplot -> load 'plot_spectrum.gnu'
+
+    evince Na2_spectrum.eps
+
