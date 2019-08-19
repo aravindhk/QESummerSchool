@@ -1,8 +1,8 @@
  &CONTROL
     calculation = 'nscf',
     prefix      = 'Graphene_1x1_PBE',
-    pseudo_dir  = '../../pseudo',        
     outdir      = '/tmp',
+    !pseudo_dir  = 'directory with pseudopotentials',        
  /
 
  &SYSTEM

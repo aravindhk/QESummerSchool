@@ -7,8 +7,8 @@
     ! values of ESPRESSO_PSEUDO and ESPRESSO_TMPDIR environmental
     ! variables instead
 
-    pseudo_dir = '../../../pseudo'
-    ! outdir     =
+    !pseudo_dir = 
+    !outdir     =
  /
 
  &SYSTEM
