@@ -1,0 +1,20 @@
+::pwtk::import ../Si.pwtk
+
+set head Si
+
+outdir [outdir_prefix]/$head
+
+CONTROL {
+    calculation = 'bands'
+}
+SYSTEM { 
+    nbnd = 8
+} 
+K_POINTS tpiba_b "
+5
+0.5 0.5 0.5 5
+0.0 0.0 0.0 10 
+0.0 1.0 1.0 10 
+0.0 0.0 0.0 0"
+
+runPW bands.$head

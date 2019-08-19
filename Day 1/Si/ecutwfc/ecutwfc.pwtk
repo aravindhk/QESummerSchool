@@ -1,0 +1,17 @@
+::pwtk::import ../Si.pwtk
+
+set ecutwfcs "12 16 20 24 28 32"
+
+set results [open ecutwfc-vs-Etot.dat w] 
+foreach ecutwfc $ecutwfcs {
+
+    set head Si.ecutwfc-$ecutwfc
+    outdir [outdir_prefix]/$head
+    SYSTEM "ecutwfc = $ecutwfc"
+
+    runPW scf.$head
+    set Etot [::pwtk::pwo::totene scf.$head.out]
+    puts $results "$ecutwfc $Etot"
+} 
+
+close $results

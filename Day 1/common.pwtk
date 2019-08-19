@@ -1,0 +1,25 @@
+#
+# common file ; sets the default settings for most calculations 
+#
+
+CONTROL {
+    calculation = 'scf'
+}
+
+ATOMIC_SPECIES {   
+    Fe  55.847  Fe.pbe-nd-rrkjus.UPF
+    Si  28.086  Si.pz-vbc.UPF
+    Al  26.981  Al.pz-vbc.UPF
+    C   12.011  C.pbe-rrkjus.UPF
+    O   15.9994 O.pbe-rrkjus.UPF
+    H   1.008   H.pbe-rrkjus.UPF
+}
+
+SYSTEM {
+    ntyp = 6
+}
+
+ELECTRONS {
+   conv_thr = 1d-9
+}
+

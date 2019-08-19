@@ -1,0 +1,11 @@
+::pwtk::import ../common.Si.pwtk
+
+set ecutwfcs "16 20 24 28 32"
+
+foreach ecutwfc $ecutwfcs {
+
+    set head scf.Si.ecutwfc-$ecutwfc
+    SYSTEM "ecutwfc = $ecutwfc"
+    ::pwtk::pwi::fprint 
+    
+} 

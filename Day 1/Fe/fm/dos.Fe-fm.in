@@ -1,0 +1,7 @@
+&DOS
+    outdir= '/temp/matic/pw/Fe-fm'
+    fildos='Fe.dos'
+    Emin=5.0, 
+    Emax=20.0, 
+    DeltaE=0.1
+ /

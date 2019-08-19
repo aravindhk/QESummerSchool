@@ -1,0 +1,24 @@
+::pwtk::import ../Fe.pwtk
+
+set head Fe-afm
+outdir [outdir_prefix]/$head
+SYSTEM { ibrav = 1
+         ntyp = 2 }
+ATOMIC_SPECIES {
+    Fe1 Fe.pbe-nd-rrkjus.UPF 
+    Fe2 Fe.pbe-nd-rrkjus.UPF
+}
+ATOMIC_POSITIONS crystal { 
+    Fe1 0.0 0.0 0.0
+    Fe2 0.5 0.5 0.5
+}
+
+#runPW scf.$head
+
+CONTROL { calculation = 'nscf' }
+SYSTEM  { occupations = 'tetrahedra'
+          smearing = 
+          degauss = } 
+K_POINTS automatic {12 12 12 1 1 1}
+
+runPW nscf.$head

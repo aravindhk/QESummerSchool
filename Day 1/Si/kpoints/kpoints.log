@@ -1,0 +1,23 @@
+      ========================================================================
+      *** PWTK-0.99.7rc1    (PWscf ToolKit: a Tcl scripting environment)
+      ========================================================================
+
+      Running on host: assam
+      PWTK: /home/matic/src/pwtk-0.99.7rc1
+      Date: Tue 13 Aug 2019 06:13:17 PM CEST      (PID: 16919)
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in scf.Si.kpoints-2x2x2.in > scf.Si.kpoints-2x2x2.out
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in scf.Si.kpoints-4x4x4.in > scf.Si.kpoints-4x4x4.out
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in scf.Si.kpoints-6x6x6.in > scf.Si.kpoints-6x6x6.out
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in scf.Si.kpoints-8x8x8.in > scf.Si.kpoints-8x8x8.out
+
+
+      Job done.
+      --

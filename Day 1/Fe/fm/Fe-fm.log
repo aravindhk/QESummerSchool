@@ -1,0 +1,17 @@
+      ========================================================================
+      *** PWTK-0.99.7rc1    (PWscf ToolKit: a Tcl scripting environment)
+      ========================================================================
+
+      Running on host: pars11
+      PWTK: /net/terrace/home/matic/src/pwtk-0.99.7rc1
+      Date: Tue Aug 13 19:01:49 CEST 2019      (PID: 26727)
+
+      Executable: /net/pars37/home/tone/opt/espresso/qe-6.2.1.no-scalapack/pw.x
+      Running locally: mpiexec -n 6 pw.x -in scf.Fe-fm.in > scf.Fe-fm.out
+
+      Executable: /net/pars37/home/tone/opt/espresso/qe-6.2.1.no-scalapack/pw.x
+      Running locally: mpiexec -n 6 pw.x -in nscf.Fe-fm.in > nscf.Fe-fm.out
+
+
+      Job done.
+      --

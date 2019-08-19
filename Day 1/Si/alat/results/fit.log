@@ -1,0 +1,127 @@
+
+
+*******************************************************************************
+Tue Aug 13 17:38:33 2019
+
+
+FIT:    data read from 'Etot-vs-alat.dat' u 1:2
+        format = x:z
+        x range restricted to [9.60000 : 10.8000]
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a + b*x + c*x**2 + d*x**3 + e*x**4
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c             d             e            
+   0 1.6289476222e+09   0.00e+00  4.93e+03    1.000000e+00   1.000000e+00   1.000000e+00   1.000000e+00   1.000000e+00
+  13 4.7146769426e-09  -8.49e-04  4.93e-10    6.262075e+01  -2.686060e+01   3.448901e+00  -1.974797e-01   4.273079e-03
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 4.71468e-09
+rel. change during last iteration : -8.48744e-09
+
+degrees of freedom    (FIT_NDF)                        : 6
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.80318e-05
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.85779e-10
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 62.6207          +/- 14.92        (23.83%)
+b               = -26.8606         +/- 5.857        (21.81%)
+c               = 3.4489           +/- 0.862        (24.99%)
+d               = -0.19748         +/- 0.05636      (28.54%)
+e               = 0.00427308       +/- 0.001381     (32.33%)
+
+correlation matrix of the fit parameters:
+                a      b      c      d      e      
+a               1.000 
+b              -1.000  1.000 
+c               1.000 -1.000  1.000 
+d              -1.000  1.000 -1.000  1.000 
+e               1.000 -1.000  1.000 -1.000  1.000 
+
+
+*******************************************************************************
+Tue Aug 13 17:38:53 2019
+
+
+FIT:    data read from 'Etot-vs-alat.dat' u 1:2
+        format = x:z
+        x range restricted to [9.60000 : 10.8000]
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a + b*x + c*x**2 + d*x**3 + e*x**4
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c             d             e            
+   0 1.6289476222e+09   0.00e+00  4.93e+03    1.000000e+00   1.000000e+00   1.000000e+00   1.000000e+00   1.000000e+00
+  13 4.7146769426e-09  -8.49e-04  4.93e-10    6.262075e+01  -2.686060e+01   3.448901e+00  -1.974797e-01   4.273079e-03
+
+After 13 iterations the fit converged.
+final sum of squares of residuals : 4.71468e-09
+rel. change during last iteration : -8.48744e-09
+
+degrees of freedom    (FIT_NDF)                        : 6
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 2.80318e-05
+variance of residuals (reduced chisquare) = WSSR/ndf   : 7.85779e-10
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 62.6207          +/- 14.92        (23.83%)
+b               = -26.8606         +/- 5.857        (21.81%)
+c               = 3.4489           +/- 0.862        (24.99%)
+d               = -0.19748         +/- 0.05636      (28.54%)
+e               = 0.00427308       +/- 0.001381     (32.33%)
+
+correlation matrix of the fit parameters:
+                a      b      c      d      e      
+a               1.000 
+b              -1.000  1.000 
+c               1.000 -1.000  1.000 
+d              -1.000  1.000 -1.000  1.000 
+e               1.000 -1.000  1.000 -1.000  1.000 
+
+
+*******************************************************************************
+Tue Aug 13 17:39:50 2019
+
+
+FIT:    data read from 'Etot-vs-alat.dat' u 1:2
+        format = x:z
+        x range restricted to [9.60000 : 10.8000]
+        #datapoints = 11
+        residuals are weighted equally (unit weight)
+
+function used for fitting: f(x)
+	f(x) = a + b*x + c*x**2 + d*x**3
+fitted parameters initialized with current variable values
+
+iter      chisq       delta/lim  lambda   a             b             c             d            
+   0 1.5842637545e+07   0.00e+00  5.37e+02    1.000000e+00   1.000000e+00   1.000000e+00   1.000000e+00
+  11 1.2234540267e-08  -5.99e-06  5.37e-09    1.647867e+01  -8.743889e+00   7.825422e-01  -2.313802e-02
+
+After 11 iterations the fit converged.
+final sum of squares of residuals : 1.22345e-08
+rel. change during last iteration : -5.99395e-11
+
+degrees of freedom    (FIT_NDF)                        : 7
+rms of residuals      (FIT_STDFIT) = sqrt(WSSR/ndf)    : 4.18066e-05
+variance of residuals (reduced chisquare) = WSSR/ndf   : 1.74779e-09
+
+Final set of parameters            Asymptotic Standard Error
+=======================            ==========================
+a               = 16.4787          +/- 0.5637       (3.421%)
+b               = -8.74389         +/- 0.1659       (1.898%)
+c               = 0.782542         +/- 0.01628      (2.08%)
+d               = -0.023138        +/- 0.0005319    (2.299%)
+
+correlation matrix of the fit parameters:
+                a      b      c      d      
+a               1.000 
+b              -1.000  1.000 
+c               1.000 -1.000  1.000 
+d              -1.000  1.000 -1.000  1.000 

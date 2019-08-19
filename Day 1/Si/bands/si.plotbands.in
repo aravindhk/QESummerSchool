@@ -1,0 +1,5 @@
+ &bands
+    outdir='/temp/matic/pw/Si'
+    filband = 'sibands.dat'
+    lsym=.true.
+ /

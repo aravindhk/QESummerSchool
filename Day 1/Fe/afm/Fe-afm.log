@@ -1,0 +1,17 @@
+      ========================================================================
+      *** PWTK-0.99.7rc1    (PWscf ToolKit: a Tcl scripting environment)
+      ========================================================================
+
+      Running on host: assam
+      PWTK: /home/matic/src/pwtk-0.99.7rc1
+      Date: Tue 13 Aug 2019 07:40:46 PM CEST      (PID: 21228)
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in scf.Fe-afm.in > scf.Fe-afm.out
+
+      Executable: /home/matic/src/qe-6.4.1/q-e-qe-6.4.1/bin/pw.x
+      Running locally: mpirun -np 2 pw.x -in nscf.Fe-afm.in > nscf.Fe-afm.out
+
+
+      Job done.
+      --
