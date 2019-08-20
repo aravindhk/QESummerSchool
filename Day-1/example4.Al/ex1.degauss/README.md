@@ -1,6 +1,6 @@
 PURPOSE OF THE EXERCISE:
 Explore various smearing schemes, i.e., how-to-smear (variable
-"occupations") and how-much-to-smear (variable "degauss")
+"smearing") and how-much-to-smear (variable "degauss")
 --------------------------------------------------------------
 
 Steps to perform:

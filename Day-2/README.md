@@ -1,6 +1,34 @@
-### Material for day 2 
+#
+# Day-2 :
+#
+- Structure optimizations
+- NEB: transition states of elementary chemical reactions
+- Functionals
+- Automating the workflow with PWTK
 
 
-This directory contains materials used duiring day 2 of trhe school plus possible addictional exercises. 
+Exercise 1: structural optimization (calculation = "relax");
+	    atomic positions only
 
-Have fun !!!
+    cd example1.relax/
+
+
+Exercise 2: structural optimization (calculation = "vc-relax");
+            atomic positions and unitcell
+
+    cd example2.vc-relax/
+
+
+Exercise 3: transition states of elementary chemical reactions
+
+    cd example3.neb/
+
+
+Exercise 4: (advanced) functionals
+
+    cd example4.functionals/
+
+
+Exercise 5: automating the workflow with PWTK
+
+    cd example5.pwtk/

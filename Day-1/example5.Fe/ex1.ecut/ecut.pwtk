@@ -2,13 +2,13 @@
 load_fromPWI ../pw.fe_fm.scf.in
 
 
-foreach dual { 4 12 } {
+foreach dual { 4 8 12 } {
 
     set fid [open Etot-vs-ecutwfc.dual$dual.dat w]
 
     foreach ecutwfc { 25 30 35 40 45 50 } {
         
-        set name scf.Fe.ecutwfc-$ecutwfc.dual-$dual
+        set name pw.Fe.scf.ecutwfc-$ecutwfc.dual-$dual
         
         SYSTEM "ecutwfc = $ecutwfc
                 ecutrho = $ecutwfc*$dual "
