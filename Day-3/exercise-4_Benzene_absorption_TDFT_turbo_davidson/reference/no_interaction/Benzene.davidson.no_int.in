@@ -1,0 +1,10 @@
+&lr_input
+  prefix = 'Benzene',
+  outdir='./out'
+/
+&lr_dav
+  if_dft_spectrum = .true.
+  p_nbnd_occ  = 10
+  p_nbnd_virt = 5
+  num_init = 30 
+/
