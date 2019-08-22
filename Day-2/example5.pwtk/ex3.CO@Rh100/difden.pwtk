@@ -1,0 +1,56 @@
+# ========================================================================
+#
+# This script calculates charge-density-difference of CO-Rh(100)
+#
+# ========================================================================
+
+
+# just in case if we run directly ?
+import common-data.pwtk
+if { ! [file exists pw.$name.relax.out] } {
+    import relax.pwtk
+}
+
+# REMARK: we use "input_pushpop { ... }, because we don't want that
+# modifications of input data herein affect other subsequent calculations
+
+input_pushpop {
+
+    # for DIFDEN we need SCF calculations
+    CONTROL { calculation = 'scf' }
+
+    # what to plot
+    INPUTPP {
+	plot_num = 0
+    }
+    PLOT " fileout = 'difden.$name.xsf' "
+    
+    # now to perform "DIFDEN"
+    DIFDEN {
+	segment(1) = "all"
+	weight(1)  = 1.0
+	name(1)    = "all"
+	
+	segment(2) = "1 2"
+	weight(2)  = -1.0
+	name(2)    = "CO"
+	
+	segment(3) = "3-"
+	weight(3)  = -1.0
+	name(3)    = "Rh100"
+    }
+
+    
+    # let's treat CO fragment as a molecule (not really required)
+    ::pwtk::difden::segmentSpecialization 2 {	
+	SYSTEM {
+	    ! this is how we clear the variables in PWTK
+	    occupations = 
+	    smaring =
+	    degauss =
+	}
+	K_POINTS gamma
+    }
+
+    difden_run difden.$name
+}

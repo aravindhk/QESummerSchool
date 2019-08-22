@@ -20,11 +20,11 @@ PWTK script. To run the example, execute:
 
 Steps to perform:
 
-1. Read the neb.H2-diss.d.Al100-2x1-2L.in input file and try to
+1. Read the neb.H2-diss.Al100-2x1-2L.in input file and try to
 understand it (this input file will be used by the PWTK script).
 The initial reaction path can be visualized by:
 
-   xcrysden --pwi neb.H2-diss.d.Al100-2x1-2L.in
+   xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in
 
 
 2. Read the neb.pwtk script and try to understand it.
@@ -44,4 +44,4 @@ minimum-energy-path graph can be plotted with gnuplot as:
 
 while the corresponding reaction-path structures can be visualized as:
 
-   xcrysden --axsf H2-diss.d.Al100-2x1-2L.axsf
+   xcrysden --axsf H2-diss.Al100-2x1-2L.axsf

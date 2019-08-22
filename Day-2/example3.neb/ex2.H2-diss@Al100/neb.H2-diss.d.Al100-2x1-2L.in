@@ -17,7 +17,7 @@ END_PATH_INPUT
 
 BEGIN_ENGINE_INPUT
 &CONTROL
-   prefix      = 'H2-diss.d.Al100-2x1-2L'
+   prefix      = 'H2-diss.Al100-2x1-2L'
    outdir      = '/tmp/',
    !pseudo_dir = 'directory where pp-files are kept',
 /
