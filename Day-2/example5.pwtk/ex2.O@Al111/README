@@ -4,9 +4,9 @@ How to run many calculations with a relatively simple PWTK script.
 
 The subject of this example is the calculation of a 2D potential
 energy scan of lateral positions of O @ Al(111). It introduces the
-input data stacking concept of PWTK (i.e. "input_pushpop { ... }").
+PWTK's concept of input-data stacking (i.e. "input_pushpop { ... }").
 
-For further explanation, see the comments within the PWTK scan.pwtk
+For further explanation, see the comments within the PWTK "scan.pwtk"x
 script. To run the whole example, execute:
 
    pwtk scan.pwtk >& scan.log &

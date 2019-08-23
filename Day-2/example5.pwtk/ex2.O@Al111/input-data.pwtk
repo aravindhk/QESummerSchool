@@ -13,7 +13,7 @@ CONTROL {
 SYSTEM  {
     ibrav = 4
     celldm(1) = 5.3966
-    celldm(3) = 3.0   ! super-thin vacuum to speed-up
+    celldm(3) = 3.0 ,  ! super-thin vacuum to speed-up
 
     ! speed-up
     nosym = .true. 

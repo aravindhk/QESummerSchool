@@ -7,7 +7,7 @@
 # ========================================================================
 
 # load the input data
-import common-data.pwtk
+import input-data.pwtk
 
 
 # open a file for writing resulting total energies
@@ -31,9 +31,9 @@ foreach ia [seq 0.0 0.2 1.0] {
 	# note that ia or ib of 1.0 are periodic images;
 	# use results of ia or ib = 0.0
 	if { $ia == 1.0 || $ib == 1.0 } {
-	    if { $ia == 1.0 } { set ia 0.0 }
-	    if { $ib == 1.0 } { set ib 0.0 }
-	    puts $fid "$x $y $Etot($ia,$ib)"	
+	    set i [expr $ia == 1.0 ? 0.0 : $ia]
+	    set j [expr $ib == 1.0 ? 0.0 : $ib]
+	    puts $fid "$x $y $Etot($i,$j)"	
 	} else {
 
 	    # REMARK: input_pushpop { ... } does the trick, otherwise
