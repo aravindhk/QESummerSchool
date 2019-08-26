@@ -15,7 +15,7 @@ installdir=$(pwd)
 $SUDO $APT update
 $SUDO $APT install \
       ssh make gfortran gcc quantum-espresso \
-      libblas-dev libfftw3-dev liblapack-dev openmpi \
+      libblas-dev libfftw3-dev liblapack-dev openmpi-common \
       tcllib tk libtogl2 itk3 iwidgets4 bwidget libgl2ps1.4 \
       vim emacs gnuplot grace octave imagemagick mencoder bc \
       openbabel bkchem gperiodic \
@@ -27,7 +27,7 @@ pwtk=pwtk-1.0.0-rc2
 qemodes=QE-modes-6.4
 
 # input name of exercises tar here 
-exercises=Day-1+pseudo.tgz
+exercises=material.tgz
 
 tmp_pkgs=$qemodes.tar.gz
 opt_pkgs="$pwgui.tgz $pwtk.tar.gz $xc.tar.gz" 
