@@ -107,13 +107,13 @@ cp $installdir/custom-definitions $HOME/.xcrysden
 if test "x$(echo $PATH | grep /opt/bin)" == "x"; then
     echo 'export PATH=/opt/bin/:$PATH' >> $HOME/.bashrc
 else
-    echo "PATH allready changed; skipping" 
+    echo "PATH already changed; skipping" 
 fi
 
 if test "x$(cat $HOME/.bashrc | grep ESPRESSO_TMPDIR)" == "x"; then
     echo 'export ESPRESSO_TMPDIR=/tmp' >> $HOME/.bashrc
 else
-    echo "ESPRESSO_TMPDIR allready defined; skipping" 
+    echo "ESPRESSO_TMPDIR already defined; skipping" 
 fi
 
 if test "x$(cat $HOME/.bashrc | grep ESPRESSO_PSEUDO)" == "x"; then
