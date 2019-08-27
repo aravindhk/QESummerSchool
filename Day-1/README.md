@@ -1,11 +1,14 @@
-#
 # Day-1 :
-#
+---------
+
+### Topics of Day-1 hands-on session
+
 - Installation/compilation of Quantum ESPRESSO (QE)
 - SCF + basic post-processing
 - XCrySDen, PWgui, QE-emacs-modes, PWTK (basics)
 - Exercises
 
+-----------
 
 **Exercise 0:** Compile Quantum ESPRESSO sources
 
