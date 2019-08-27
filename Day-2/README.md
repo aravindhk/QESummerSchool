@@ -10,13 +10,13 @@
 
 ---
 
-**Exercise 1:** structural optimization (calculation = "relax");
+**Exercise 1:** structural optimization (`calculation = 'relax'`);
 	            atomic positions only
 
     cd example1.relax/
 
 
-**Exercise 2:** structural optimization (calculation = "vc-relax");
+**Exercise 2:** structural optimization (`calculation = 'vc-relax'`);
                 atomic positions and unitcell
 
     cd example2.vc-relax/
