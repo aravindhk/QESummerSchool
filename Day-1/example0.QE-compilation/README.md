@@ -1,5 +1,5 @@
-PURPOSE OF THE EXERCISE:
-How to compile the Quantum ESPRESSO (QE) sources.
+# PURPOSE OF THE EXERCISE:
+## How to compile the Quantum ESPRESSO (QE) sources.
 -------------------------------------------------
 
 

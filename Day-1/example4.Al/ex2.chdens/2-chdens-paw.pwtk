@@ -4,7 +4,7 @@ load_fromPWI ../pw.al.scf.in
 ATOMIC_SPECIES {
     Al 1.0  Al.pbe-n-kjpaw_psl.1.0.0.UPF
 }
-# PAW requires larger cut-offs
+# all-electon charge density plotting requires larger cut-offs
 SYSTEM { ecutwfc = 30.0, ecutrho = 500 }
 
 set name Al-w-paw
