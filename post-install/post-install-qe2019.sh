@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 #
 # a script to install the required packages for QE-2019 school (user
@@ -121,6 +121,7 @@ else
     echo "PATH already changed; skipping" 
 fi
 
+# define ESPRESSO environmental variables 
 if test "x$(cat $HOME/.bashrc | grep ESPRESSO_TMPDIR)" == "x"; then
     echo 'export ESPRESSO_TMPDIR=/tmp' >> $HOME/.bashrc
 else
@@ -131,6 +132,14 @@ if test "x$(cat $HOME/.bashrc | grep ESPRESSO_PSEUDO)" == "x"; then
     echo 'export ESPRESSO_PSEUDO=$HOME/QE-2019/pseudo' >> $HOME/.bashrc
 else
     echo "ESPRESSO_PSEUDO already defined; skipping" 
+fi
+
+# fix for firefox add-on so it can open *md files
+touch $HOME/.mime.types
+if test "x$(cat $HOME/.mime.types | grep markdown)" == "x"; then
+    echo 'text/plain      md markdown' > $HOME/.mime.types
+else
+    echo ".mime.types already created and modified" 
 fi
 
 #
