@@ -17,9 +17,9 @@ $SUDO $APT install \
       ssh make gfortran gcc quantum-espresso \
       libblas-dev libfftw3-dev liblapack-dev openmpi-common \
       tcllib tk libtogl2 itk3 iwidgets4 bwidget libgl2ps1.4 \
-      vim emacs gnuplot grace octave imagemagick mencoder bc \
-      openbabel bkchem gperiodic \
-      git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server \ 
+      vim emacs gnuplot grace octave imagemagick mencoder bc gnuplot-mode\
+      openbabel bkchem gperiodic caja-open-terminal python3-setuptools \
+      git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server 
 
 xc=xcrysden-1.6.0-rc2-bin-shared
 pwgui=PWgui-6.4
@@ -110,16 +110,16 @@ else
     echo "PATH allready changed; skipping" 
 fi
 
-if test "x$(echo $ESPRESSO_TMPDIR)" == "x"; then
-    echo 'ESPRESSO_TMPDIR=/tmp' >> $HOME/.bashrc
+if test "x$(cat $HOME/.bashrc | grep ESPRESSO_TMPDIR)" == "x"; then
+    echo 'export ESPRESSO_TMPDIR=/tmp' >> $HOME/.bashrc
 else
-    echo "ESPRESSO_TMPDIR allready defined to $ESPRESSO_TMPDIR; skipping" 
+    echo "ESPRESSO_TMPDIR allready defined; skipping" 
 fi
 
-if test "x$(echo $ESPRESSO_PSEUDO)" == "x"; then
-    echo 'ESPRESSO_PSEUDO=$HOME/QE-2019/pseudo' >> $HOME/.bashrc
+if test "x$(cat $HOME/.bashrc | grep ESPRESSO_PSEUDO)" == "x"; then
+    echo 'export ESPRESSO_PSEUDO=$HOME/QE-2019/pseudo' >> $HOME/.bashrc
 else
-    echo "ESPRESSO_PSEUDO already defined to $ESPRESSO_PSEUDO; skipping" 
+    echo "ESPRESSO_PSEUDO already defined; skipping" 
 fi
 
 #
