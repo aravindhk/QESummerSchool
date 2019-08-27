@@ -27,7 +27,7 @@
     the xcrysden's menu *File-->Save Current State* (say that you save
     it as `MO-state.xcrysden`). Now try this with another orbital, e.g.:
 
-       xcrysden --xsf psi2.benzene_K001_B006.xsf --script MO-state.xcrysden
+       xcrysden --xsf psi2.benzene_K001_B005.xsf --script MO-state.xcrysden
  
 
 4. to plot all the molecular orbitals, execute the `plot-psi.sh` shell
