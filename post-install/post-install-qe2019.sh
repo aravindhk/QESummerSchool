@@ -21,7 +21,7 @@ $SUDO $APT install \
       openbabel bkchem gperiodic caja-open-terminal python3-setuptools \
       git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server 
 
-xc=xcrysden-1.6.0-rc2-bin-shared
+xc=xcrysden-1.6.0-rc3-bin-shared
 pwgui=PWgui-6.4
 pwtk=pwtk-1.0.0-rc2
 qemodes=QE-modes-6.4
