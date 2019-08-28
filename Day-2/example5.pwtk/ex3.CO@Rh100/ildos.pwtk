@@ -6,9 +6,14 @@
 
 
 # just in case if we run directly ?
-import common-data.pwtk
-if { ! [file exists pw.$name.relax.out] } {
-    import relax.pwtk
+if { [::pwtk::pwi::getNAtoms] == 0 } {
+    import common-data.pwtk
+    if { [file exists pw.$name.relax.out] } {
+        CELL_PARAMETERS_fromXSF CO-Rh100-c2x2-2L.xsf
+        ATOMIC_POSITIONS_fromPWO end pw.$name.relax.out
+    } else {
+        import relax.pwtk        
+    }
 }
 
 

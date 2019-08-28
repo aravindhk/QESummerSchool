@@ -6,10 +6,16 @@
 
 
 # just in case if we run directly ?
-import common-data.pwtk
-if { ! [file exists pw.$name.relax.out] } {
-    import relax.pwtk
+if { [::pwtk::pwi::getNAtoms] == 0 } {
+    import common-data.pwtk
+    if { [file exists pw.$name.relax.out] } {
+        CELL_PARAMETERS_fromXSF CO-Rh100-c2x2-2L.xsf
+        ATOMIC_POSITIONS_fromPWO end pw.$name.relax.out
+    } else {
+        import relax.pwtk        
+    }
 }
+
 
 # REMARK: we use "input_pushpop { ... }, because we don't want that
 # modifications of input data herein affect other subsequent calculations
@@ -42,7 +48,8 @@ input_pushpop {
 
     
     # let's treat CO fragment as a molecule (not really required)
-    ::pwtk::difden::segmentSpecialization 2 {	
+    # note that "difden_segmentSpec" is a shortcut for ::pwtk::difden::segmentSpecialization
+    difden_segmentSpec 2 {	
 	SYSTEM {
 	    ! this is how we clear the variables in PWTK
 	    occupations = 
@@ -52,5 +59,7 @@ input_pushpop {
 	K_POINTS gamma
     }
 
+    # note that "difden_run" is a shortcut for ::pwtk::difden::run
+    
     difden_run difden.$name
 }

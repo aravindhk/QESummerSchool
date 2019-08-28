@@ -7,9 +7,14 @@
 
 
 # just in case if we run directly ?
-import common-data.pwtk
-if { ! [file exists pw.$name.relax.out] } {
-    import relax.pwtk
+if { [::pwtk::pwi::getNAtoms] == 0 } {
+        import common-data.pwtk
+    if { [file exists pw.$name.relax.out] } {
+        CELL_PARAMETERS_fromXSF CO-Rh100-c2x2-2L.xsf
+        ATOMIC_POSITIONS_fromPWO end pw.$name.relax.out
+    } else {
+        import relax.pwtk        
+    }
 }
 
 
@@ -66,7 +71,7 @@ input_pushpop {
     # molecular orbitals as to be able to project DOS to its states
 
     input_pushpop {
-	::pwtk::printTitle {} "Calculating CO molecule"
+	::pwtk::printTitle Fragment "Calculating CO molecule"
 	
 	# retain only CO; delete the Rh(100) slab    
 	::pwtk::pwi::deleteAtomsRange 3 end
@@ -90,12 +95,14 @@ input_pushpop {
 	    outdir_postfix CO.gamma
 	    K_POINTS gamma
 	    runPW pw.CO.scf.gamma.in; 
-	
+
+            # CO has 10 valence electrons; HOMO = 5, LUMO = 6; but LUMO
+            # is doubly-degenerate, hence we plot psi2 for states 1 to 7
 	    INPUTPP {
 		plot_num = 7
 		lsign = .true. ,
 		filplot = 'psi2.CO'
-		kband = 1 7
+		kband = 1 7 
 		kpoint = 1
 	    }
 	    PLOT {
