@@ -11,3 +11,14 @@
 2. To run the example, execute:
 
        pwtk dos.pwtk
+
+3. Set the correct Fermi energy (variable `Efermi`) in the `plot.gp`
+   script. To this end, look into `pw.Fe.nscf.out` file and search for
+   line containing the text `the Fermi energy is`. For this
+   purpose, you can also use the `grep` command, i.e.:
+   
+       grep 'Fermi energy' pw.Fe.nscf.out
+      
+4. Replot the DOS, i.e., execute:
+     
+       gnuplot plot.gp

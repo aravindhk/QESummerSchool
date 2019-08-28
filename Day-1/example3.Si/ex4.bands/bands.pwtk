@@ -1,15 +1,16 @@
 load_fromPWI ../pw.si.scf.in
 
 # please insert values as determined in the "alat" & "ecutwfc" excercises
-SYSTEM " celldm(1) = 9.0"
+
 #SYSTEM {
-#    celldm(1) = 
-#    ecutwfc = 
+#    celldm(1) = ...insert...
+#    ecutwfc   = ...insert...
 #}
 
 # please insert values as determined in the "kpoints" excercise
+
 #K_POINTS automatic {
-#    ...
+#    ...insert...
 #}
 
 set name Si

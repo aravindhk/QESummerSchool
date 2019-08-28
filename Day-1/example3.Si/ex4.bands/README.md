@@ -11,3 +11,15 @@
 
        pwtk bands.pwtk
 
+3. Set the correct Fermi energy (variable `Efermi`) in the `plot.gp`
+   script. To this end, look into `pw.Si.scf.out` file and search for
+   line containing the text `highest occupied level (ev):`. For this
+   purpose, you can also use the `grep` command, i.e.:
+   
+       grep 'highest occupied level' pw.Si.scf.out
+      
+4. Replot the bands structure, i.e., execute:
+     
+       gnuplot plot.gp
+
+
