@@ -18,7 +18,7 @@ $SUDO $APT install \
       libblas-dev libfftw3-dev liblapack-dev openmpi-common \
       tcllib tk libtogl2 itk3 iwidgets4 bwidget libgl2ps1.4 \
       vim emacs gnuplot grace octave imagemagick mencoder bc\
-      openbabel bkchem gperiodic caja-open-terminal python3-setuptools \
+      openbabel bkchem gperiodic caja-open-terminal texlive python3-setuptools \
       git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server 
 
 xc=xcrysden-1.6.0-rc3-bin-shared
