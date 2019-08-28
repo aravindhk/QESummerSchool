@@ -5,6 +5,7 @@
 - `*.pwtk`         -- PWTK scripts
 - `*.gp`           -- Gnuplot scripts
 - `*.sh`           -- Unix shell-scrips
+- `*.xcrysden`     -- XCrySDen scripts
 
 
 ## QE input/output filenames use the following logic:
