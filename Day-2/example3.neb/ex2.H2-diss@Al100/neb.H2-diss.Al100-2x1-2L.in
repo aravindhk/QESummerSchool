@@ -9,7 +9,7 @@ BEGIN_PATH_INPUT
    k_max          = 0.3,
    k_min          = 0.2,
    CI_scheme      = 'auto',
-   path_thr       = 0.1,
+   path_thr       = 0.2,
 
    use_freezing = .true.
 /
