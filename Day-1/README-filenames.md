@@ -31,6 +31,6 @@ be calculated.
 * `pw.Si.bands.in` -- pw.x input file for `calculation = 'bands'` of Silicon
 * `pp.benzene.psi2.in` -- pp.x input file for calculation the |psi(r)|^2 of benzene
 
-As stated above, for simpler, one-purpose, programs, the *task* is ommited, e.g.:
+As stated above, for simpler, one-purpose programs, the *task* is ommited, e.g.:
 
 * `bands.Si.in` -- bands.x input file for Silicon
