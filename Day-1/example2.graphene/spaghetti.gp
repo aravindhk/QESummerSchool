@@ -4,8 +4,8 @@ set format x ""
 set ylabel "Energy (Ry)"
 unset xlabel
 
-set xtics (0.0000, 0.1667, 0.8333, 1.4107, 1.7440)
+set xtics (0.0000, "{/Symbol G}" 0.1667, "K" 0.8333, "M" 1.4107, "{/Symbol G}" 1.7440)
 
-plot [0:1.7440] 'graphene.bands.dat.gnu' w linespoints lw 2 pt 4 ps 1.2
+plot [0:1.7440] 'graphene.bands.dat.gnu' w linespoints lw 2 pt 6
 pause -1
 
