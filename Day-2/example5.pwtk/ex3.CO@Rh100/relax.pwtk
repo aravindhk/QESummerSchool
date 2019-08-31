@@ -24,4 +24,4 @@ runPW pw.$name.relax.in
 
 # load the optimized coordinates from the above pw.x run into PWTK,
 # because we need optimized coordinates for a few examples below
-ATOMIC_POSITIONS_fromPWO end pw.$name.relax.out
+ATOMIC_POSITIONS_fromPWO pw.$name.relax.out
