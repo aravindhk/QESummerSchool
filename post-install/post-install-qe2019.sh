@@ -23,7 +23,7 @@ $SUDO $APT install \
 
 xc=xcrysden-1.6.0-rc3-bin-shared
 pwgui=PWgui-6.4
-pwtk=pwtk-1.0.0-rc2
+pwtk=pwtk-1.0.0-rc4
 qemodes=QE-modes-6.4
 
 # input name of exercises tar here 
