@@ -15,10 +15,13 @@ Try to run the previous examples with 2 MPI processes per GPU and
 
 The general scheme for MPI communication in QE is the following:
 
+![mpi with gpu](CUDAawareMPISendRecv-1024x411.png)
+
+(taken from https://devblogs.nvidia.com/introduction-cuda-aware-mpi)
 
 On some systems this has a sizable impact on the performance of data communication and, whenever possible, 
-a better communication strategy that can exploit direct GPU to GPU channels (like NVlink) can be setup by recent
-versions of OpenMPI.
+a better communication strategy that can exploit direct GPU to GPU channels (like NVlink) 
+can be exploited by recent versions of OpenMPI.
 
 The following command can be used to check whether the OpenMPI version installed on your system support sending and receiving data residing on the GPU memory:
 
