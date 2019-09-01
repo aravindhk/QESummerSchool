@@ -8,11 +8,19 @@
 
 -----------
 
-**Exercise 1:** 
+**Exercise 1:** Calculation of the phonon frequencies at the Gamma point and of the phonon dispersion of silicon.
+
+   cd example1a/
+   cd example1b/
     
-**Exercise 2:** 
+**Exercise 2:** Calculation of the phonon frequencies at the Gamma point and of the phonon dispersion of the polar semiconductor AlAs.
     
-**Exercise 3:** 
+    cd example2a/
+    cd example2b/
+    
+**Exercise 3:** Calculation of the phonon dispersion of 2D hexagonal Boron Nitride.
+
+    cd example3/
 
 **Exercise 4:** Calculation of the absorption spectrum of benzene molecule (C6H6) using the Independent Particle Approximation
 
