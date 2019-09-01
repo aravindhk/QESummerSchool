@@ -1,34 +1,26 @@
 #!/bin/sh
 # reminder: from now on, what follows the character # is a comment
-####################################################################
-#
-# define the following variables according to your needs
-#
-outdir=/tmp
-pseudo_dir=../../../pseudo
-# the following is not actually used:
-# espresso_dir=top_directory_of_espresso_package
-####################################################################
 
-rm -f pw.si.eos.out si.etot_vs_alat
-touch si.etot_vs_alat
 
-for alat in 9.8 9.9 10.0 10.1 10.2 10.3 10.4 10.5 10.6 10.7
+# delete the si.etot_vs_ecut if it exists
+rm -f si.etot_vs_ecut
+
+# loop over ecutwfc value
+for ecut in 12 16 20 24 28 32
 do
+    echo "Running for ecutwfc = $ecut ..."
 
     # self-consistent calculation
-    cat > pw.si.eos.in << EOF
+    cat > pw.si.scf.in << EOF
  &CONTROL
     prefix='silicon',
-    pseudo_dir = '$pseudo_dir/',
-    outdir='$outdir/'
  /
  &SYSTEM    
     ibrav =  2, 
-    celldm(1) = $alat, 
+    celldm(1) = 10.2, 
     nat =  2, 
     ntyp = 1,
-    ecutwfc = 20.0, 
+    ecutwfc = $ecut, 
  /
  &ELECTRONS
  /
@@ -38,17 +30,20 @@ ATOMIC_POSITIONS
    Si 0.00 0.00 0.00 
    Si 0.25 0.25 0.25 
 K_POINTS automatic
-   4 4 4 1 1 1
+   4 4 4   1 1 1
 EOF
 
-    # If pw.x is not found, specify the correct value for $espresso_dir,
-    # use $espresso_dir/bin/pw.x instead of pw.x
+    # run the pw.x calculation
+    pw.x -in pw.si.scf.in > pw.si.scf.out
 
-    pw.x -in pw.si.eos.in > pw.si.eos.out
-
-    grep -e 'lattice parameter' -e ! pw.si.eos.out | \
-        awk '/lattice/{alat=$(NF-1)}/!/{print alat, $(NF-1)}' >> si.etot_vs_alat
+    # collect the ecutwfc and total-energy from the pw.si.scf.out output-file
+    
+    grep -e 'kinetic-energy cutoff' -e ! pw.si.scf.out | \
+        awk '/kinetic-energy/ {ecut=$(NF-1)}
+             /!/              {print ecut, $(NF-1)}' >> si.etot_vs_ecut
 
 done
+
+# plot the result
 
 gnuplot plot.gp
