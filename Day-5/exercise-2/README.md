@@ -1,12 +1,15 @@
 # Exercise 2
 
 We will now compile an optimized version of QE.
-Let's first see what happens when you forget to prepare the environment correctly. Clean up everything you did till now with the command
+
+Let's first see what happens when you forget to prepare the environment correctly.
+Clean up everything you did till now with the command
 
     # Run me!
     module purge
 
-Now download the last QE release and run the `configure` command. Copy and paste instructions follow:
+Now download the last QE release and run the `configure` command. 
+Copy and paste the following instructions on your terminal:
 
     # Run me!
     wget https://gitlab.com/QEF/q-e/-/archive/qe-6.4.1/q-e-qe-6.4.1.tar.bz2
@@ -43,7 +46,8 @@ The final message should look like this:
     21	Please check if this is what you expect.
 
 
-This will probably allow you to compile QE without problems, but this version will give you wired results when running on a multicore cluster.
+The current configuration will probably allow you to compile QE without problems, 
+but this version will give you wired results when running on a multicore cluster.
 
 > **Question**: can you spot all the problems here❓ [Answer](#A1)
 
@@ -52,17 +56,17 @@ This will probably allow you to compile QE without problems, but this version wi
 Now let's go back and reload all modules.
 
     # Run me!
-    module load bla bbla bla
+    module load xxx
 
 This time we configure the optimal executable straight away with the following configuration string:
 
     # Run me!
-    ./configure --enable-openmp --with-scalapack=intel
+    ./configure --enable-openmp --with-scalapack=yes
 
 Let's review what these options are:
 
 1. `--enable-openmp` will enable the low lying parallel layer based on OpenMP directives.
-2. `--with-scalapack=intel` this option will activate distributed linear algebra and especially the parallel eigenvalue solver.
+2. `--with-scalapack=yes` this option will activate distributed linear algebra and especially the parallel eigenvalue solver. NB: when using Intel's compilers, this should instead be set to `--with-scalapack=yes`.
 
 After configure script completes inspect the final log and check that:
 
