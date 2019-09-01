@@ -25,10 +25,3 @@ Try to run the CuO input with GPU acceleration. Can you obtain a speedup with re
 
     # Run it!
     cd CuO
-
-## Cu
-
-Try to run the Cu supercell with the GPU version of the code and the CPU only version. You should measure a 3x speedup.
-
-    # Run it!
-    cd Cu

@@ -13,6 +13,20 @@ The accelerated version of QE requires PGI compilers and a series of libraries. 
 
 The GPU version also strongly benefits from MKL libraries so, if possible, on Intel machines, use them.
 
+## Downloading
+
+You can obtain the last version of the code here: gitlab.com/QEF/q-e-gpu.
+
+In this tutorial we will use the development version since it includes some
+important updates required to correctly configure the code against the
+latest PGI compilers' release.
+
+You can get it with:
+
+    # Run it!
+    wget https://gitlab.com/QEF/q-e-gpu/-/archive/gpu-develop/q-e-gpu-gpu-develop.tar.gz
+
+
 ## Configuring QE
 
 A few important notes about the accelerated version of the code:
