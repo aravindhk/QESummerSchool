@@ -1,12 +1,13 @@
 # set Fermi energy to correct value
 Efermi=0.0
+# ... and uncomment the following line
+#set yzeroaxis lt -1
 
 set grid
-set xzeroaxis lt -1
 set xlabel "Energy (eV)"
 set ylabel "DOS"
 set style fill solid 0.4
-set yzeroaxis lt -1
+set format y "%.1f"
 
 set title "Total DOS\n( press <Enter> in the terminal to exit ... )"
 
