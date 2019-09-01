@@ -74,7 +74,10 @@ After configure script completes inspect the final log and check that:
 
 ---
 
-In order to squeeze as much performance as possible, the final suggestion is to exploit the ELPA library. You can do this with the following configuration command:
+In order to squeeze as much performance as possible, the final 
+suggestion is to exploit the ELPA library (https://elpa.mpcdf.mpg.de/software).
+
+You can do this with the following configuration command:
  
  
     # Run me!
@@ -83,7 +86,8 @@ In order to squeeze as much performance as possible, the final suggestion is to 
      --with-elpa-include="-I${ELPAROOT}/include/elpa/modules" \
      --with-elpa-lib=${ELPAROOT}/lib/libelpa.a \
 
-where ELPA library has already been compiled for you and installed under `ELPAROOT`.
+where the ELPA library has already been compiled for you and installed
+under `ELPAROOT`.
 
 Finally, compile everything with:
 
