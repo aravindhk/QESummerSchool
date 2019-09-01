@@ -25,3 +25,12 @@ Try to run the CuO input with GPU acceleration. Can you obtain a speedup with re
 
     # Run it!
     cd CuO
+
+## Si255Ge
+
+Try to run the Si255Ge input with GPU acceleration. 
+Can you obtain at least a 2x speedup with respect to the CPU run on the same node?
+
+    # Run it!
+    cd Si255Ge
+

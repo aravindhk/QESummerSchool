@@ -42,7 +42,7 @@ This translates to this configure line:
 where `XX` is the location of the CUDA Toolkit (in HPC environments it is
 generally $CUDA_HOME), `Y.y` is the version of the CUDA Toolkit (`Y` and `y` are the two numbers identifying major and minor release, e.g. 9.0)  and `ZZ` is the compute capability of the card.
 
-**Question:** what is the correct configuration command for the K40 and the V100?
+**Question:** what is the correct value of ZZ command for the K40 and the V100?
 
 Note that a helper script is also available in the `dev-tools` directory and can be used like this: `python get_device_props.py` but you must run it on the target compute node.
 

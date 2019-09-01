@@ -54,17 +54,17 @@ This will probably allow you to compile QE without problems, but this version wi
 Now let's go back and reload all modules.
 
     # Run me!
-    module load bla bbla bla
+    module load xxx
 
 This time we configure the optimal executable straight away with the following configuration string:
 
     # Run me!
-    ./configure --enable-openmp --with-scalapack=intel
+    ./configure --enable-openmp --with-scalapack=yes
 
 Let's review what these options are:
 
 1. `--enable-openmp` will enable the low lying parallel layer based on OpenMP directives.
-2. `--with-scalapack=intel` this option will activate distributed linear algebra and especially the parallel eigenvalue solver.
+2. `--with-scalapack=yes` this option will activate distributed linear algebra and especially the parallel eigenvalue solver. NB: when using Intel's compilers, this should instead be set to `--with-scalapack=yes`.
 
 After configure script completes inspect the final log and check that:
 
