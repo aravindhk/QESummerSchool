@@ -8,7 +8,8 @@ Clean up everything you did till now with the command
     # Run me!
     module purge
 
-Now download the last QE release and run the `configure` command. Copy and paste instructions follow:
+Now download the last QE release and run the `configure` command. 
+Copy and paste the following instructions on your terminal:
 
     # Run me!
     wget https://gitlab.com/QEF/q-e/-/archive/qe-6.4.1/q-e-qe-6.4.1.tar.bz2
@@ -45,7 +46,8 @@ The final message should look like this:
     21	Please check if this is what you expect.
 
 
-This will probably allow you to compile QE without problems, but this version will give you wired results when running on a multicore cluster.
+The current configuration will probably allow you to compile QE without problems, 
+but this version will give you wired results when running on a multicore cluster.
 
 > **Question**: can you spot all the problems here❓ [Answer](#A1)
 

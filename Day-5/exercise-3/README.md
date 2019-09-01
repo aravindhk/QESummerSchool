@@ -1,6 +1,6 @@
 # Exercise 3
 
-Let's now go through the parallel options of pw.x with the help of some examples.
+Here we test the parallel options of pw.x with the help of some examples.
 
 ## Pools
 

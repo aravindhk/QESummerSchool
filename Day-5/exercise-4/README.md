@@ -1,4 +1,4 @@
-# Exercise 5
+# Collect informations on the GPU
 
 In this exercise we find out the relevant details of the GPUs
 installed on the cluster used in this hands-on.
@@ -20,7 +20,7 @@ On our system, the code can be compiled with:
 
 As a rule, in order to collect informations, you first need to access
 the compute node you want to use
-with an interactive job. You can do this with the following command;
+with an interactive job. You can do this with the following command:
 
     # Run me!
     srun --time=00:10:00 -N 1 --ntasks-per-node=1 [other cluster specific options] --pty /bin/bash
@@ -68,7 +68,7 @@ You should see something like this:
 
 You can basically ignore everything from these lines except for:
 
-* line 2, that specifies the currently loaded version of the Driver and the CUDA Runtime currently used.
+* line 2, that specifies the currently loaded version of the Driver and the CUDA Runtime currently used;
 * line 3, that tells you the the compute capabilities of the card;
-* line 4, which reports the amount of memory per device,
+* line 4, which reports the amount of memory per device;
 * line 34 and 35: this informs us that the same device can be used by multiple processes.

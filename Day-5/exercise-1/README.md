@@ -56,7 +56,7 @@ We will target a conventional Intel based platform in this tutorial.
 
 In general one would proceed as follows:
 
-1. Load Intel compilers, if not available, look for GNU compilers.
+1. load Intel compilers, if not available, look for GNU compilers,
 2. load Intel's MPI, if not available, look for OpenMPI,
 2. load the MKL library, if not available, look for OpenBLAS, ESSL or GoToBlas.
 
@@ -66,7 +66,7 @@ The command
 
 can be used to check how each module modified the environment by adding
 binaries to the `PATH` or by adding additional environment variables.
-This is also a good check to verify where the applications and the
+This is also a good way to verify where the applications and the
 libraries actually reside.
 
 The aim of this first, very short exercise is to identify the best options

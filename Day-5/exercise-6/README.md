@@ -5,10 +5,12 @@ already obtained for the CPU version.
 
 Here's a number of rules that you should generally follow:
 
-1. use **one** MPI process per GPU device.
-2. always activate OpenMP parallelism.
-3. never use task-groups, never use the parallel eigensolver.
-4. pool parallelism is generally useful, but be careful since it duplicates memory and GPUs have little.
+1. use **one** MPI process per GPU device;
+2. always activate OpenMP parallelism;
+3. never use task-groups, never use the parallel eigensolver;
+4. pool parallelism is generally useful, but be careful: it leads to 
+   memory duplication and GPUs generally have less internal memory than 
+   ordinary HPC nodes.
 
 
 

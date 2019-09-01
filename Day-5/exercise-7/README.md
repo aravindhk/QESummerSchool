@@ -4,9 +4,12 @@ A few other tricks can be used to further reduce the time to solution.
 
 ## GPU oversubscription
 
-While the rule of thumb for the GPU version of QE is 1 MPI process per GPU, depending on the input you may benefit from *oversubscribing* the GPU with multiple processes per GPU card.
+While the rule of thumb for the GPU version of QE is 1 MPI process per GPU, 
+depending on the input you may benefit from *oversubscribing* 
+the GPU with multiple MPI processes per GPU card.
 
-Try to run the previous examples with 2 MPI processes per GPU and 4 MPI processes per GPU. Can you observe improvements?
+Try to run the previous examples with 2 MPI processes per GPU and 
+4 MPI processes per GPU. Can you observe improvements?
 
 ## CUDA-Aware MPI
 

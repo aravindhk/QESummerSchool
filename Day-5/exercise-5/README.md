@@ -1,4 +1,4 @@
-# Exercise 6
+# Compile QE-GPU
 
 The accelerated version of QE is based on CUDA Fortran. This extension of the Fortran programming language is fully implemented only by the PGI Compilers.
 These are available on most clusters and can be freely downloaded from the PGI website.
@@ -84,6 +84,8 @@ Once the configure script finishes, you should get something like this:
     configure: success
 
 
+Final comment: depending on the version of PGI you may see `mkl_intel_thread`
+or `mkl_pgi_thread` in the `BLAS_LIBS` variable.
 
 
 ## Compilation

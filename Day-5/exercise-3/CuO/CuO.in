@@ -2,7 +2,7 @@
     calculation='scf',
     prefix='CuOSC',
     pseudo_dir = './',
-    outdir='/gpfs/scratch/userexternal/pbonfa00/',
+    outdir='/path/to/scratch/',
     verbosity='high'
     tprnfor=.true.
  /
