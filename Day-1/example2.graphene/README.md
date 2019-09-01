@@ -46,3 +46,31 @@
 7. plot the SPAGHETTI with gnuplot:
 
        gnuplot spaghetti.gp
+       
+
+### Setting the correct Fermi energy in gnuplot files
+
+To indicate the Fermi energy in DOS and spaghetti plots, let's enter the
+correct value of Fermi energy in the two gnuplot files. 
+
+8. First find the fermi enery in `pw.graphene.nscf.out` file, e.g.,
+
+       grep Fermi pw.graphene.nscf.out
+       
+   this command prints the following line:
+   
+       the Fermi energy is     0.9204 ev
+
+9. Edit the `dos.gp` and `spaghetti.gp` files and insert the above
+   value of Fermi energy and uncomment the `set yzeroaxis lt -1` line,
+   i.e., the top part of this files look like:
+   
+       # set Fermi energy to correct value
+       Efermi=0.9204
+       # ... and uncomment the following line
+       set yzeroaxis lt -1
+       
+10. Replot the DOS and spaghetti:
+
+        gnuplot dos.gp
+        gnuplot spaghetti.gp
