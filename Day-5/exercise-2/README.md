@@ -1,7 +1,9 @@
 # Exercise 2
 
 We will now compile an optimized version of QE.
-Let's first see what happens when you forget to prepare the environment correctly. Clean up everything you did till now with the command
+
+Let's first see what happens when you forget to prepare the environment correctly.
+Clean up everything you did till now with the command
 
     # Run me!
     module purge
