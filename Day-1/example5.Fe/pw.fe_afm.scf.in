@@ -2,7 +2,7 @@
     prefix='fe',
 
     !pseudo_dir = 'directory with pseudopotentials',
-    !outdir='temporary directory for large files'
+    !outdir = 'temporary directory for large files'
     !verbosity = 'high',
  /
 
