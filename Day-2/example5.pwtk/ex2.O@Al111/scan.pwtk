@@ -16,9 +16,9 @@ set fid [open energies.dat w]
 
 # loop over A and B-directions
 foreach ia [seq 0.0 0.2 1.0] {
-    foreach ib  [seq 0.0 0.2 1.0] {
+    foreach ib [seq 0.0 0.2 1.0] {
 
-	::pwtk::print "\nCalculating point (ia,ib) = ($ia,$ib) ...\n"
+	print "\nCalculating point (ia,ib) = ($ia,$ib) ...\n"
 	
 	# name of the I/O files
 	set name O-Al111.relax.ia$ia.ib$ib
@@ -26,14 +26,13 @@ foreach ia [seq 0.0 0.2 1.0] {
 	# lateral position of O atom
 	set x [expr $ia - 0.5*$ib]
 	set y [expr sqrt(3)/2*$ib]
-
 	
 	# note that ia or ib of 1.0 are periodic images;
-	# use results of ia or ib = 0.0
+	# use results of ia or ib = 0.0        
 	if { $ia == 1.0 || $ib == 1.0 } {
 	    set i [expr $ia == 1.0 ? 0.0 : $ia]
 	    set j [expr $ib == 1.0 ? 0.0 : $ib]
-	    puts $fid "$x $y $Etot($i,$j)"	
+	    puts $fid "$x $y $Etot($i,$j)"            
 	} else {
 
 	    # REMARK: input_pushpop { ... } does the trick, otherwise

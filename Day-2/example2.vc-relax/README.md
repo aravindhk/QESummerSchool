@@ -1,14 +1,13 @@
-PURPOSE OF THE EXERCISE:
-How to perform a variable-cell structural optimization
-(calculation = "vc-relax").
+# PURPOSE OF THE EXERCISE:
+## How to perform a variable-cell structural optimization (calculation = "vc-relax").
 ------------------------------------------------------
 
 There are two examples of variable cell relaxation: a hcp Zn-bulk
 structure and molecular crystal of urea.
 
 
-* Example-1: hcp Zn-bulk
-  ----------------------
+### Example-1: hcp Zn-bulk
+--------------------------
   
 Steps to perform:
 
@@ -20,7 +19,7 @@ Steps to perform:
    
 2. To run the example, execute:
 
-   pw.x < pw.Zn.vc-relax.in > pw.Zn.vc-relax.out &
+       pw.x < pw.Zn.vc-relax.in > pw.Zn.vc-relax.out &
 
 
 3. When calculation finishes, analyze the output: it consists of
@@ -31,16 +30,16 @@ Steps to perform:
 4. To visualize the evolution of the structure during structural
    optimization, execute:
 
-   xcrysden --pwo pw.Zn.vc-relax.out
+       xcrysden --pwo pw.Zn.vc-relax.out
 
 
-* Example-2: molecular crystal of urea
-  ------------------------------------
+### Example-2: molecular crystal of urea
+----------------------------------------
 
 Example-2 is analogous to example-1, just the structure is different.
 Beware that it is computationally heavier than the example-1. To run
 the example, execute:
 
-   pw.x < pw.urea.vc-relax.in > pw.urea.vc-relax.out &
+       pw.x < pw.urea.vc-relax.in > pw.urea.vc-relax.out &
 
 

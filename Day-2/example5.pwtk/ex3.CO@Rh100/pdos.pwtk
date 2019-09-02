@@ -8,10 +8,10 @@
 
 # just in case if we run directly ?
 if { [::pwtk::pwi::getNAtoms] == 0 } {
-        import common-data.pwtk
+    import common-data.pwtk
     if { [file exists pw.$name.relax.out] } {
         CELL_PARAMETERS_fromXSF CO-Rh100-c2x2-2L.xsf
-        ATOMIC_POSITIONS_fromPWO end pw.$name.relax.out
+        ATOMIC_POSITIONS_fromPWO pw.$name.relax.out
     } else {
         import relax.pwtk        
     }
@@ -51,13 +51,13 @@ input_pushpop {
     input_pushpop {
 	# ------------------------------------------------------------------
 	# NSCF pw.x calculation
-	::pwtk::printTitle NSCF "NSCF calculation with denser K-points"
+	printTitle NSCF "NSCF calculation with denser K-points"
 	CONTROL { calculation = 'nscf' }
 	runPW pw.$name.nscf.in
 	
 	# --------------------------------------------------------------
 	# calculate PDOS of full system CO-Rh100 (projwfc.x calculation)
-	::pwtk::printTitle PDOS "PDOS calculation of $name"
+	printTitle PDOS "PDOS calculation of $name"
 	PROJWFC {
 	    ngauss  = 0
 	    degauss = 0.01
@@ -71,16 +71,16 @@ input_pushpop {
     # molecular orbitals as to be able to project DOS to its states
 
     input_pushpop {
-	::pwtk::printTitle Fragment "Calculating CO molecule"
+	printTitle Fragment "Calculating CO molecule"
 	
 	# retain only CO; delete the Rh(100) slab    
-	::pwtk::pwi::deleteAtomsRange 3 end
+	deleteAtomsRange 3 end
 
 	# SCF PW.X calculaton of CO
 	CONTROL { calculation = 'scf' , prefix = 'CO' }
 	runPW pw.CO.scf.in
 
-	::pwtk::printTitle PDOS "PDOS calculation of CO fragment"
+	printTitle PDOS "PDOS calculation of CO fragment"
 	
 	# PDOS projwfc.x calculation of CO
 	set part_xml [runPROJWFC_and_copy_xml CO]
@@ -89,7 +89,7 @@ input_pushpop {
 	# plot all molecular-orbitals of CO (valence and LUMO) 
 	
 	input_pushpop {
-	    ::pwtk::printTitle MOs "Calculating all MOs of CO fragment"
+	    printTitle MOs "Calculating all MOs of CO fragment"
 	    
 	    # pw.x calc with gamma K-point (required for signed psi^2)
 	    outdir_postfix CO.gamma
@@ -109,14 +109,14 @@ input_pushpop {
 		fileout = '.xsf'
 	    }
 	    runPP pp.CO.psi2.in
-	    ::pwtk::print "\nMOs (psi^2) written to files:  psi2.CO_K*_B*.xsf\n"
+	    print "\nMOs (psi^2) written to files:  psi2.CO_K*_B*.xsf\n"
 	}
     }
 
     # now let's make a MOPDOS of CO-Rh(100) system projected to
     # molecular-orbitals of CO via molecularpdos.x calcuation
 
-    ::pwtk::printTitle MOPDOS "Calculating MOPDOS of $name projected to MOs of CO"
+    printTitle MOPDOS "Calculating MOPDOS of $name projected to MOs of CO"
     
     # specify molecularpdos.x input data
     

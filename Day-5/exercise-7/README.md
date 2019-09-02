@@ -1,26 +1,47 @@
-# Running QE-GPU
+# Advanced QE-GPU
 
-Efficient execution parameters for QE-GPU strongly differ from those of the CPU version.
+A few other tricks can be used to further reduce the time to solution.
 
-Here's a number of rule you should generally follow as of today:
+## GPU oversubscription
 
-1. use **one** MPI process per GPU device.
-2. always activate OpenMP parallelism.
-3. never use task-groups, never use the parallel eigensolver.
-4. pool parallelism is generally useful, but be careful since it duplicates memory and GPUs have little.
+While the rule of thumb for the GPU version of QE is 1 MPI process per GPU, 
+depending on the input you may benefit from *oversubscribing* 
+the GPU with multiple MPI processes per GPU card.
 
+Try to run the previous examples with 2 MPI processes per GPU and 
+4 MPI processes per GPU. Can you observe improvements?
 
+## CUDA-Aware MPI
 
-## A small test case
+The general scheme for MPI communication in QE is the following:
 
-TODO: small case where no acceleration is observed
+![mpi with gpu](gpu-mpi.jpg)
 
-## A medium test case
+(taken from [CUDA Application Design and Development](https://doi.org/10.1016/B978-0-12-388426-8.00010-0))
 
-TODO: medium test case some acceleration is observed
+The data are first moved to the host memory, than sent through the NIC by
+an MPI call, received on the other end and finally copied to the GPU memory
+of the destination node.
 
-## A large test case
+On some systems this has a sizable impact on the performance of data communication and, whenever possible, 
+a better communication strategy that can exploit direct GPU to GPU channels (like NVlink) 
+can be setup by recent versions of OpenMPI.
 
-TODO: large test case where the expected 3x-5x speedup (w.r.t. CPU only) is observed.
+The following command can be used to check whether the OpenMPI version installed on your system 
+support sending and receiving data residing on the GPU memory:
 
+    ompi_info --parsable -l 9 --all | grep mpi_built_with_cuda_support:value
 
+if the answer is:
+
+    mca:mpi:base:param:mpi_built_with_cuda_support:value:true
+
+you can try to enable this feature in QE-GPU. 
+At the time of writing this is still an *experimental feature* that can be activated
+by adding the flag
+
+    -D__GPU_MPI
+
+after the line containing `-D__MPI`.
+
+Recompile the code and run one of the previous input files. Do you find any speedup?
