@@ -27,7 +27,7 @@ pwtk=pwtk-1.0.0-rc4
 qemodes=QE-modes-6.4
 
 # input link to exercises gitlab here
-exercises="git@gitlab.com:QEF/material-for-ljubljana-qe-summer-school.git"
+exercises="https://gitlab.com/QEF/material-for-ljubljana-qe-summer-school.git"
 
 tmp_pkgs=$qemodes.tar.gz
 opt_pkgs="$pwgui.tgz $pwtk.tar.gz $xc.tar.gz" 
