@@ -18,7 +18,7 @@ $SUDO $APT install \
       libblas-dev libfftw3-dev liblapack-dev openmpi-common \
       tcllib tk libtogl2 itk3 iwidgets4 bwidget libgl2ps1.4 \
       vim emacs gnuplot grace octave imagemagick mencoder bc\
-      openbabel bkchem gperiodic caja-open-terminal texlive python3-setuptools \
+      openbabel bkchem gperiodic caja-open-terminal texlive python3-setuptools git \
       git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server 
 
 xc=xcrysden-1.6.0-rc3-bin-shared
@@ -26,8 +26,8 @@ pwgui=PWgui-6.4
 pwtk=pwtk-1.0.0-rc2
 qemodes=QE-modes-6.4
 
-# input name of exercises tar here 
-exercises=material.tgz
+# input link to exercises gitlab here
+exercises="git@gitlab.com:QEF/material-for-ljubljana-qe-summer-school.git"
 
 tmp_pkgs=$qemodes.tar.gz
 opt_pkgs="$pwgui.tgz $pwtk.tar.gz $xc.tar.gz" 
@@ -143,12 +143,9 @@ else
 fi
 
 #
-# unpack exercises 
+# clone exercises git repository 
 #
-
-mkdir -p $HOME/QE-2019
-
-tar_open $exercises $HOME/QE-2019/
+git clone $exercises $HOME/QE-2019
 
 for i in {1..5}; do
     ln -s  $HOME/QE-2019/Day-$i  $HOME/Desktop/Day-$i
