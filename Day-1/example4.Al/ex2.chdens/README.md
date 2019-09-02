@@ -20,8 +20,8 @@ chdens = CHarge DENSity
 
 * **Example 2:**  `2-chdens-paw.pwtk`
 
-  This examples shows how to calculate all electron charge density by
-  using the PAW potential. Notice now the electron charge around
-  nuclei. To run the example, execute:
+  This examples shows how to calculate all electron VALENCE and total
+  charge density by using the PAW potential. Notice now the electron
+  charge around nuclei. To run the example, execute:
 
        pwtk 2-chdens-paw.pwtk
