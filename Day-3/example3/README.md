@@ -5,24 +5,24 @@ Steps to perform:
 
 #1) Run the SCF ground-state calculation
 
-mpirun -np 2 pw.x < bn_scf.in > bn_scf.out
+mpirun -np 2 pw.x < scf.bn.in > scf.bn.out
 
 #2) Run the phonon calculation on a uniform grid of q-points
 
-mpirun -np 2 ph.x < bn_ph.in > bn_ph.out
+mpirun -np 2 ph.x < ph.bn.in > ph.bn.out
 
 #3) Fourrier transform the Interatomic Force Constants from a uniform grid of q-points to real space: C(q) => C(R)
 
-mpirun -np 2 q2r.x < bn_q2r.in > bn_q2r.out
+mpirun -np 2 q2r.x < q2r.bn.in > q2r.bn.out
 
 #4) Calculate frequencies omega(q') at generic q' points using Interatomic Force Constants C(R)
 
-mpirun -np 2 matdyn.x < bn_matdyn.in > bn_matdyn.out
+mpirun -np 2 matdyn.x < matdyn.bn.in > matdyn.bn.out
 
 #5) Plot the phonon dispersion of silicon 
 
-plotband.x < bn_plotband.in > bn_plotband.out
+plotband.x < plotband.bn.in > plotband.bn.out
 
-gnuplot plot_dispersion.gnu
+gnuplot plot_dispersion.gp
 
 evince phonon_dispersion.eps 
