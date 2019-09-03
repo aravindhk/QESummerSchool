@@ -41,7 +41,7 @@ cat <<EOF >> $HOME/.ssh/config
 Host nsc
  HostName $host 
  User $user
- IdentityFile $nsckey.pub
+ IdentityFile $nsckey
 EOF
 
 echo "
