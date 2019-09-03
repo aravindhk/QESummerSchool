@@ -22,9 +22,9 @@ $SUDO $APT install \
       git python2.7-dev python3-dev python-pip virtualenv postgresql postgresql-server-dev-all postgresql-client rabbitmq-server 
 
 xc=xcrysden-1.6.0-rc3-bin-shared
-pwgui=PWgui-6.4
+pwgui=PWgui-6.4.1
 pwtk=pwtk-1.0.0-rc4
-qemodes=QE-modes-6.4
+qemodes=QE-modes-6.4.1
 
 # input link to exercises gitlab here
 exercises="https://gitlab.com/QEF/material-for-ljubljana-qe-summer-school.git"
