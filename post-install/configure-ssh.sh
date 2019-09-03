@@ -4,9 +4,10 @@
 # make ssh configure file for user ... 
 #
 userinput() {
-    echo "Please input your $1"
+    echo "
+Please input your $1:"
     read reply 
-    echo "The $1 is $reply is this correct [y|n]"
+    echo -n "The $1 is \"$reply\". Is this correct [y|n] : "
     read answer
     if test "$answer" != "y"; then
 	echo "The reply $reply was wrong, exiting ..."
@@ -16,36 +17,43 @@ userinput() {
 
 userinput username
 user=$reply
+# either:
 userinput hostname 
 host=$reply
+# or:
+#host=XXXX.ijs.si
 
 
 # define where key is stored here (default $HOME/.ssh/)
 pathtokey="$HOME/.ssh"
 
-echo "Generating ssh-key in $pathtokey"
+echo "
+Generating ssh-key in $pathtokey
+
+(BEWARE: leave the passphrase empty)
+"
 
 mkdir -p $pathtokey
-
 nsckey="$pathtokey/id_rsa_nsc"
-
 ssh-keygen -t rsa -f $nsckey
 
-cat <<EOF > mysshconfig.txt
+cat <<EOF >> $HOME/.ssh/config
 Host nsc
  HostName $host 
  User $user
  IdentityFile $nsckey.pub
 EOF
 
-echo "BEWARE: you will have to input your password twice" 
+echo "
+BEWARE: you will have to input your password twice
+" 
 
-scp $nsckey.pub nsc:~/ 
-
+scp $nsckey.pub nsc:~/
 ssh -t nsc 'cat $HOME/id_rsa_nsc.pub >> $HOME/.ssh/authorized_keys ; rm $HOME/id_rsa_nsc.pub'
 
-cat mysshconfig.txt >> $HOME/.ssh/config
-rm mysshconfig.txt
 
-echo "Please access the JSI cluster by typing: 
-ssh nsc"
+echo "
+Please access the NSC cluster by typing: 
+
+ssh nsc
+"
