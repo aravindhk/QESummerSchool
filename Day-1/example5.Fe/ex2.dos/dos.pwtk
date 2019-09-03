@@ -18,7 +18,9 @@ runPW pw.$name.scf.in
 # run "calculation = 'nscf'" pw.x calculation (with a denser k-mesh
 # for a better DOS)
 CONTROL { calculation = 'nscf' }
-SYSTEM  { occupations = 'tetrahedra' }
+SYSTEM  { occupations = 'tetrahedra' ,
+          degauss = ,  ! this is how variable is unset in PWTK
+}
 K_POINTS automatic {
     12 12 12   1 1 1
 }
@@ -33,6 +35,7 @@ DOS "
     Emin = 5.0
     Emax = 20.0,
     DeltaE = 0.1
+    degauss = , ngauss = ,  ! this is how variables are unset in PWTK
 "
 runDOS dos.$name.in
 
@@ -45,6 +48,7 @@ PROJWFC "
     Emin = 5.0
     Emax = 20.0,
     DeltaE = 0.1
+    degauss = , ngauss = ,  ! this is how variable are unset in PWTK
 "
 runPROJWFC projwfc.$name.in
 

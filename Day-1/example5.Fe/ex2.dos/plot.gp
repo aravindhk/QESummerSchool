@@ -21,6 +21,7 @@ pause -1
 set title "Orbital projected DOS - PDOS"
 
 set style fill solid 0.2
+set ylabel "PDOS"
 
 plot [:][-3:3] \
      'Fe.pdos.pdos_atm#1(Fe)_wfc#2(d)' u ($1-Efermi):2  notit w filledcurve y1=0.0 lt 2, \
