@@ -1,6 +1,6 @@
 # PURPOSE OF THE EXERCISE:
-## Calculation of the projected density of states (PDOS) using DFT and DFT+U
-------------------------------------------------------------------------------
+## Calculation of the projected density of states (PDOS) of FeO using DFT and DFT+U
+------------------------------------------------------------------------------------
 
 **Steps to perform:**
 
