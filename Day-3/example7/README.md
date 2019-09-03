@@ -3,26 +3,26 @@
  1. Run the SCF ground-state calculation
 
     ```
-    mpirun -np 8 pw.x < Methane.scf.in > Methane.scf.out
+    mpirun -np 8 pw.x < pw.methane.in > pw.methane.out
     ```
 
  2. Run the turboDavidson calculation
 
     ```
-    mpirun -np 8 turbo_davidson.x < Methane.davidson.in > Methane.davidson.out
+    mpirun -np 8 turbo_davidson.x < turbo_davidson.methane.in > turbo_davidson.methane.out
     ```
 
  3. Run the spectrum calculation
 
     ```
-    mpirun -np 8 turbo_spectrum.x < Methane.tddfpt_pp.in > Methane.tddfpt_pp.out
+    mpirun -np 8 turbo_spectrum.x < turbo_spectrum.methane.in > turbo_spectrum.methane.out
     ```
 
- 4. Plot the spectrum using "gnuplot" and the script "plot_spectrum_nohyb.gnu". 
+ 4. Plot the spectrum using "gnuplot" and the script "plot_spectrum_nohyb.gp". 
     You should obtain the no-hybrid spectrum.
 
     ```
-    gnuplot -> load 'plot_spectrum_nohyb.gnu'
+    gnuplot -> load 'plot_spectrum_nohyb.gp'
     evince Methane_spectrum.eps
     ```
 
@@ -33,11 +33,11 @@
     Make the following modifications in the input files:
     
     ```
-    * In the file 'Methane.scf.in' add in SYSTEM block input_dft = 'B3LYP'
-    * In the file 'Methane.davidson.in'  set  d0psi_rs = .true.
+    * In the file 'pw.methane.in' add in SYSTEM block input_dft = 'B3LYP'
+    * In the file 'turbo_davidson.methane.in'  set  d0psi_rs = .true.
     ```
 
-    Once these modifications are done, repeat steps 1, 2, 3, and use the script "plot_spectrum_hyb.gnu"
+    Once these modifications are done, repeat steps 1, 2, 3, and use the script "plot_spectrum_hyb.gp"
     to plot the spectrum.     
 
    

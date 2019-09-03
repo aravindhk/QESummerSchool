@@ -3,27 +3,27 @@
  1. Run the SCF ground-state calculation
 
     ```
-    mpirun -np 8 pw.x < Benzene.scf.in > Benzene.scf.out
+    mpirun -np 8 pw.x < pw.benzene.in > pw.benzene.out
     ```
 
  2. Run the turboDavidson calculation
 
     ```
-    mpirun -np 8 turbo_davidson.x < Benzene.davidson.in > Benzene.davidson.out
+    mpirun -np 8 turbo_davidson.x < turbo_davidson.benzene.in > turbo_davidson.benzene.out
     ```
 
  3. Run the spectrum calculation
 
     ```
-    mpirun -np 8 turbo_spectrum.x < Benzene.tddfpt_pp.in > Benzene.tddfpt_pp.out
+    mpirun -np 8 turbo_spectrum.x < turbo_spectrum.benzene.in > turbo_spectrum.benzene.out
     ```
 
- 4. Plot the spectrum using "gnuplot" and the script "plot_spectrum.gnu". 
+ 4. Plot the spectrum using "gnuplot" and the script "plot_spectrum.gp". 
     Since the interaction was switched off, you should obtain the same spectrum 
     as the one obtained using the epsilon.x code in the example4.
 
     ```
-    gnuplot -> load 'plot_spectrum.gnu'
+    gnuplot -> load 'plot_spectrum.gp'
     evince Benzene_spectrum.eps
     ```
 
@@ -34,9 +34,9 @@
     Make the following modifications in the input files:
     
     ```
-    * In the file 'Benzene.davidson.in'  set  if_dft_spectrum = .false.
-    * In the file 'Benzene.tddfpt_pp.in' set  eign_file = 'Benzene.eigen'
-    * In the script 'plot_spectrum.gnu' change the title to 'turbo-davidson.x (interacting electrons)'
+    * In the file 'turbo_davidson.benzene.in'  set  if_dft_spectrum = .false.
+    * In the file 'turbo_spectrum.benzene.in' set  eign_file = 'Benzene.eigen'
+    * In the script 'plot_spectrum.gp' change the title to 'turbo-davidson.x (interacting electrons)'
     ```
 
     Once these modifications are done, repeat steps 2, 3, and 4.   

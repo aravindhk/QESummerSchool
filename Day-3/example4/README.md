@@ -3,18 +3,18 @@
  1. Run the SCF ground-state calculation
 
     ```
-    mpirun -np 8 pw.x < Benzene.scf.in > Benzene.scf.out
+    mpirun -np 8 pw.x < pw.benzene.in > pw.benzene.out
     ```
 
  2. Run the spectrum calculation
 
     ```
-    mpirun -np 8 epsilon.x < Benzene.epsilon.in > Benzene.epsilon.out 
+    mpirun -np 8 epsilon.x < epsilon.benzene.in > epsilon.benzene.out 
     ```
 
- 3. Plot the spectrum using "gnuplot" and the script "plot_spectrum.gnu":
+ 3. Plot the spectrum using "gnuplot" and the script "plot_spectrum.gp":
 
     ```
-    gnuplot -> load 'plot_spectrum.gnu'
+    gnuplot -> load 'plot_spectrum.gp'
     evince Benzene_spectrum.eps
     ```
