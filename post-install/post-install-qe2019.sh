@@ -67,7 +67,6 @@ tar_open "$tmp_pkgs"  /tmp
 # configure emacs
 cat <<EOF >> $HOME/.emacs
 (setq inhibit-splash-screen t) 
-(add-to-list 'auto-mode-alist '("\\\\.pwtk\\\\'" . tcl-mode))
 (add-to-list 'auto-mode-alist '("\\\\.xcrysden\\\\'" . tcl-mode))
 
 ;; Enable install of MELPA packages, view witk M-x list-packages
