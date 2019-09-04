@@ -35,7 +35,6 @@ DOS "
     Emin = 5.0
     Emax = 20.0,
     DeltaE = 0.1
-    degauss = , ngauss = ,  ! this is how variables are unset in PWTK
 "
 runDOS dos.$name.in
 
@@ -48,7 +47,6 @@ PROJWFC "
     Emin = 5.0
     Emax = 20.0,
     DeltaE = 0.1
-    degauss = , ngauss = ,  ! this is how variable are unset in PWTK
 "
 runPROJWFC projwfc.$name.in
 
