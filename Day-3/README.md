@@ -3,8 +3,8 @@
 
 ### Topics of Day-3 hands-on session
 
-- DFPT exercises 
-- TDDFPT exercises
+- DFPT exercises (1a, 1b, 2a, 2b, 3)
+- TDDFPT exercises (4, 5, 6, 7)
 
 -----------
 
