@@ -3,7 +3,7 @@
 Disclaimer: while the concepts underlying these exercises are general, the
             specific outputs and results will be unavoidably linked to the
             HPC system used to perform them.
-            As a reference, you will find the outcomes obtained on the 
+            As a reference, here you will find the outcomes obtained on the 
             hardware provided by Institut "Jožef Stefan".
 
 
