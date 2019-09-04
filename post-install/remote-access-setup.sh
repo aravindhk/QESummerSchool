@@ -18,10 +18,10 @@ Please input your $1:"
 userinput username
 user=$reply
 # either:
-userinput hostname 
-host=$reply
+#userinput hostname 
+#host=$reply
 # or:
-#host=XXXX.ijs.si
+host=percolator.ijs.si
 
 
 # define where key is stored here (default $HOME/.ssh/)
