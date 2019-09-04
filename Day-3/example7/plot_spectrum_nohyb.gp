@@ -5,4 +5,4 @@ set yrange [0:0.6]
 set xtics 0.0, 1.0
 set xlabel "{/Symbol w} (eV)"
 set ylabel "Intensity (arb. units)"
-plot "Methane.plot.dat" u ($1)*13.6:($2)*0.03 w l lw 2 title 'turbo-davidson.x (no_hybrid)'
+plot "Methane.plot.dat" u ($1)*13.6:($2)*0.03 w l lw 2 title 'turbo-davidson.x (nohybrid)'
