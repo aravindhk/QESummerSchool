@@ -160,6 +160,42 @@ A few tools are available that aid at editing Quantum ESPRESSO input files:
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\head{About QE-emacs-modes}
+%
+\def\bi#1{\textit{\textcolor{blue}{#1}}} \prog{QE-emacs-modes} package
+provides syntax highlighting, auto-indentation, and several
+utility commands, in particular:
+\begin{itemize}
+\item[]
+  {\small 
+    \begin{itemize}
+    \item \cmd{Alt-x \bi{prog}-insert-template} -- inserts a respective
+      input file template
+    \item \cmd{Alt-x \bi{prog-NAMELIST}} -- inserts a blank namelist
+      named \bi{NAMELIST}
+    \item \cmd{Alt-x \bi{prog-CARD}} -- inserts a blank namelist
+      named \bi{CARD}
+    \item \cmd{Alt-x \bi{prog-variable}} -- inserts a namelist
+      variable named \bi{variable}
+    \item \cmd{Alt-x \bi{prog}-mode} -- toggles the respective
+      mode
+    \item \cmd{Alt-x indent-region} -- indents region
+    \end{itemize}
+    where
+    \begin{itemize}
+    \item \cmd{\bi{prog}} is one of \cmd{qe}, \cmd{pw}, \cmd{neb}, \cmd{cp},
+      \cmd{ph}, \cmd{ld1}, or \cmd{pp} (these stands for \var{pw.x},
+      \var{neb.x}, ... Quantum
+      ESPRESSO (QE) programs)
+    \item \cmd{\bi{NAMELIST}} is the uppercase name for a given QE namelist
+    \item \cmd{\bi{CARD}} is the uppercase name for a given QE card
+    \item \cmd{\bi{variable}} is the lowercase name for a given namelist
+      variable
+    \end{itemize}
+  }
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \head{1. How to describe a molecule with Quantum ESPRESSO}
 \rightfooter{Example: \file{Day-1/example1.benzene}}
 %
@@ -1006,8 +1042,9 @@ a potential and a very large cutoff energy)
   \item make a post-processing \prog{pp.x} calculation
     (\var{plot\_num=0} for charge density) and instruct the program to
     write charge density in a suitable format
-  \item plot the charge density by \prog{xcrysden} (follow the
-    instructions of tutor)
+  \item plot the charge density by \prog{xcrysden} (let's plot density
+    in contour/colorplane style; follow the instructions of tutor and
+    select density range from \code{0.0} to \code{0.05})
   \end{enumerate}
 \end{itemize}
 
