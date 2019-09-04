@@ -67,7 +67,6 @@ tar_open "$tmp_pkgs"  /tmp
 # configure emacs
 cat <<EOF >> $HOME/.emacs
 (setq inhibit-splash-screen t) 
-(add-to-list 'auto-mode-alist '("\\\\.pwtk\\\\'" . tcl-mode))
 (add-to-list 'auto-mode-alist '("\\\\.xcrysden\\\\'" . tcl-mode))
 
 ;; Enable install of MELPA packages, view witk M-x list-packages
@@ -132,6 +131,17 @@ if test "x$(cat $HOME/.bashrc | grep ESPRESSO_PSEUDO)" == "x"; then
     echo 'export ESPRESSO_PSEUDO=$HOME/QE-2019/pseudo' >> $HOME/.bashrc
 else
     echo "ESPRESSO_PSEUDO already defined; skipping" 
+fi
+
+# define remote NSC aliases environmental variables
+cp $installdir/remote.sh $HOME/.bash_nsc
+if test "x$(grep bash_nsc $HOME/.bashrc)" == "x"; then
+    echo '
+# source NSC functions and aliases
+. $HOME/.bash_nsc
+' >> $HOME/.bashrc
+else
+    echo "~/.bash_nsc already sources from ~/.bashrc"
 fi
 
 # fix for firefox add-on so it can open *md files
