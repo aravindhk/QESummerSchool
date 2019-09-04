@@ -14,7 +14,7 @@ installdir=$(pwd)
 
 $SUDO $APT update
 $SUDO $APT install \
-      ssh make gfortran gcc quantum-espresso \
+      ssh rsync make gfortran gcc quantum-espresso \
       libblas-dev libfftw3-dev liblapack-dev openmpi-common \
       tcllib tk libtogl2 itk3 iwidgets4 bwidget libgl2ps1.4 \
       vim emacs gnuplot grace octave imagemagick mencoder bc\
