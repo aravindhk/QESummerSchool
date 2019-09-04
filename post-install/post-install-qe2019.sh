@@ -134,6 +134,17 @@ else
     echo "ESPRESSO_PSEUDO already defined; skipping" 
 fi
 
+# define remote NSC aliases environmental variables
+cp $installdir/remote.sh $HOME/.bash_nsc
+if test "x$(grep bash_nsc $HOME/.bashrc)" == "x"; then
+    echo '
+# source NSC functions and aliases
+. $HOME/.bash_nsc
+' >> $HOME/.bashrc
+else
+    echo "~/.bash_nsc already sources from ~/.bashrc"
+fi
+
 # fix for firefox add-on so it can open *md files
 touch $HOME/.mime.types
 if test "x$(cat $HOME/.mime.types | grep markdown)" == "x"; then
