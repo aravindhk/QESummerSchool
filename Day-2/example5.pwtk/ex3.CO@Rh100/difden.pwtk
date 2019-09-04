@@ -24,7 +24,8 @@ input_pushpop {
 
     # for DIFDEN we need SCF calculations
     CONTROL { calculation = 'scf' }
-
+    input_clear IONS
+    
     # what to plot
     INPUTPP {
 	plot_num = 0
