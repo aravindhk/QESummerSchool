@@ -47,22 +47,25 @@ input_pushpop {
     K_POINTS automatic {
 	8 8 1   1 1 1
     }
-    
+
+    # default projwfc.x input
+    PROJWFC {
+        ngauss  = 0
+        degauss = 0.01
+        DeltaE  = 0.05
+    }
+
     input_pushpop {
 	# ------------------------------------------------------------------
 	# NSCF pw.x calculation
 	printTitle NSCF "NSCF calculation with denser K-points"
 	CONTROL { calculation = 'nscf' }
+        input_clear IONS
 	runPW pw.$name.nscf.in
 	
 	# --------------------------------------------------------------
 	# calculate PDOS of full system CO-Rh100 (projwfc.x calculation)
 	printTitle PDOS "PDOS calculation of $name"
-	PROJWFC {
-	    ngauss  = 0
-	    degauss = 0.01
-	    DeltaE  = 0.05
-	}
 	set full_xml [runPROJWFC_and_copy_xml $name]
     }
 
