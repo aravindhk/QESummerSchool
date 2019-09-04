@@ -5,11 +5,11 @@ These are available on most clusters and can be freely downloaded from the PGI w
 
 ## Preparing the environment
 
-The accelerated version of QE requires PGI compilers and a series of libraries. Let's check everything that is needed.
+The accelerated version of QE requires PGI compilers and a set of libraries provided by the CUDA Toolkit.
+In order to proceed, check that
 
-* check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
-* check that the cuda toolkit available.
-
+* PGI compilers have been loaded and mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
+* the cuda toolkit is available in the modules and  has been loaded.
 
 The GPU version also strongly benefits from MKL libraries so, if possible, on Intel machines, use them.
 
@@ -27,7 +27,7 @@ You can get it with:
     wget https://gitlab.com/QEF/q-e-gpu/-/archive/gpu-develop/q-e-gpu-gpu-develop.tar.gz
 
 
-## Configuring QE
+## Configuring QE-GPU
 
 A few important notes about the accelerated version of the code:
 
@@ -42,11 +42,11 @@ This translates to this configure line:
 where `XX` is the location of the CUDA Toolkit (in HPC environments it is
 generally $CUDA_HOME), `Y.y` is the version of the CUDA Toolkit (`Y` and `y` are the two numbers identifying major and minor release, e.g. 9.0)  and `ZZ` is the compute capability of the card.
 
-**Question:** what is the correct value of ZZ command for the K40 and the V100?
+> **Question**: what is the correct value of ZZ command for the K40 and the V100 cards❓
 
 Note that a helper script is also available in the `dev-tools` directory and can be used like this: `python get_device_props.py` but you must run it on the target compute node.
 
-Once the configure script finishes, you should get something like this:
+Once the configure script finishes, you should get something similar to this output:
 
     setting DFLAGS... -D__CUDA -D__PGI -D__DFTI -D__MPI
     setting IFLAGS... -I$(TOPDIR)/include -I$(TOPDIR)/FoX/finclude -I$(TOPDIR)/S3DE/iotk/include/ -I/home/griduser0002/intel/mkl/include

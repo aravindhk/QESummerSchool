@@ -8,13 +8,13 @@ In order to compile an optimized version of QE you need:
 * (possibly) a parallel eigenvalue solver
 * (possibly) an optimized compiler
 
-Let's find these stuff in the system you have here.
+Let's find these requirements in the system at your disposal.
 
 Extract the relevant information from your module environment using:
 
     module av
-    
-to find the compilers, the libraries, etc.
+
+This will allow you to find the compilers, the libraries, etc.
 
 You should an output similar to this:
 

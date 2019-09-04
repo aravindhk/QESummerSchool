@@ -4,14 +4,14 @@ Here we test the parallel options of pw.x with the help of some examples.
 
 ## Pools
 
-The first option to consider is `-npool`. This sets the number of concurrent workers that will split the demanding task of solving the KS Hamiltonian on the given grid of reciprocal space points.
+The first option to consider is `-npool`. This sets the number of groups of processors that will perform the task of solving the Kohn-Sham Hamiltonian on a subset of points in reciprocal space.
 
     # Run it!
     cd CuO
 
 ## Task groups
 
-In addition, the parallel performance of the code may be improved by batching together the Fourier transform of multiple bands in the application of the local operators (one of the most time consuming tasks in pw.x execution).
+In addition, the parallel performance of the code may be improved by batching together the Fourier transform of multiple bands.
 You will check this in the directory `CuO`
 
 ## Parallel eigensolver

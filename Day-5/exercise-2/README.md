@@ -66,9 +66,9 @@ This time we configure the optimal executable straight away with the following c
 Let's review what these options are:
 
 1. `--enable-openmp` will enable the low lying parallel layer based on OpenMP directives.
-2. `--with-scalapack=yes` this option will activate distributed linear algebra and especially the parallel eigenvalue solver. NB: when using Intel's compilers, this should instead be set to `--with-scalapack=yes`.
+2. `--with-scalapack=yes` will enable the interface for distributed linear algebra and especially the parallel eigenvalue solver. NB: when using Intel's compilers, this should instead be set to `--with-scalapack=yes`.
 
-After configure script completes inspect the final log and check that:
+After configure script completes inspect the final log.
 
 > **Question**: What tells you that everything is fine this time❓ [Answer](#A2)
 
@@ -82,7 +82,7 @@ You can do this with the following configuration command:
  
     # Run me!
     export ELPAROOT=/PATH/TO/ELPA...
-    ./configure --enable-openmp --with-scalapack=intel  --with-elpa=${ELPAROOT} \
+    ./configure --enable-openmp --with-scalapack=yes  --with-elpa=${ELPAROOT} \
      --with-elpa-include="-I${ELPAROOT}/include/elpa/modules" \
      --with-elpa-lib=${ELPAROOT}/lib/libelpa.a \
 
@@ -96,7 +96,10 @@ Finally, compile everything with:
 
 and check that the `pw.x` executable is present in the `bin` directory.
 
+
 ---
+
+## Answers to questions
 
 ---
 
