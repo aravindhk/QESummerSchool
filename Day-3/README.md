@@ -3,7 +3,7 @@
 
 ### Topics of Day-3 hands-on session
 
-- Phonon exercises 
+- DFPT exercises 
 - TDDFPT exercises
 
 -----------
