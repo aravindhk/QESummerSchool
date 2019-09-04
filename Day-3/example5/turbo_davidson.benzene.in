@@ -3,7 +3,7 @@
   outdir='./out'
 /
 &lr_dav
-  if_dft_spectrum = .false.
+  if_dft_spectrum = .true.
   num_eign = 15             
   num_init = 30              
   num_basis_max = 90       

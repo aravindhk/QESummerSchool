@@ -3,7 +3,7 @@
    outdir = './out',
  /
  &lr_dav
-   d0psi_rs = .true.
+   d0psi_rs = .false.
    num_eign = 10,
    num_init = 20,
    num_basis_max = 80,

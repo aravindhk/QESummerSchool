@@ -12,7 +12,6 @@
     ntyp = 2,
     ecutwfc = 50,
     nbnd = 20,
-    input_dft = 'B3LYP'
  /
  &ELECTRONS
     diagonalization='david'
