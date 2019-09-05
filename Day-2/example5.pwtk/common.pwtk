@@ -1,5 +1,4 @@
 CONTROL {
-    outdir = '/tmp'
     !pseudo_dir = 'directory where pp-files are kept'
 }
 
