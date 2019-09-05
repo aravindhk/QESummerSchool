@@ -1,7 +1,7 @@
  &CONTROL
     calculation = 'scf',
     prefix      = 'Graphene_1x1_PBE',
-    outdir      = '/tmp',
+    ! otudir      = '/tmp',
     !pseudo_dir  = 'directory with pseudopotentials',        
  /
 

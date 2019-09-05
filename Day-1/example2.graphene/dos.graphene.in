@@ -1,5 +1,5 @@
  &DOS
     prefix = 'Graphene_1x1_PBE',
-    outdir = '/tmp'
+    ! otudir = '/tmp'
     fildos = 'graphene.dos'
  /
