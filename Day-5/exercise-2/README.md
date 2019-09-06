@@ -56,7 +56,7 @@ but this version will give you wired results when running on a multicore cluster
 Now let's go back and reload all modules.
 
     # Run me!
-    module load xxx
+    module load mpi/openmpi-x86_64 MKL/mkl_2019.4.243
 
 This time we configure the optimal executable straight away with the following configuration string:
 
@@ -81,10 +81,10 @@ You can do this with the following configuration command:
  
  
     # Run me!
-    export ELPAROOT=/PATH/TO/ELPA...
-    ./configure --enable-openmp --with-scalapack=yes  --with-elpa=${ELPAROOT} \
-     --with-elpa-include="-I${ELPAROOT}/include/elpa/modules" \
-     --with-elpa-lib=${ELPAROOT}/lib/libelpa.a \
+    export ELPAROOT=/net/hold/data1/arc/software/QEshare/elpa/hsw-omp/
+    ./configure --enable-openmp --with-scalapack=yes \
+     --with-elpa-include="-I${ELPAROOT}/include/elpa_openmp-2017.11.001/modules/" \
+     --with-elpa-lib=${ELPAROOT}/lib/libelpa_openmp.a
 
 where the ELPA library has already been compiled for you and installed
 under `ELPAROOT`.

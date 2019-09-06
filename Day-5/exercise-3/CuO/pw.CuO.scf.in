@@ -2,14 +2,12 @@
     calculation='scf',
     prefix='CuOSC',
     pseudo_dir = './',
-    outdir='/path/to/scratch/',
-    verbosity='high'
-    tprnfor=.true.
+    outdir='/path/to/scratch/'
  /
  &system
     ibrav = 0, nat=64, ntyp=2,
-    ecutwfc = 50,
-    ecutrho = 700,
+    ecutwfc = 35,
+    ecutrho = 350,
     smearing='mp',
     occupations='smearing',
     degauss=0.01,

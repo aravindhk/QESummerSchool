@@ -19,31 +19,11 @@ This will allow you to find the compilers, the libraries, etc.
 You should an output similar to this:
 
     $ module av
-    ------------ /some/path/modulefiles/profiles ------------ 
-    profile/advanced      profile/candidate     profile/lifesc        
-    profile/archive       profile/chem          profile/phys          
-    profile/astro         profile/deeplrn       profile/pyhs          
-    profile/base(default) profile/eng           profile/statistics    
-    profile/bioinf        profile/global        profile/visual        
-    ------------ /some/path/opt/modulefiles/base/environment ------------ 
-    autoload 
-    ------------ /some/path/opt/modulefiles/base/libraries ------------ 
-    blas/3.8.0--intel--pe-xe-2018--binary    
-    boost/1.58--intelmpi--2018--binary       
-    boost/1.61.0--intelmpi--2018--binary     
-    cubelib/4.4--intelmpi--2018--binary      
-    fftw/3.3.8--intelmpi--2018--binary       
-    gsl/2.2.1--gnu--6.1.0                    
-    hdf5/1.8.17--intelmpi--2018--binary      
-    hdf5/1.8.18--intel--pe-xe-2018--binary   
-    lapack/3.8.0--intel--pe-xe-2018--binary  
-    libjpeg-turbo/1.3.1                      
-    magma/2.3.0--cuda--9.0                   
-    metis/5.1.0--intel--pe-xe-2018--binary   
-    mkl/2018--binary                         
-    mpi4py/3.0.0--intelmpi--2018--binary     
-    mpi4py/3.0.0--python--3.6.4              
-    netcdf/4.6.1--intel--pe-xe-2018--binary  
+    
+    --------------------------------------------------------------------------------------------------- /cvmfs/sling.si/modules/el7/modules/all ---------------------------------------------------------------------------------------------------
+       Autoconf/2.69-GCCcore-5.4.0             FFTW/3.3.7-gompi-2018a                                 OpenMPI/3.1.1-gcccuda-2018b                        flex/2.6.0                             libtool/2.4.6-GCCcore-6.4.0
+       Autoconf/2.69-GCCcore-6.4.0             FFTW/3.3.8-gompi-2018b                      (D)        OpenMPI/3.1.3-PGI-19.4                             flex/2.6.3                             libtool/2.4.6-GCCcore-7.3.0
+       Autoconf/2.69-GCCcore-7.3.0             GCC/4.8.5                                              OpenMPI/4.0.0-GCC-8.2.0-2.31.1              (D)    flex/2.6.4-GCCcore-6.4.0               libtool/2.4.6-GCCcore-8.2.0      (D)
     [...]
     
 
@@ -73,3 +53,13 @@ The aim of this first, very short exercise is to identify the best options
 you have on this cluster. Can you list the module you will need to load *before*
 running the `configure` command of QE?
 
+In order to proceed with the hands on, we will use openmpi from this module
+
+     
+    $ module load mpi/openmpi-x86_64
+
+that provides the most recent version and wraps gfortran v9.1.
+
+You should also load the MKL module with the command:
+
+    $ module load MKL/mkl_2019.4.243

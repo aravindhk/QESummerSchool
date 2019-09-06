@@ -2,10 +2,24 @@
 
 Complete the input file by setting a scratch directory and prepare a jobscript to use a single node.
 
-Run the first simulation without any parallel parameter.
+Run the first simulation without any parallel parameter, i.e.:
+
+    mpirun -np 16 /path/to/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out
+
+and record the time to solution by inspecting the output. The relevant 
+parameter is the wall time taken by the PWSCF clock. You can get it with
+grep:
+
+    grep 'PWSCF   ' pw.CuO.scf.out
+
+You task is to reduce this timer as much as possible, but trying all possible
+combinations would require too much time: make wise decisions.
+
+The following points may serve as hint:
 
 i. try to improve the time to solution by using the `-npool` option.
-ii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve?
-iii. try to reduce the number of MPI processes and exploit OpenMP parallelism. Does the time to solution improve?
+ii. try to further reduce the time to solution using the `-ndiag` options. 
+    What are the appropriate values for this parameter for a given `npool` value? Is the time to solution reduced?
+ii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve? Why not?
 
-
+You should eventually be able to complete the 10 scf steps in less than 7 min.

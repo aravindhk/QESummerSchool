@@ -6,12 +6,14 @@ These are available on most clusters and can be freely downloaded from the PGI w
 ## Preparing the environment
 
 The accelerated version of QE requires PGI compilers and a set of libraries provided by the CUDA Toolkit.
-In order to proceed, check that
+In order to proceed, 
 
-* PGI compilers have been loaded and mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
-* the cuda toolkit is available in the modules and  has been loaded.
+* load the *OpenMPI* library that wraps PGI compilers and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
+* the cuda toolkit is available in the modules and has been loaded.
 
 The GPU version also strongly benefits from MKL libraries so, if possible, on Intel machines, use them.
+
+> **Question**: what are the modules that you need to load on the IJS cluster❓ [Answer](#A1)
 
 ## Downloading
 
@@ -25,6 +27,7 @@ You can get it with:
 
     # Run it!
     wget https://gitlab.com/QEF/q-e-gpu/-/archive/gpu-develop/q-e-gpu-gpu-develop.tar.gz
+    tar xzf q-e-gpu-gpu-develop.tar.gz
 
 
 ## Configuring QE-GPU
@@ -42,9 +45,17 @@ This translates to this configure line:
 where `XX` is the location of the CUDA Toolkit (in HPC environments it is
 generally $CUDA_HOME), `Y.y` is the version of the CUDA Toolkit (`Y` and `y` are the two numbers identifying major and minor release, e.g. 9.0)  and `ZZ` is the compute capability of the card.
 
-> **Question**: what is the correct value of ZZ command for the K40 and the V100 cards❓
+> **Question**: what is the correct value of ZZ command for the K40 and the V100 cards❓ [Answer](#A2)
 
 Note that a helper script is also available in the `dev-tools` directory and can be used like this: `python get_device_props.py` but you must run it on the target compute node.
+
+
+Notice that sometime the configure script may pick up the wrong fortran compiler
+if more than one is available. This is the case for the nodes used in this
+hands-on so the pgi compilers must be specified manually and the configure command
+becomes:
+
+     ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=35 --with-cuda-runtime=10.1 --with-cuda=$CUDA_HOME --with-scalapack=no
 
 Once the configure script finishes, you should get something similar to this output:
 
@@ -64,7 +75,7 @@ Once the configure script finishes, you should get something similar to this out
     If a required library is not found, the local copy will be compiled.
     
     The following libraries have been found:
-      BLAS_LIBS=-L/a/path/to/mkl/lib/intel64_lin -lmkl_intel_lp64  -lmkl_core -lmkl_intel_thread
+      BLAS_LIBS=-L/possibly/a/path/to/mkl/lib/intel64_lin -lmkl_intel_lp64  -lmkl_core -lmkl_intel_thread
       LAPACK_LIBS=
       FFT_LIBS=
       
@@ -94,3 +105,14 @@ Only the `pw.x` is available for the time being. You compile it in the usual way
 
     # Run me!
     make -j pw
+
+## Answers
+
+<a name="A1"></a> **Answer 1**: 
+
+     module load PGI/19.4-GCC-8.2.0-2.31.1 MKL/mkl_2019.4.243 CUDA/10.1.105
+
+<a name="A2"></a> **Answer 2**: 
+
+For the Volta cards the compute capability, thus ZZ=70, for the K40: ZZ=35.
+
