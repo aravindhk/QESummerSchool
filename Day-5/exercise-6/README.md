@@ -20,10 +20,15 @@ Try to obtain the magnetic ground state of Iron with and without GPU acceleratio
 
     # Run it!
     cd Fe
+    # Edit the input file and correct `pseudo_dir` and `outdir`.
+    # The pseudopotential can be downloaded from https://www.quantum-espresso.org/upf_files/Fe.pbe-nd-rrkjus.UPF
+    wget https://www.quantum-espresso.org/upf_files/Fe.pbe-nd-rrkjus.UPF
 
 ## CuO
 
-Try to run the CuO input with GPU acceleration. Can you obtain a speedup with respect to the CPU only run?
+Try to run the CuO input with GPU acceleration. 
+Try with `-npool 1` and `-npool 2` and remember to exploit OpenMP parallelism.
+Can you obtain a speedup with respect to the CPU only run?
 
     # Run it!
     cd CuO

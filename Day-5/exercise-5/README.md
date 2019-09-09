@@ -110,7 +110,7 @@ Only the `pw.x` is available for the time being. You compile it in the usual way
 
 <a name="A1"></a> **Answer 1**: 
 
-     module load PGI/19.4-GCC-8.2.0-2.31.1 MKL/mkl_2019.4.243 CUDA/10.1.105
+     module load OpenMPI/3.1.3-PGI-19.4 MKL/mkl_2019.4.243 CUDA/10.1.105
 
 <a name="A2"></a> **Answer 2**: 
 

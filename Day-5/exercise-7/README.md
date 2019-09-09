@@ -44,4 +44,4 @@ by adding the flag
 
 after the line containing `-D__MPI`.
 
-Recompile the code and run one of the previous input files. Do you find any speedup?
+Recompile the code and run the CuO input in the previous exercise. Do you find any speedup?
