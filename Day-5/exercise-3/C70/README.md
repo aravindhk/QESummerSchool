@@ -18,7 +18,7 @@ Modify the jobscript
 
 in order to:
 
-i. try to improve the time to solution using the `-ndiag` and `-ntg`.
+i. try to improve the time to solution using the `-ndiag` and `-ntg`;
 
-ii. Try now reducing the number of MPI processes and increasing the OpenMP threads. Is the time to solution reduced?
+ii. reduce the number of MPI processes and increase the number of OpenMP threads. Is the time to solution reduced?
 

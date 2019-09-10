@@ -10,7 +10,8 @@ In order to compile an optimized version of QE you need:
 
 Let's find these requirements in the system at your disposal.
 
-You'll first need to login on a GPU node, for example 
+The configuration of the IJS cluster requires, as a first step, to move to a
+compute node. This can be done for example with:
 
     ssh fp001
 
@@ -20,7 +21,7 @@ Information about the module environment can be obtained using:
 
 This will allow you to find the compilers, the libraries, etc.
 
-You should an output similar to this:
+You should obtain an output similar to this one:
 
     $ module av
     
@@ -57,12 +58,11 @@ The aim of this first, very short exercise is to identify the best options
 you have on this cluster. Can you list the module you will need to load *before*
 running the `configure` command of QE?
 
-In order to proceed with the hands on, we will use openmpi from this module
-
+Here we will use openmpi from this module
      
     $ module load mpi/openmpi-x86_64
 
-that provides the most recent version and wraps gfortran v9.1.
+that provides the most recent version of OpenMPI and wraps gfortran v9.1.
 
 You should also load the MKL module with the command:
 

@@ -1,6 +1,7 @@
 # Compile QE-GPU
 
-The accelerated version of QE is based on CUDA Fortran. This extension of the Fortran programming language is fully implemented only by the PGI Compilers.
+The accelerated version of QE is written in CUDA Fortran. 
+This extension of the Fortran programming language is fully implemented only by the PGI Compilers.
 These are available on most clusters and can be freely downloaded from the PGI website.
 
 ## Preparing the environment
@@ -9,7 +10,7 @@ The accelerated version of QE requires PGI compilers and a set of libraries prov
 In order to proceed, 
 
 * load the *OpenMPI* library that wraps PGI compilers (find it!) and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
-* the cuda toolkit is available in the modules and has been loaded.
+* the CUDA Toolkit is available in the modules and has been loaded.
 
 The GPU version also strongly benefits from linking to the MKL library
 thus, when possible, use it.
@@ -37,9 +38,9 @@ A few important notes about the accelerated version of the code:
 
 1. QE-GPU *requires* OpenMP.
 2. You will have to specify where the CUDA Runtime is installed and its version and, in addition, the compute capabilities of the card that you plan to use. **Cards with different compute capabilities from the one specified at compile time will not execute the code correctly**. In addition you may run into wired error, be warned!
-3. You will have to disable the parallel eigenvalue solver. 
+3. It is advisable to disable the parallel eigenvalue solver (this may change in the near future).
 
-This translates to this configure line:
+All these requirements can be translated into this configure line:
 
     ./configure --with-cuda=XX --with-cuda-runtime=Y.y --with-cuda-cc=ZZ --enable-openmp --with-scalapack=no 
 
@@ -51,9 +52,9 @@ generally $CUDA_HOME), `Y.y` is the version of the CUDA Toolkit (`Y` and `y` are
 Note that a helper script is also available in the `dev-tools` directory and can be used like this: `python get_device_props.py` but you must run it on the target compute node.
 
 
-Notice that sometime the configure script may pick up the wrong fortran compiler
+Notice that sometime the configure script may pick up the wrong Fortran compiler
 if more than one is available. This is the case for the nodes used in this
-hands-on so the pgi compilers must be specified manually and the configure command
+hands-on so the PGI compilers must be specified manually and the configure command
 becomes:
 
      ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=35 --with-cuda-runtime=10.1 --with-cuda=$CUDA_HOME --with-scalapack=no

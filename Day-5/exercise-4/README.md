@@ -1,6 +1,6 @@
-# Collect informations on the GPU
+# Collect GPU details
 
-In this exercise we find out the relevant details of the GPUs
+In this exercise we find out the relevant details of the GPU(s)
 installed on the cluster used in this hands-on.
 
 There are two tools that are quite effective in gathering information on the GPUs 
@@ -19,7 +19,7 @@ On our system, the code can be compiled with:
     cd Samples/deviceQuery
     CUDA_PATH=/usr SMS="30 35 37 50 52 60 61 70" make
 
-As a rule, in order to collect informations, you first need to access
+As a rule, in order to collect information, you first need to access
 the compute node you want to use
 with an interactive job. You can do this with the following command:
 

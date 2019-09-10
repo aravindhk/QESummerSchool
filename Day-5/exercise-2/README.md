@@ -107,10 +107,11 @@ and check that the `pw.x` executable is present in the `bin` directory.
 
 <a name="A1"></a> **Answer 1**: this log actually tells us **many** things:
 
-*  as mentioned in the last line, you should really check this output! 😉
+*  as mentioned in the last line, you should really check this log! 😉
 * Line 1: there are at least two problems here.
     1. The flag `-D__MPI'` is missing, meaning that a serial executable will be compiled.
-    2. The flag `-D__FFTW'` means that the internal (old) copy of the  FFTW library will be used. This is generally far from optimal
+    2. The flag `-D__FFTW'` means that the internal (old) copy of the  FFTW library will be used. This is generally far from optimal.
+    3. The internal version of BLAS and LAPACK will be used. This is in general, on a HPC machine, not you best option.
 
 ---
 
