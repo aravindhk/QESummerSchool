@@ -9,13 +9,14 @@ installed on the system: `deviceQuery` and `nvidia-smi`.
 Check that both are available. If `deviceQuery` is missing,
 you will have to compile it from source. It can be found here:
 
-https://github.com/NVIDIA/cuda-samples/archive/master.zip
+    wget https://github.com/NVIDIA/cuda-samples/archive/master.zip
+    unzip master.zip
+    cd cuda-samples-master
 
 For detailed compilation instructions check the README file.
 On our system, the code can be compiled with:
 
     cd Samples/deviceQuery
-    CUDA_PATH=/usr make
     CUDA_PATH=/usr SMS="30 35 37 50 52 60 61 70" make
 
 As a rule, in order to collect informations, you first need to access
@@ -23,9 +24,9 @@ the compute node you want to use
 with an interactive job. You can do this with the following command:
 
     # Run me!
-    srun --time=00:10:00 -N 1 --ntasks-per-node=1 [other cluster specific options] --pty /bin/bash
+    srun --time=00:10:00 -N 1 --ntasks-per-node=1 --gres=gpu:1 --reservation=qe2019 --pty /bin/bash
     
-Once the interactive job starts, run and check the output of `deviceQuery`.
+Once the interactive job starts, run and check the output of `./deviceQuery`.
 
 You should see something like this:
 

@@ -16,7 +16,10 @@ Here's a number of rules that you should generally follow:
 
 ## Fe
 
-Try to obtain the magnetic ground state of Iron with and without GPU acceleration. Do you observe any speed-up?
+Try to obtain the magnetic ground state of Iron with and without GPU acceleration.
+Modify the jobscript file of one of the previous examples in order to efficiently
+run the GPU version of the code.
+Do you observe any speed-up?
 
     # Run it!
     cd Fe
@@ -26,7 +29,8 @@ Try to obtain the magnetic ground state of Iron with and without GPU acceleratio
 
 ## CuO
 
-Try to run the CuO input with GPU acceleration. 
+Try to run the CuO input with GPU acceleration by change the jobscript given in 
+the previous exercise.
 Try with `-npool 1` and `-npool 2` and remember to exploit OpenMP parallelism.
 Can you obtain a speedup with respect to the CPU only run?
 
@@ -35,8 +39,10 @@ Can you obtain a speedup with respect to the CPU only run?
 
 ## Si255Ge
 
-Try to run the Si255Ge input with GPU acceleration. 
+Try to run the Si255Ge input with and without GPU acceleration. 
 Can you obtain at least a 2x speedup with respect to the CPU run on the same node?
+Pro tip: you can disable the GPU acceleration with the command `export USEGPU=no`, 
+you can re-enable it with `export USEGPU=yes` or with `unset USEGPU`.
 
     # Run it!
     cd Si255Ge

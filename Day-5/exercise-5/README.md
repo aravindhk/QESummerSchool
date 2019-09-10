@@ -8,10 +8,11 @@ These are available on most clusters and can be freely downloaded from the PGI w
 The accelerated version of QE requires PGI compilers and a set of libraries provided by the CUDA Toolkit.
 In order to proceed, 
 
-* load the *OpenMPI* library that wraps PGI compilers and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
+* load the *OpenMPI* library that wraps PGI compilers (find it!) and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
 * the cuda toolkit is available in the modules and has been loaded.
 
-The GPU version also strongly benefits from MKL libraries so, if possible, on Intel machines, use them.
+The GPU version also strongly benefits from linking to the MKL library
+thus, when possible, use it.
 
 > **Question**: what are the modules that you need to load on the IJS cluster❓ [Answer](#A1)
 
@@ -114,5 +115,5 @@ Only the `pw.x` is available for the time being. You compile it in the usual way
 
 <a name="A2"></a> **Answer 2**: 
 
-For the Volta cards the compute capability, thus ZZ=70, for the K40: ZZ=35.
+The NVIDIA V100 cards have compute capability 7.0, thus ZZ=70, for the NVIDIA Tesla K40: ZZ=35.
 

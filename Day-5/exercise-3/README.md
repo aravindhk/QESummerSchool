@@ -16,7 +16,9 @@ You will check this in the directory `CuO`
 
 ## Parallel eigensolver
 
-When the size of the matrix containing the reduced Hamiltonian elements becomes large, you can speedup the code by solving the generalized eigenvalue problem with multiple cores.
+When the size of the matrix to be diagonalized in the iterative Davidson 
+diagonalization becomes large, you can speedup the code by solving the 
+generalized eigenvalue problem using multiple MPI processes in parallel.
 This is done for example in `C70`
 
     # Run it!

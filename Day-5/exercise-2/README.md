@@ -81,6 +81,7 @@ You can do this with the following configuration command:
 
 
     # Run me!
+    module load mpi/openmpi-x86_64 MKL/mkl_2019.4.243
     cd q-e-qe-6.4.1
     export ELPAROOT=/net/hold/data1/arc/software/QEshare/elpa/hsw-omp/
     ./configure --enable-openmp --with-scalapack=yes \
