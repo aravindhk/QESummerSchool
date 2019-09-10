@@ -29,9 +29,11 @@ combinations of parameters would require too much time: make wise decisions.
 
 The following points may guide you:
 
-i. try first to improve the time to solution by using the `-npool` option.
+i. try first to improve the time to solution by using the `-npool` option
+
 ii. try to further reduce the time to solution using the `-ndiag` options. 
     What are the appropriate values for this parameter for a given `npool` value? Is the time to solution reduced?
-ii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve? Why not?
+
+iii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve? Why not?
 
 You should eventually be able to complete the 10 scf steps in less than 7 min.
