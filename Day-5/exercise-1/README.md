@@ -10,7 +10,11 @@ In order to compile an optimized version of QE you need:
 
 Let's find these requirements in the system at your disposal.
 
-Extract the relevant information from your module environment using:
+You'll first need to login on a GPU node, for example 
+
+    ssh fp001
+
+Information about the module environment can be obtained using:
 
     module av
 

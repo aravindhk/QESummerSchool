@@ -78,12 +78,13 @@ In order to squeeze as much performance as possible, the final
 suggestion is to exploit the ELPA library (https://elpa.mpcdf.mpg.de/software).
 
 You can do this with the following configuration command:
- 
- 
+
+
     # Run me!
+    cd q-e-qe-6.4.1
     export ELPAROOT=/net/hold/data1/arc/software/QEshare/elpa/hsw-omp/
     ./configure --enable-openmp --with-scalapack=yes \
-     --with-elpa-include="-I${ELPAROOT}/include/elpa_openmp-2017.11.001/modules/" \
+     --with-elpa-include="${ELPAROOT}/include/elpa_openmp-2017.11.001/modules/" \
      --with-elpa-lib=${ELPAROOT}/lib/libelpa_openmp.a
 
 where the ELPA library has already been compiled for you and installed

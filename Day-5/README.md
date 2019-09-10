@@ -22,30 +22,30 @@ Disclaimer: while the concepts underlying these exercises are general, the
 
 ---
 
-Exercise 1: check the environment
+**Exercise 1**: check the environment
 
     cd exercise-1
 
-Exercise 2: optimized QE configuration and compilation
+**Exercise 2**: optimized QE configuration and compilation
 
     cd exercise-2
 
-Exercise 3: Run-time options
+**Exercise 3**: Run-time options
 
     cd exercise-3
 
-Exercise 4: introduction to GPGPUs
+**Exercise 4**: introduction to GPGPUs
 
     cd exercise-4
 
-Exercise 5: compilation of QE-GPU
+**Exercise 5**: compilation of QE-GPU
 
     cd exercise-5
 
-Exercise 6: execution of QE-GPU
+**Exercise 6**: execution of QE-GPU
 
     cd exercise-6
 
-Exercise 7: advanced options
+**Exercise 7**: advanced options
 
     cd exercise-7
