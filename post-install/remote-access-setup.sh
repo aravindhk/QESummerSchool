@@ -35,7 +35,7 @@ Generating ssh-key in $pathtokey
 
 mkdir -p $pathtokey
 nsckey="$pathtokey/id_rsa_nsc"
-ssh-keygen -t rsa -f $nsckey
+ssh-keygen -t rsa -b 4096 -m PEM -f $nsckey
 
 cat <<EOF >> $HOME/.ssh/config
 Host nsc
