@@ -2,6 +2,7 @@ This simulation uses the gamma point to sample the reciprocal space so you canno
 
 Modify the jobscript
 
+    #!/bin/bash
     #SBATCH --nodes=1
     #SBATCH --ntasks=16
     #SBATCH --ntasks-per-node=16
@@ -18,7 +19,8 @@ Modify the jobscript
 
 in order to:
 
-i. try to improve the time to solution using the `-ndiag` and `-ntg`;
+i. try to improve the time to solution using the `-ndiag` and `-ntg`; Is the time to solution reduced? Why not?
 
 ii. reduce the number of MPI processes and increase the number of OpenMP threads. Is the time to solution reduced?
 
+You should eventually be able to run the simulation in **about 6 min**.

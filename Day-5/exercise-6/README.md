@@ -30,7 +30,7 @@ Do you observe any speed-up?
 ## CuO
 
 Try to run the CuO input with GPU acceleration by change the jobscript given in 
-the previous exercise.
+the previous step.
 Try with `-npool 1` and `-npool 2` and remember to exploit OpenMP parallelism.
 Can you obtain a speedup with respect to the CPU only run?
 

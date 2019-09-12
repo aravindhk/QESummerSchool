@@ -30,6 +30,7 @@ You can get it with:
     # Run it!
     wget https://gitlab.com/QEF/q-e-gpu/-/archive/gpu-develop/q-e-gpu-gpu-develop.tar.gz
     tar xzf q-e-gpu-gpu-develop.tar.gz
+    cd q-e-gpu-gpu-develop
 
 
 ## Configuring QE-GPU
@@ -57,7 +58,9 @@ if more than one is available. This is the case for the nodes used in this
 hands-on so the PGI compilers must be specified manually and the configure command
 becomes:
 
-     ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=35 --with-cuda-runtime=10.1 --with-cuda=$CUDA_HOME --with-scalapack=no
+     ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=ZZ --with-cuda-runtime=Y.y --with-cuda=$SET_ME --with-scalapack=no
+
+> **Task**: replace `Y.y`, `SET_ME` and `ZZ` with the appropriate values.
 
 Once the configure script finishes, you should get something similar to this output:
 
@@ -110,7 +113,7 @@ Only the `pw.x` is available for the time being. You compile it in the usual way
 
 ## Answers
 
-<a name="A1"></a> **Answer 1**: 
+<a name="A1"></a> **Answer 1**: a good choice is
 
      module load OpenMPI/3.1.3-PGI-19.4 MKL/mkl_2019.4.243 CUDA/10.1.105
 
