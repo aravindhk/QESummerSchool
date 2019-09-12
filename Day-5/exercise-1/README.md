@@ -8,12 +8,12 @@ In order to compile an optimized version of QE you need:
 * (possibly) a parallel eigenvalue solver
 * (possibly) an optimized compiler
 
-Let's find these requirements in the system at your disposal.
+Let's find these requirements in the system used for this hands-on.
 
 The configuration of the IJS cluster requires, as a first step, to move to a
 compute node. This can be done for example with:
 
-    ssh fp001
+    ssh nsc-fp001
 
 Information about the module environment can be obtained using:
 
