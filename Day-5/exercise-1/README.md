@@ -37,33 +37,39 @@ The command
     module load xxx
 
 can be used to prepare the environment (replace xxx with the appropriate module names).
-We will target a conventional Intel based platform in this tutorial.
+We will target a conventional *Intel-based x86 64-bit platform* in this tutorial.
+For such systems, in general, one should proceed as follows:
 
-In general one would proceed as follows:
-
-1. load Intel compilers, if not available, look for GNU compilers,
-2. load Intel's MPI, if not available, look for OpenMPI,
-2. load the MKL library, if not available, look for OpenBLAS, ESSL or GoToBlas.
+1. load Intel compilers' module; if not available, look for GNU compilers;
+2. load Intel's MPI module; if not available, look for OpenMPI;
+3. load the MKL library; if not available, look for OpenBLAS or GoToBlas and Scalapack libraries.
 
 The command
 
     module show xxx
 
-can be used to check how each module modified the environment by adding
+can be used to check how each module modifies the environment by adding
 binaries to the `PATH` or by adding additional environment variables.
 This is also a good way to verify where the applications and the
 libraries actually reside.
 
-The aim of this first, very short exercise is to identify the best options
-you have on this cluster. Can you list the module you will need to load *before*
+The aim of this first (very short) exercise is to identify the best options
+you have on this cluster. Can you list the modules that you will have to load *before*
 running the `configure` command of QE?
 
-Here we will use openmpi from this module
+---
+
+**Solution**: multiple options are possible. For example, you may have chosen to load 
+`ScaLAPACK/2.0.2-gompi-2018b-OpenBLAS-0.3.1` that silently loads also OpenMPI and BLAS 
+libraries.
+
+Here we will instead use OpenMPI from this module
      
     $ module load mpi/openmpi-x86_64
 
-that provides the most recent version of OpenMPI and wraps gfortran v9.1.
+since it provides the most recent version of this library and wraps gfortran v9.1,
 
-You should also load the MKL module with the command:
+and the BLAS, LAPACK and ScaLAPACK implementation from the MKL library,
+that can be loaded with the command:
 
     $ module load MKL/mkl_2019.4.243
