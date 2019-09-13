@@ -17,7 +17,7 @@ Run the first simulation without any parallel parameter, i.e.:
     
     export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you foget this.
     
-    mpirun /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
+    srun --mpi=pmix /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
 
 and record the time to solution by inspecting the output. The relevant 
 parameter is the wall time taken by the PWSCF clock. You can get it with

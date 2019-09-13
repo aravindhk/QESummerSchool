@@ -15,7 +15,7 @@ Modify the jobscript
     
     export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you foget this.
     
-    mpirun /path/to/bin/pw.x -inp  pw.C70.scf.in > pw.C70.scf.out
+    srun --mpi=pmix /path/to/bin/pw.x -inp  pw.C70.scf.in > pw.C70.scf.out
 
 in order to:
 
