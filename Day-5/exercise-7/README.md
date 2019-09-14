@@ -44,4 +44,5 @@ by adding the flag
 
 after the line containing `-D__MPI`.
 
-Recompile the code and run the CuO input in the previous exercise. Do you find any speedup?
+*Recompile the code* (`make clean && make -j pw`) and run the Si255Ge input of the previous exercise.
+Do you find any speedup? Where and why?

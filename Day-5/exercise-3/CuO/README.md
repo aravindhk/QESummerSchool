@@ -4,6 +4,7 @@ Complete the input file by setting a scratch directory and prepare a jobscript t
 
 Run the first simulation without any parallel parameter, i.e.:
 
+    #!/bin/bash
     #SBATCH --nodes=1
     #SBATCH --ntasks=16
     #SBATCH --ntasks-per-node=16
@@ -16,7 +17,7 @@ Run the first simulation without any parallel parameter, i.e.:
     
     export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you foget this.
     
-    mpirun /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
+    srun --mpi=pmix /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
 
 and record the time to solution by inspecting the output. The relevant 
 parameter is the wall time taken by the PWSCF clock. You can get it with
@@ -36,4 +37,4 @@ ii. try to further reduce the time to solution using the `-ndiag` options.
 
 iii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve? Why not?
 
-You should eventually be able to complete the 10 scf steps in less than 7 min.
+You should eventually be able to complete the 10 SCF steps in **about 6 min**.

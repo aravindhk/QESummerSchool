@@ -69,7 +69,20 @@ You should see something like this:
 
 You can basically ignore everything from these lines except for:
 
-* line 2, that specifies the currently loaded version of the Driver and the CUDA Runtime currently used;
-* line 3, that tells you the the compute capabilities of the card;
+* line 2, that specifies the currently loaded version of the **Driver** and the **CUDA Runtime** currently used;
+* line 3, that tells you the the **compute capabilities** of the card;
 * line 4, which reports the amount of memory per device;
 * line 34 and 35: this informs us that the same device can be used by multiple processes.
+
+Notice that, if you run this command after submitting the job reported above,
+you will only see a single GPU device. Replacing `--gres=gpu:1` with `--gres=gpu:2`
+will allow `./deviceQuery` to report on both the devices installed on each node.
+
+The other tool, `nvidia-smi`, can be seen as the `top` command for GPUs.
+It gives a snapshot of the GPUs power consumption and memory usage and
+reports GPU usage by each running process.
+Run it on a GPU enabled compute node with
+
+
+    #Run me!
+    nvidia-smi

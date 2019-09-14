@@ -14,7 +14,7 @@ Copy and paste the following instructions on your terminal:
     # Run me!
     wget https://gitlab.com/QEF/q-e/-/archive/qe-6.4.1/q-e-qe-6.4.1.tar.bz2
     tar xjf q-e-qe-6.4.1.tar.bz2
-    cd q-e-qe
+    cd q-e-qe-6.4.1
     ./configure
 
 
@@ -45,6 +45,8 @@ The final message should look like this:
     20	  
     21	Please check if this is what you expect.
 
+(lines 16 and 17 may differ depending on particular set of libraries 
+installed as part of the operating system)
 
 The current configuration will probably allow you to compile QE without problems, 
 but this version will give you wired results when running on a multicore cluster.
@@ -108,10 +110,10 @@ and check that the `pw.x` executable is present in the `bin` directory.
 <a name="A1"></a> **Answer 1**: this log actually tells us **many** things:
 
 *  as mentioned in the last line, you should really check this log! 😉
-* Line 1: there are at least two problems here.
+* Line 1: there are at least three problems here.
     1. The flag `-D__MPI'` is missing, meaning that a serial executable will be compiled.
     2. The flag `-D__FFTW'` means that the internal (old) copy of the  FFTW library will be used. This is generally far from optimal.
-    3. The internal version of BLAS and LAPACK will be used. This is in general, on a HPC machine, not you best option.
+    3. The internal version of BLAS and LAPACK will be used. This is in general, on a HPC machine, not your best option.
 
 ---
 

@@ -24,6 +24,7 @@
                  mixing_mode = 'plain' ,
                  mixing_beta = 0.6 ,
              diagonalization = 'david' ,
+            electron_maxstep = 10
 /
 CELL_PARAMETERS { angstrom }
        17.3029994965         0.0000000000         0.0000000000
