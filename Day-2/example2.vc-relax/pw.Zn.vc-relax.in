@@ -8,7 +8,7 @@
  &SYSTEM
     ibrav     =  4,
     celldm(1) =  4.8,
-    celldm(3) =  1.633,  ! ideal hcp ratio
+    celldm(3) =  1.8,
     nat       =  2,
     ntyp      =  1,
 
