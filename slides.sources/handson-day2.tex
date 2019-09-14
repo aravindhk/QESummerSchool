@@ -1,0 +1,311 @@
+\documentclass[landscape]{foils}
+\usepackage[pdftex]{color}
+\usepackage[pdftex]{graphicx}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\input{aliases}
+
+\begin{document}
+\blue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\Head{QE-2019: Hands-on session -- Day-2}
+Topics of Day-2 hands-on session:
+\begin{itemize}
+\item Structural optimizations:
+  \begin{itemize}
+  \item relaxations -- atomic positions only (\file{example1.relax})
+  \item variable-cell relaxations (\file{example2.vc-relax})
+  \end{itemize}
+\item NEB method: saddle points of elementary chemical
+  reactions (\file{example3.neb/})
+\item Advanced functionals (\file{example4.functionals/})\\
+  (slides for advanced-functionals are provided by \file{handson-day2-functionals.pdf})
+\item Automating the workflow with PWTK
+  (\file{example5.pwtk})
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\head{1. How to perform structural optimization: graphane}
+\rightheader{}
+\rightfooter{Example: \file{Day-2/example1.relax}}
+
+\parbox{17cm}{
+  \begin{itemize}
+  \item Move to \file{Day-2/example1.relax/} directory.\\[0.5em]
+    Graphane is like graphene, with an H atom bound to each C atom in
+    {\em trans} configuration. You need to optimize atomic positions,
+    i.e., find the minimum-energy structure (zero forces).
+  \end{itemize}
+} \hskip 1cm
+\parbox{8cm}{ \includegraphics[width=8cm]{figs/graphane.pdf}}
+
+\begin{itemize}
+\item File \file{pw.graphane.relax.in} is a modified version of\\
+  \file{pw.graphene1x1.scf.in} with:
+  \begin{itemize}
+  \item \var{calculation='relax'} for structural optimization and a
+    new namelist \nml{\&IONS} with variable \var{upscale=100.0}
+  \item \var{ntyp=2} (2 types of atoms), \var{nat=4}
+    (4 atoms in the cell)
+  \item \card{ATOMIC\_SPECIES} card with 2 species of atoms and
+    pseudopotentials
+  \item \card{ATOMIC\_POSITION} card with 4 initial positions
+    (C--H distance $\sim 1$~\AA)
+  \end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{1. How to perform structural optimization: graphane (II)}
+\begin{itemize}
+\item Run the structural optimization, i.e.:\\[0.5em]
+  \exec{pw.x < pw.graphane.relax.in > pw.graphane.relax.out \&}
+\item When calculation finishes, analyze the output: it consists of
+   several SCF steps, followed by calculation of forces and generation
+   of new atomic positions.
+\item To visualize the evolution of the structure during structural
+   optimization, execute:\\[1em]
+   \exec{xcrysden --pwo pw.graphane.relax.out}
+\end{itemize}
+\parbox{15cm}{Relaxed structure of graphane exhibits ``buckling''.}
+\hskip 0.5cm \parbox{8cm}{
+  \includegraphics[width=8cm]{figs/graphane2.pdf}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{1. Supercell and structural optimization: graphene-oxide}
+
+\parbox{15cm}{
+  \begin{itemize}
+  \item The first stage of graphene oxidation is the formation of an
+    epoxy bridge. Let us add an O atom on a $(3\times3)$ supercell of
+    graphene
+  \end{itemize}
+}\hskip 2cm\parbox{7cm}{
+  \begin{flushright}
+    \includegraphics[width=7cm]{figs/graphene3x3-O.pdf}    
+  \end{flushright}
+}
+
+This example consists of two tasks: (i) build a $(3\times3)$ supercell
+of graphene; (ii) add an O atom onto graphene--$(3\times3)$ supercell
+structure and run a relaxation calculation.
+    
+{\bf Step-1:}
+\vspace{-1em}
+\begin{itemize}
+\item The $(3\times3)$ supercell structure of
+  graphene is provided in file\\
+  \file{pw.graphene3x3.scf.in}, which is a modified version of\\
+  \file{pw.graphene1x1.scf.in}. Please
+  notice that:
+  \begin{itemize}
+  \item Lattice parameters $a$ and $b$ are multiplied by 3:
+    \var{celldm(1)=13.962}
+    \vspace{0.3em}
+  \item Lattice parameter $c$ remains the same, hence \var{celldm(3)},
+    which equals $c/a$, is divided by 3, hence: \var{celldm(3)=1.0}.
+    \vspace{0.3em}
+  \item There are 9 times the atoms of the original unit cell, i.e. \var{nat=18}.
+    \vspace{0.3em}
+  \item Reciprocal lattice vectors in the $xy$ plane are divided by 3
+    (look at the output), hence if you want the same k-point grid,
+    just use \card{K\_POINTS (automatic)} with \card{3 3 1 0 0 0}
+    grid, which is equivalent to \card{9 9 1 0 0 0} k-point grid of
+    $(1\times1)$ unit-cell \vspace{0.3em}
+  \item Provided that {\red the two k-point grids are equivalent}:
+    \begin{itemize}
+    \item
+      The energy of the supercell $E^{\rm SC} = 9E^{\rm UC}$ almost exactly
+      (UC = unit cell)
+    \item
+      all $\epsilon^{\rm SC}({\bf k}_i)$ are (almost) equal to some
+      $\epsilon^{\rm UC}({\bf k}_j)$ if ${\bf k}_j$ refolds into ${\bf k}_i$
+    \end{itemize}   
+  \end{itemize}
+\end{itemize}
+
+{\bf Step-2:}
+\vspace{-1em}
+\begin{itemize}
+\item File \file{pw.graphene3x3-O.relax.in} is a modified version of\\
+  \file{pw.graphene3x3.scf.in} with:
+  \begin{itemize}  
+  \item \var{calculation='relax'} for structural optimization and a new
+    namelist \card{\&IONS}
+  \item \var{ntyp=2} (2 types of atoms), \var{nat=19}
+    (19 atoms in the cell)
+  \item \card{ATOMIC\_SPECIES} card with 2 species of atoms and
+    pseudopotentials
+  \item \card{ATOMIC\_POSITION} card with 19 initial positions
+    (C--O distance $\sim 1.5$~\AA)
+  \end{itemize}
+\item Run the structural optimization and analyze the output
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{2. How to perform variable-cell relaxation: hcp-Zinc}
+\rightfooter{Example: \file{Day-2/example2.vc-relax}}
+%
+Zinc displays a hcp (hexagonal-closed-packed) crystal structure, hence
+it has two lattice parameters $a$ and $c$. The unit-cell lattice
+vectors are:\\
+%
+\centerline{$\displaystyle
+  {\bf a}_1=(a,0,0), \quad {\bf a_2}=(-{a\over 2},{a\sqrt{3}\over 2},0),
+  \quad {\bf a}_3=(0,0,c)$}
+%
+This lattice can be described as:\\
+$\bullet$ \var{ibrav=4}, \var{A=$a$}, \var{C=$c$}, {\em both in \AA,
+  not a.u.}, as in file \file{pw.Zn.scf.in}\\
+$\bullet$ or \var{ibrav=4}, \var{celldm(1)=$a$}, \var{celldm(3)=$c/a$},
+as in the file \file{pw.Zn.vc-relax.in}
+
+For hexagonal lattices one needs to optimize two lattice
+parameters. This can be done either {\em manually} or by using the
+{\em variable-cell relaxation}. (See also \file{README.md}).
+\vspace{-1em}
+\begin{enumerate}
+\item {\bf Manual way:} to optimize the $a$ and $c$ lattice
+  parameters, one need to perform a 2D scan over the two
+  parameters. With PWTK this can be achieved with the following
+  snippet (full script is available in
+  \file{Zn-scan.pwtk}):
+  \vspace{-0.5em}
+  {\codecolor
+\begin{verbatim}
+foreach A [seq 2.6 0.1 3.0] {
+   foreach C [seq 4.2 0.1 4.6] {
+      SYSTEM " A = $A , C = $C"        
+      runPW pw.Zn.scf.$A.$C.in
+   }
+}
+\end{verbatim}
+  }
+\item {\bf Variable-cell relaxation:} This is a more convenient
+  option. An example of how to perform variable-cell relaxation is
+  provided by the input file \file{pw.Zn.vc-relax.in}. Notice:
+  \begin{itemize}
+  \item \var{calculation = 'vc-relax'}
+  \item \nml{\&IONS} and \nml{\&CELL} namelists after the \nml{\&ELECTRONS}
+  \end{itemize}
+\end{enumerate}
+To run the calculation, execute:\\[0.5em]
+\exec{pw.x -in pw.Zn.vc-relax.in > pw.Zn.vc-relax.out}
+
+Inspect the output (file: \file{pw.Zn.vc-relax.out}) and notice that:
+\vspace{-1em}
+\begin{itemize}
+  \item several scf steps are performed, forces (zero by symmetry) 
+    and stresses computed
+    \vspace{-1em}
+  \item the energy and the stress decrease as the minimum is approached
+    \vspace{-1em}
+  \item a final scf step is performed with plane waves computed for
+    the final cell
+    \vspace{-1em}
+  \item the final cell is printed after the last \texttt{CELL\_PARAMETERS}
+    card
+  \end{itemize}
+  Compare optimized parameters estimated from the {\em manual} 2D-scan
+  to those obtained from the  {\em variable-cell relaxation}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{2. Variable-cell relaxation (II): molecular crystal of Urea}
+
+While in the preceding example, the forces were zero by symmetry, in
+this example (\file{pw.urea.vc-relax.in}) both unit-cell and atomic
+positions are optimized by utilizing the {\em variable-cell
+  relaxation} (\var{calculation = 'vc-relax'}).  Beware that it is
+computationally heavier than the \file{pw.Zn.vc-relax.in} example.
+
+\begin{center}
+  \includegraphics[width=0.4\textwidth]{figs/urea.png}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{3. NEB method: saddle points of elementary chemical reactions}
+\rightfooter{Example: \file{Day-2/example3.neb}}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{4. Advanced functionals}
+\rightfooter{Example: \file{Day-2/example4.functionals}}
+
+Slides for this exercise are provided by file \file{\href{handson-day2-functionals.pdf}{handson-day2-functionals.pdf}}.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5. PWTK: a short tutorial}
+\rightheader{\includegraphics[width=2.5cm]{figs/pwtk.png}}
+\rightfooter{Example: \file{Day-2/example5.pwtk}}
+
+PWTK is a Tcl-based scripting interface for Quantum ESPRESSO. It aims
+at providing a flexible and productive framework.
+
+\begin{itemize}
+\item PWTK web-site is:\\
+  \file{http://pwtk.quantum-espresso.org/} ~or~ \file{http://pwtk.ijs.si/}
+\item PWTK documentation is available at:\\
+  \file{http://pwtk.ijs.si/toc\_index.html}\\
+  (see also \file{\href{http://pwtk.ijs.si/pwtk-slides.pdf}{http://pwtk.ijs.si/pwtk-slides.pdf}})
+\end{itemize}
+
+\begin{itemize}
+\item  Move to \file{Day-2/example5.pwtk} directory. Therein are three
+  examples:
+  \begin{itemize}
+  \item \file{ex1.eos/} -- how to use EOS (equation-of-state) utility
+    of PWTK
+    \vspace{0.5em}
+  \item \file{ex2.O@Al111/} -- how to run many calculations with a
+    simple PWTK script
+    \vspace{0.5em}
+  \item \file{ex3.CO@Rh100/} -- a more exlaborate PWTK example that
+    shows how to glue together various calculations. In particular, it
+    analyzes the bonding of CO molecule on Rh(100).
+  \end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5. PWTK: hierarchical configuration}
+\rightheader{}
+
+\begin{itemize}
+\item Main user configuration file: \file{\$HOME/.pwtk/pwtk.tcl}
+  \begin{itemize}
+  \item executables and how to run them (\cmd{bin\_dir}, \cmd{prefix},
+    \cmd{postfix})
+  \item special directories (\cmd{pseudo\_dir}, \cmd{outdir}, \cmd{wfcdir})
+  \end{itemize}
+\item Project-based configuration (via \cmd{import}), e.g,:  
+  \begin{itemize}
+  \item \file{Day-2/example5.pwtk/common.pwtk}\\[0.3em]
+    Specification of default input data that are common to all examples in
+    \file{example5.pwtk/}, e.g., cutoff energies, list of
+    pseudopotentials, etc.
+    \vspace{0.5em}
+    {\small
+      \begin{itemize}
+      \item {\bf Beware:} for each specific calculation PWTK filters atomic
+        species and uses only those that are actually used. Due to that
+        the index of species can change from case to case, hence for
+        {\em ntyp}-type variables do not use numeric indices, but use
+        atomic labels instead, e.g.:\\
+        \var{starting\_magnetization({\bf 1}) = 1.0} ~~~({\red\em not recommended})\\
+        \var{starting\_magnetization({\bf Fe}) = 1.0} ~~({\green\em recommended})
+      \end{itemize}
+    }
+    \vspace{0.5em}
+  \item in a given example the project-based \file{common.pwtk} is
+    then imported via, e.g.,
+    \file{import ../common.pwtk}
+  \end{itemize}
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.1 PWTK: EOS utility}
+
+\end{document}
