@@ -8,4 +8,4 @@
 
 2. To run the example, execute:
 
-       ./ecutwfc.pwtk
+       ./ecutwfc.sh
