@@ -229,6 +229,116 @@ computationally heavier than the \file{pw.Zn.vc-relax.in} example.
 \head{3. NEB method: saddle points of elementary chemical reactions}
 \rightfooter{Example: \file{Day-2/example3.neb}}
 %
+Saddle points on the {\em Potential Energy Surface (PES)}, which correspond to {\em Transition Sates (TS)} of chemical reactions, can be found by means of the {\em Nudged Elastic Band (NEB)} method. 
+
+In the first example we will analyze a simple H transfer reaction:
+\begin{center}
+{\large $\mathrm{H_2 + H \rightarrow H + H_2}$}
+\end{center}
+{\bf Example 1a: No intermediate image}
+
+In the NEB method one needs to supply a minimum of two images, the
+so-called first- and last-image, corresponding to reactants and
+products.
+
+In \file{neb.H2+H.in}, you will see that near the end of the file
+\card{FIRST\_IMAGE} and \card{LAST\_IMAGE} are specified. Seven
+images are requested (\var{num\_of\_images = 7}) along the
+reaction and the \prog{neb.x} code discretizes the path
+by means of a linear interpolation.
+
+You can visualize this path with \prog{xcrysden}:
+
+\exec{xcrysden --pwi neb.H2+H.in}
+
+To run the example execute:
+
+\exec{ neb.x -inp neb.H2+H.in > neb.H2+H.out \& }
+
+When the calculation finishes analyze the output
+(\file{neb.H2+H.out}). Pay attention to the {\em number of steps} required
+to reach convergence and the reaction energy barrier.
+
+\exec{ gnuplot H2+H.gp }
+
+The resulting plot is should look something like this. 
+\begin{figure}
+  \centering
+    \includegraphics[width=14cm]{figs/H2+H-NEB-path.pdf}
+\end{figure}
+
+You can visualize individual points on the reaction path by using \prog{xcrysden}.
+
+Either by typing:
+
+\exec{ xcrysden --xyz H2+H.xyz}
+
+or
+
+\exec{xcrysden --axsf H2+H.axsf}
+
+{\bf Example 1b: NEB with intermediate image}
+
+This example is similar as the previous example, however now chemical
+intuition is used to construct a better initial reaction path. This is
+achieved by using the \card{INTERMEDIATE\_IMAGE} card, in which a
+rough guess for the transition state is provided. You can visualize
+the path by using \prog{xcrysden}:
+
+\exec{ xcrysden --pwi neb.H2+H.w-inter-image.in}
+
+Try to spot the difference between the two examples. Notice that
+without the intermediate image, the three atoms are evenly spaced in
+the third NEB image, which is not a good guess. If we use
+\card{INTERMEDIATE\_IMAGE} they can be placed closer together, which
+is a lot closer to the actual transition state and the NEB calculation
+does not require as many steps in order to converge. This is shown
+schematically below: 
+
+\begin{figure}
+  \centering
+    \includegraphics[width=22cm]{figs/neb-w-intermimage.pdf}
+\end{figure}
+
+To run this example type:
+
+{\small \exec{ neb.x -inp neb.H2+H.w-inter-image.in > neb.H2+H.w-inter-image.out \& }}
+
+The final reaction barrier should be the same as in the previous
+calculation, however convergence should require fewer steps.
+
+{\bf Example 2: A more complex NEB calculation}
+
+In the second example we will study $\mathrm{H_2} $ dissociation on
+the Al(100) surface. We will be using \card{INTERMEDIATE\_IMAGE} and
+the calculation itself will also divided into two parts, in order to
+achieve convergence more quickly.
+
+We will be using climbing-image NEB (CI-NEB), however initially we
+cannot say which image is the {\em climbing-image} (the one with the
+highest energy), because its ID can change from iteration to iteration,
+depending on how far from convergence we are.
+
+Thus we will first perform a plain NEB (\var{CI\_scheme = 'no-CI'}) in
+order to stabilize the pathway and only once its stabilized we will
+switch on the CI-NEB with \var{CI\_scheme~=~'auto'}. 
+
+{\bf{Steps:}}
+\begin{itemize}
+\item{Read \file{neb.H2-diss.Al100-2x1-2L.in} and try to understand it. This file will serve as the main input for the \prog{pwtk} script. Visualize the initial guess by :\\
+    \exec{xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in}}
+\item{Read the \file{neb.pwtk} script and try to understand it. }
+\item{Run the example by executing:\\ \exec{pwtk neb.pwtk >\& neb.log \& }}
+\item{Once the calculation converges analyze \file{neb.noCI.out} and \file{neb.noCI.out} and check the number of steps and the reaction energy barrier. The reaction energy graph can be plotted by: \\
+    \exec{gnuplot H2-diss.Al100-2x1-2L.gp} \\
+    and the corresponding path visulized by: \\
+    \exec{xcrysden --axsf H2-diss.Al100-2x1-2L.axsf } }
+\end{itemize}
+\begin{figure}
+  \centering
+    \includegraphics[width=13.0cm]{figs/NEB-H2onAl100-results.pdf}
+\end{figure}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \head{4. Advanced functionals}
@@ -309,3 +419,8 @@ at providing a flexible and productive framework.
 \head{5.1 PWTK: EOS utility}
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
