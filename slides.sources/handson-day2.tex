@@ -479,7 +479,7 @@ data points, can you tell why?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \head{5.2 PWTK: gluing together many calculations}
-\rightfooter{Example: \file{Day-2/example5.pwtk/ex1.eos}}
+\rightfooter{Example: \file{Day-2/example5.pwtk/ex2.O@Al111}}
 
 The subject of this example is the calculation of a 2D potential
 energy scan of lateral positions of O @ Al(111). It introduces the
@@ -525,9 +525,127 @@ this.
 \centerline{\includegraphics[width=0.47\textwidth]{figs/PES-2D.png}}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.3 PWTK: analysis of electronic structure of CO@Rh(100)}
+\rightfooter{Example: \file{Day-2/example5.pwtk/ex3.CO@Rh100}}
 
+This is a bit more elaborate PWTK example that shows how to glue
+together various calculations. In particular, it analyzes the bonding
+of CO molecule on Rh(100) by means of (i) charge-density difference,
+(ii) PDOS to atomic orbitals, (iii) MOPDOS to molecular orbitals, and
+(iv) ILDOS (integrated-local density of states).
 
+The analysis reveals the charge-donation from the CO $\sigma$ HOMO
+orbital into metal states and back-donation of charge from metal
+states into the CO $\pi^*$ LUMO orbital.
 
+The master PWTK script that performs the whole anlysis is
+\file{run-all.pwtk}. This file imports several script, each performing
+specific task(s), in particular:
+
+\begin{itemize}
+\vspace{-0.5em}
+\item \file{relax.pwtk} -- script for relaxing the CO@Rh(100)
+  structure
+\vspace{-0.5em}
+\item \file{difden.pwtk} -- script for calculating charge-density
+  difference
+\vspace{-0.5em}
+\item \file{ildos.pwtk} -- script for calculation of ILDOSes
+\vspace{-0.5em}
+\item \file{pdos.pwtk} -- script for calculating PDOS to atomic
+  orbitals, MOPDOS to molecular-orbitals of CO, and plots of
+  molecular-orbitals ($\psi^2$) of CO (BEWARE: this is a more
+  elaborate script)
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.3.1 DIFDEN utility}
+
+PWTK has a {\em DIFDEN} utility to aid at calculating, e.g.,
+charge-density difference:\\[0.5em]
+{\black$\displaystyle\quad\quad\Delta\rho_{\rm AB}(\vr) = \rho_{\rm
+    AB}(\vr) - \rho_{\rm A}(\vr) - \rho_{\rm B}(\vr)$}\\[0.5em]
+({\em remark:} with {\em DIFDEN} you can calculate any difference, does not
+need to be density)\\[0.5em]
+%
+The above difference can be calculated using the following PWTK
+snippet (the CO@Rh(100) example):\\
+\begin{tabular}[t]{ll}
+  \begin{minipage}[t]{.4\linewidth}
+\codecolor\small
+\begin{verbatim}
+DIFDEN {
+    segment(1) = "all"
+    weight(1)  = 1.0
+    name(1)    = "all"
+    
+    segment(2) = "1 2"
+    weight(2)  = -1.0
+    name(2)    = "CO"
+    
+    segment(3) = "3-"
+    weight(3)  = -1.0
+    name(3)    = "Rh100"
+}
+difden_run difden.CO-Rh(100)
+\end{verbatim}    
+\end{minipage}
+  &
+    \begin{minipage}[t]{.5\linewidth}
+      ~\\
+      Note that the calculation of $\Delta\rho(\vr)$ requires 6 or 7
+      calculations, i.e., \prog{pw.x} and \prog{pp.x} calculations
+      for each of AB, A, and B. The last (7$^{\rm th}$) \prog{pp.x}
+      calculation is to subtract the calculated densities. PWTK
+      manages all these 7 calculations automatically.\\
+
+      The full PWTK script for calculating the $\Delta\rho(\vr)$ of
+      CO@Rh(100) is provided by file \file{difden.pwtk}.
+    \end{minipage}
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.3.2 ILDOS}
+
+ILDOS = integrated local density of states:\\[0.5em]
+{\black
+$\displaystyle
+N(E_{\rm min},E_{\rm max},\vr) = 
+ \int_{E_{\rm min}}^{E_{\rm max}}  n(\epsilon,\vr) d\epsilon 
+ = \sum_v\sum_{\vk}
+  \int_{E_{\rm min}}^{E_{\rm max}} |\psi_{v,\vk}(\vr)|^2 \times
+  \delta(\epsilon-\epsilon_{v,\vk}) d\epsilon.$
+}
+
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{figs/ildos.png}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.3.2 ILDOS}
+With aid of PWTK, a series of ILDOSes can be calculated using the following snippet:
+{
+  \codecolor\small
+\begin{verbatim}
+INPUTPP " plot_num = 10 "
+
+foreach {Emin Emax} {
+    -6.00 -5.50
+    -3.40 -3.30
+    -3.05 -2.95
+     ...   ...
+} {
+    INPUTPP " emin = $Emin, emax = $Emax "
+    PLOT " fileout = 'ildos.${Emin}.${Emax}.xsf' "
+
+    runPP pp.ildos.${Emin}.${Emax}.in
+}
+\end{verbatim}
+}
+
+The full PWTK script for calculating a series of ILDOSes of
+CO@Rh(100) is provided by file \file{ildos.pwtk}.
 \end{document}
 
 %%% Local Variables:
