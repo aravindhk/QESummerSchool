@@ -6,7 +6,7 @@
   if_dft_spectrum = .true.
   num_eign = 15             
   num_init = 30              
-  num_basis_max = 90       
+  num_basis_max = 60       
   residue_conv_thr = 1.0E-6  
   start = 0.0                
   finish = 1.0              
