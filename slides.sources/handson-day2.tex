@@ -24,8 +24,12 @@ Topics of Day-2 hands-on session:
 \item Advanced functionals (\file{example4.functionals/})\\
   (slides for advanced-functionals are provided by \file{handson-day2-functionals.pdf})
 \item Automating the workflow with PWTK
-  (\file{example5.pwtk})
+  (\file{example5.pwtk})\\
 \end{itemize}
+
+To get the
+latest version of the exercises, move to \file{Day-2/} directory and execute:\\[0.5em]
+\exec{git pull}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \head{1. How to perform structural optimization: graphane}
@@ -229,7 +233,9 @@ computationally heavier than the \file{pw.Zn.vc-relax.in} example.
 \head{3. NEB method: saddle points of elementary chemical reactions}
 \rightfooter{Example: \file{Day-2/example3.neb}}
 %
-Saddle points on the {\em Potential Energy Surface (PES)}, which correspond to {\em Transition Sates (TS)} of chemical reactions, can be found by means of the {\em Nudged Elastic Band (NEB)} method. 
+Saddle points on the {\em Potential Energy Surface (PES)}, which
+correspond to {\em Transition States (TS)} of chemical reactions, can
+be found by means of the {\em Nudged Elastic Band (NEB)} method.
 
 In the first example we will analyze a simple H transfer reaction:
 \begin{center}
@@ -238,8 +244,8 @@ In the first example we will analyze a simple H transfer reaction:
 {\bf Example 1a: No intermediate image}
 
 In the NEB method one needs to supply a minimum of two images, the
-so-called first- and last-image, corresponding to reactants and
-products.
+so-called {\bf first-} and {\bf last-image}, corresponding to
+reactants and products.
 
 In \file{neb.H2+H.in}, you will see that near the end of the file
 \card{FIRST\_IMAGE} and \card{LAST\_IMAGE} are specified. Seven
@@ -261,7 +267,7 @@ to reach convergence and the reaction energy barrier.
 
 \exec{ gnuplot H2+H.gp }
 
-The resulting plot is should look something like this. 
+The resulting plot should look something like this.
 \begin{figure}
   \centering
     \includegraphics[width=14cm]{figs/H2+H-NEB-path.pdf}
@@ -289,11 +295,12 @@ the path by using \prog{xcrysden}:
 
 Try to spot the difference between the two examples. Notice that
 without the intermediate image, the three atoms are evenly spaced in
-the third NEB image, which is not a good guess. If we use
-\card{INTERMEDIATE\_IMAGE} they can be placed closer together, which
-is a lot closer to the actual transition state and the NEB calculation
-does not require as many steps in order to converge. This is shown
-schematically below: 
+the middle of the initial interpolated reaction path, which is not a
+good guess of the transition-state. If we use
+\card{INTERMEDIATE\_IMAGE} then the three H atoms can be placed closer
+together, which is a lot closer to the actual transition state and the
+NEB calculation does not require as many steps to converge. This is
+shown schematically below:
 
 \begin{figure}
   \centering
@@ -311,32 +318,38 @@ calculation, however convergence should require fewer steps.
 
 In the second example we will study $\mathrm{H_2} $ dissociation on
 the Al(100) surface. We will be using \card{INTERMEDIATE\_IMAGE} and
-the calculation itself will also divided into two parts, in order to
+the calculation itself is also divided into two parts, in order to
 achieve convergence more quickly.
 
-We will be using climbing-image NEB (CI-NEB), however initially we
-cannot say which image is the {\em climbing-image} (the one with the
-highest energy), because its ID can change from iteration to iteration,
-depending on how far from convergence we are.
+We will be using climbing-image NEB (CI-NEB), however initially we do
+not know which image is the {\em climbing-image} (the one with the
+highest energy), because its ID can change from iteration to
+iteration, depending on how far from convergence we are.
 
 Thus we will first perform a plain NEB (\var{CI\_scheme = 'no-CI'}) in
-order to stabilize the pathway and only once its stabilized we will
-switch on the CI-NEB with \var{CI\_scheme~=~'auto'}. 
+order to stabilize the pathway and only once it is stabilized we will
+switch on the CI-NEB with \var{CI\_scheme~=~'auto'}. We will use a
+PWTK script to manage these two calculations.
 
 {\bf{Steps:}}
 \begin{itemize}
-\item{Read \file{neb.H2-diss.Al100-2x1-2L.in} and try to understand it. This file will serve as the main input for the \prog{pwtk} script. Visualize the initial guess by :\\
+\item{Read \file{neb.H2-diss.Al100-2x1-2L.in} and try to understand
+    it.
+    This file will serve as the main input for the \prog{pwtk} script. Visualize the initial guess by :\\
     \exec{xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in}}
 \item{Read the \file{neb.pwtk} script and try to understand it. }
 \item{Run the example by executing:\\ \exec{pwtk neb.pwtk >\& neb.log \& }}
-\item{Once the calculation converges analyze \file{neb.noCI.out} and \file{neb.noCI.out} and check the number of steps and the reaction energy barrier. The reaction energy graph can be plotted by: \\
-    \exec{gnuplot H2-diss.Al100-2x1-2L.gp} \\
+\item{Once the calculation converges analyze \file{neb.noCI.out} and
+    \file{neb.auto.out} and check the number of steps and the reaction
+    energy barrier.
+    The reaction energy graph can be plotted by:\\
+    \exec{gnuplot H2-diss.Al100-2x1-2L.gp} \\[0.5em]
     and the corresponding path visulized by: \\
     \exec{xcrysden --axsf H2-diss.Al100-2x1-2L.axsf } }
 \end{itemize}
 \begin{figure}
   \centering
-    \includegraphics[width=13.0cm]{figs/NEB-H2onAl100-results.pdf}
+    \includegraphics[width=12.0cm]{figs/NEB-H2onAl100-results.pdf}
 \end{figure}
 
 
@@ -415,17 +428,35 @@ at providing a flexible and productive framework.
   \end{itemize}
 \end{itemize}
 
+\head{5. PWTK: concept of input data stacking}
+\rightheader{}
+
+{\small Input data stacking is a useful concept when performing
+  multiple calculations. In such a case, one typically defines a set
+  of default parameters for all calculations. However, each individual
+  calculation may require some modification of the input data, yet it
+  is inconvenient if such a change would affect the input data for
+  other subsequent calculations.
+  %
+  This inconvenience can be prevented with \cmd{input\_push} and \cmd{input\_pop}
+  commands (actually it is more convenient to use \cmd{input\_pushpop
+    \{...\}} instead). The concept is illustrated below:}
+
+\centerline{\includegraphics[width=0.8\textwidth]{figs/i-data-stacking.png}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-\head{5.1 PWTK: EOS utility} In this example the {\em
-  equation-of-state (EOS)} will be calculated using \prog{pwtk}. Run
-this calculation by typing:
+\head{5.1 PWTK: EOS utility}
+\rightfooter{Example: \file{Day-2/example5.pwtk/ex1.eos}}
+
+In this example the {\em equation-of-state (EOS)} will be calculated
+using \prog{pwtk}. Run this calculation by typing:
 
 \exec{pwtk eos.Rh-bulk.pwtk > eos.Rh-bulk.log \& }
 
-This procedure performs 15 scf calculations with different lattice
+This procedure performs 15 SCF calculations with different lattice
 parameters (using the initial guess as input) and then uses the
 results as input for \prog{ev.x}, to calculate EOS in accordance with
-the four schemes. The results are then summarized in
+the four equations of state. The results are then summarized in
 \file{eos.Rh-bulk.RESULTS}.
 
 \begin{figure}
@@ -445,6 +476,59 @@ data points, can you tell why?
 \centering
 \includegraphics[width=15.0cm]{figs/BULK_MODULES.png}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\head{5.2 PWTK: gluing together many calculations}
+\rightfooter{Example: \file{Day-2/example5.pwtk/ex1.eos}}
+
+The subject of this example is the calculation of a 2D potential
+energy scan of lateral positions of O @ Al(111). It introduces the
+PWTK's concept of input-data stacking (i.e. \cmd{input\_pushpop
+  \{...\}}).
+
+The corresponding PWTK snippet is:
+{\codecolor\small
+\begin{verbatim}
+foreach ia [seq 0.0 0.2 1.0] {
+   foreach ib [seq 0.0 0.2 1.0] {
+
+      set x [expr $ia - 0.5*$ib]
+      set y [expr sqrt(3)/2*$ib]
+
+      input_pushpop {
+         insertAtoms begin "O  $x $y 1.35   0 0 1"
+         runPW pw.O-Al111.$ia.$ib.in
+      }
+   }
+}
+\end{verbatim}
+}
+
+Beware that without the use of input-data stacking, each new iteration
+would add a new O atom to the structure. But with \cmd{input\_pushpop
+  \{...\}}, we add an O atom, make a calculation, and pop the O atom
+away.
+
+The full script is provided by \file{scan.pwtk}; read it and and try
+to understand it.
+
+Run the example by executing:\\
+\exec{pwtk scan.pwtk >\& scan.log \& }
+
+The resulting potential-energy-surface can be visualized as:\\
+\exec{gnuplot plot2D.gp}
+
+{\bf Beware:} this example takes quite long! Hence, it is better to
+submit it to HPC cluster. This can be achieved by:\\
+\exec{remote\_pwtk scan.pwtk}
+
+After calculation finishes, download the output and data files as:\\
+\exec{rsync\_from\_nsc *.out *.dat}
+
+The plot the result with gnuplot.
+
+
+
 
 
 \end{document}
