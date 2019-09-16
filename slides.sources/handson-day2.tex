@@ -510,22 +510,19 @@ would add a new O atom to the structure. But with \cmd{input\_pushpop
 away.
 
 The full script is provided by \file{scan.pwtk}; read it and and try
-to understand it.
-
-Run the example by executing:\\
+to understand it. Run the example by executing:\\
 \exec{pwtk scan.pwtk >\& scan.log \& }
 
 The resulting potential-energy-surface can be visualized as:\\
-\exec{gnuplot plot2D.gp}
-
+\exec{gnuplot plot2D.gp}\\[0.5em]
 {\bf Beware:} this example takes quite long! Hence, it is better to
 submit it to HPC cluster. This can be achieved by:\\
-\exec{remote\_pwtk scan.pwtk}
-
+\exec{remote\_pwtk scan.pwtk}\\[0.5em]
 After calculation finishes, download the output and data files as:\\
-\exec{rsync\_from\_nsc *.out *.dat}
-
-The plot the result with gnuplot.
+\exec{rsync\_from\_nsc *.out *.dat}\\[0.5em]
+Then plot the result with gnuplot. You should obtain something like
+this.
+\centerline{\includegraphics[width=0.47\textwidth]{figs/PES-2D.png}}
 
 
 
