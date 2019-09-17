@@ -25,4 +25,4 @@ plotband.x < plotband.AlAs.in > plotband.AlAs.out
 
 gnuplot plot_dispersion.gp
 
-evince phonon_dispersion.eps 
+atril phonon_dispersion.eps 

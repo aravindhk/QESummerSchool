@@ -25,4 +25,4 @@ plotband.x < plotband.bn.in > plotband.bn.out
 
 gnuplot plot_dispersion.gp
 
-evince phonon_dispersion.eps 
+atril phonon_dispersion.eps 
