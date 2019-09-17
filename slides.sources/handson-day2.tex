@@ -32,6 +32,56 @@ latest version of the exercises, move to \file{Day-2/} directory and execute:\\[
 \exec{git pull}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\head{How to run calculations remotely on the ``nsc'' HPC cluster}
+\rightheader{}
+
+Several utility commands have been implemented specially for the
+QE-2019 school to aid at submitting jobs to HPC cluster. These are:
+{\small
+\begin{itemize}
+\item \cmd{\bf remote\_mpirun} -- this is like \cmd{mpirun}, but it
+  automatically submits the calculation to a queuing system on the
+  ``nsc'' HPC system. For example, a \prog{pw.x} calculation can be
+  submitted
+  as:\\[0.5em]
+  \exec{remote\_mpirun pw.x -inp pw.file.in}\\[0.5em]
+  where \file{pw.file.in} is the name of the \prog{pw.x} input
+  file. {\bf BEWARE:} stdin/stdout redirection does not work for
+  \cmd{remote\_mpirun}, hence you must use \flag{-inp} option (i.e.,
+  do note use ``\cmd{<}'' redirection operator). You do not need to
+  specify the number of processors, because the default is set to
+  \flag{-np~8}.
+  \vspace{0.5em}
+\item \cmd{\bf remote\_pwtk} -- this automatically submits the PWTK
+  script to queuing system on the ``nsc'' HPC system. Example:\\[0.5em]
+  \exec{remote\_pwtk script.pwtk}\\[0.5em]
+  where \file{script.pwtk} is the name of the PWTK script.
+\vspace{0.5em}
+\item \cmd{\bf remote\_sbatch} -- automatically submits the Unix-shell
+  script to queuing system on the ``nsc''  HPC system. Example:\\[0.5em]
+  \exec{remote\_sbatch script.sh}\\[0.5em]
+  where \file{script.sh} is the name of the Unix-shell script.
+  
+\clearpage
+\item \cmd{\bf nsc} -- this makes \cmd{ssh} to ``nsc'' HPC login node
+  (percolator.ijs.si), such that the user will be located in the same
+  directory as used locally
+\vspace{0.5em}
+\item \cmd{\bf rsync\_to\_nsc} -- copies specified files to the ``nsc''
+  cluster (percolator.ijs.si) to the same directory as is currently
+  used locally. Example:\\[0.5em]
+  \exec{rsync\_to\_nsc *.in}\\[0.5em]
+  This will copy all \file{*.in} files from local directory to the
+  same directory on the ``nsc'' cluster.
+\vspace{0.5em}  
+\item \cmd{\bf rsync\_from\_nsc} -- download the specified file from the
+  ``nsc'' cluster (percolator.ijs.si) from the same directory as is
+  currently used locally. Example:\\[0.5em]
+  \exec{rsync\_from\_nsc *.out}\\[0.5em]
+  This will copy all \file{*.out} files from the `nsc'' cluster.
+\end{itemize}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \head{1. How to perform structural optimization: graphane}
 \rightheader{}
 \rightfooter{Example: \file{Day-2/example1.relax}}
