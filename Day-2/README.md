@@ -73,7 +73,7 @@ to HPC cluster. These are:
 		
   where `script.sh` is the name of the Unix-shell script.
   
-#### Few others utility commands for "remote" usage
+#### Few other utility commands for "remote" usage
 
 * `nsc` -- this makes `ssh` to "nsc" HPC login node
   (percolator.ijs.si), such that the user will be located in the same
