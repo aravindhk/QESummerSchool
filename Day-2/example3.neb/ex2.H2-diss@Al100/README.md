@@ -40,7 +40,7 @@ PWTK script.
 		
 	To download the calculated output files, use:
 	
-	    rsync_from_nsc *.out
+	    rsync_from_nsc '*.out'
 		
     But wait some time before doing that; give the remote computer
 	some time to make the calculation. To download other data files

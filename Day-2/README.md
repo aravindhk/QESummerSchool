@@ -83,7 +83,7 @@ to HPC cluster. These are:
   cluster (percolator.ijs.si) to the same directory as is currently
   used locally. Example:
 
-        rsync_to_nsc *.in
+        rsync_to_nsc '*.in'
 
   This will copy all `*.in` files from local directory to the
   same directory on the "nsc" cluster.
@@ -92,7 +92,7 @@ to HPC cluster. These are:
   "nsc" cluster (percolator.ijs.si) from the same directory as is
   currently used locally. Example:
 
-        rsync_from_nsc *.out
+        rsync_from_nsc '*.out'
 		
   This will copy all `*.out` files from the "nsc" cluster.
 
