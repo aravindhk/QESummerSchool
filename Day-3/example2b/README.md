@@ -5,7 +5,7 @@ Steps to perform:
 
 #1) Run the SCF ground-state calculation
 
-mpirun -np 2 pw.x < scf.AlAs.in > scf.AlAs.out
+mpirun -np 2 pw.x < pw.AlAs.in > pw.AlAs.out
 
 #2) Run the phonon calculation on a uniform grid of q-points
 
