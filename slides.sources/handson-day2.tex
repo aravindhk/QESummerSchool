@@ -27,6 +27,7 @@ Topics of Day-2 hands-on session:
   (\file{example5.pwtk})\\
 \end{itemize}
 
+\vspace{-0.5em}
 To get the
 latest version of the exercises, move to \file{Day-2/} directory and execute:\\[0.5em]
 \exec{git pull}
@@ -36,8 +37,8 @@ latest version of the exercises, move to \file{Day-2/} directory and execute:\\[
 \rightheader{}
 
 Several utility commands have been implemented specially for the
-QE-2019 school to aid at submitting jobs to HPC cluster. These are:
-{\small
+QE-2019 school to aid at submitting jobs to HPC cluster (login node:
+percolator.ijs.si). These are: {\small
 \begin{itemize}
 \item \cmd{\bf remote\_mpirun} -- this is like \cmd{mpirun}, but it
   automatically submits the calculation to a queuing system on the
@@ -61,7 +62,7 @@ QE-2019 school to aid at submitting jobs to HPC cluster. These are:
   script to queuing system on the ``nsc''  HPC system. Example:\\[0.5em]
   \exec{remote\_sbatch script.sh}\\[0.5em]
   where \file{script.sh} is the name of the Unix-shell script.
-  
+
 \clearpage
 \item \cmd{\bf nsc} -- this makes \cmd{ssh} to ``nsc'' HPC login node
   (percolator.ijs.si), such that the user will be located in the same
@@ -78,7 +79,7 @@ QE-2019 school to aid at submitting jobs to HPC cluster. These are:
   ``nsc'' cluster (percolator.ijs.si) from the same directory as is
   currently used locally. Example:\\[0.5em]
   \exec{rsync\_from\_nsc *.out}\\[0.5em]
-  This will copy all \file{*.out} files from the `nsc'' cluster.
+  This will copy all \file{*.out} files from the ``nsc'' cluster.
 \end{itemize}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -274,10 +275,11 @@ this example (\file{pw.urea.vc-relax.in}) both unit-cell and atomic
 positions are optimized by utilizing the {\em variable-cell
   relaxation} (\var{calculation = 'vc-relax'}).  Beware that it is
 computationally heavier than the \file{pw.Zn.vc-relax.in} example.
-
 \begin{center}
   \includegraphics[width=0.4\textwidth]{figs/urea.png}
 \end{center}
+See the instructions in \file{README.md} for how to run this
+calculation remotely.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \head{3. NEB method: saddle points of elementary chemical reactions}
@@ -388,7 +390,15 @@ PWTK script to manage these two calculations.
     This file will serve as the main input for the \prog{pwtk} script. Visualize the initial guess by :\\
     \exec{xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in}}
 \item{Read the \file{neb.pwtk} script and try to understand it. }
-\item{Run the example by executing:\\ \exec{pwtk neb.pwtk >\& neb.log \& }}
+\item{Beware that this example takes about 20--30 min on a
+    laptop. Hence, run the calculation remotely, i.e., submit it to
+    the HPC cluster, i.e.:\\
+    \exec{remote\_pwtk neb.pwtk}}
+\item To download the calculated output files, use:\\
+  \exec{rsync\_from\_nsc *.out}\\[0.5em]  
+  Give the remote computer some time to make the calculation. To
+  download other data files that were produced by \prog{neb.x}, use:\\[0.5em]
+  \exec{rsync\_from\_nsc .}
 \item{Once the calculation converges analyze \file{neb.noCI.out} and
     \file{neb.auto.out} and check the number of steps and the reaction
     energy barrier.
@@ -397,9 +407,16 @@ PWTK script to manage these two calculations.
     and the corresponding path visulized by: \\
     \exec{xcrysden --axsf H2-diss.Al100-2x1-2L.axsf } }
 \end{itemize}
+
+\clearpage
+
+\vspace*{1em}
+The resulting PES along the reaction coordinate should look like this.
+
+\vspace*{1em}
 \begin{figure}
   \centering
-    \includegraphics[width=12.0cm]{figs/NEB-H2onAl100-results.pdf}
+    \includegraphics[width=14.cm]{figs/NEB-H2onAl100-results.pdf}
 \end{figure}
 
 
@@ -436,7 +453,7 @@ at providing a flexible and productive framework.
   \item \file{ex2.O@Al111/} -- how to run many calculations with a
     simple PWTK script
     \vspace{0.5em}
-  \item \file{ex3.CO@Rh100/} -- a more exlaborate PWTK example that
+  \item \file{ex3.CO@Rh100/} -- a more elaborate PWTK example that
     shows how to glue together various calculations. In particular, it
     analyzes the bonding of CO molecule on Rh(100).
   \end{itemize}
@@ -498,20 +515,24 @@ at providing a flexible and productive framework.
 \head{5.1 PWTK: EOS utility}
 \rightfooter{Example: \file{Day-2/example5.pwtk/ex1.eos}}
 
-In this example the {\em equation-of-state (EOS)} will be calculated
-using \prog{pwtk}. Run this calculation by typing:
+Move to \file{Day-2/example5.pwtk/ex1.eos} directory.
 
+In this example the
+{\em equation-of-state (EOS)} will be calculated using
+\prog{pwtk}. Run this calculation by typing:\\
 \exec{pwtk eos.Rh-bulk.pwtk > eos.Rh-bulk.log \& }
 
 This procedure performs 15 SCF calculations with different lattice
 parameters (using the initial guess as input) and then uses the
 results as input for \prog{ev.x}, to calculate EOS in accordance with
 the four equations of state. The results are then summarized in
-\file{eos.Rh-bulk.RESULTS}.
+\file{eos.Rh-bulk.RESULTS} {\small (the \file{*.dat} data-files with
+  collected total energies are contained in
+  \file{eos.Rh-bulk.d/*.dat})}.
 
 \begin{figure}
 \centering
-\includegraphics[width=15.0cm]{figs/LATTICE_PARAMETERS.png}
+\includegraphics[width=14.0cm]{figs/LATTICE_PARAMETERS.png}
 \end{figure}
 
 Notice that the bulk-modulus is more sensitive to the sampling of
@@ -560,19 +581,19 @@ would add a new O atom to the structure. But with \cmd{input\_pushpop
 away.
 
 The full script is provided by \file{scan.pwtk}; read it and and try
-to understand it. Run the example by executing:\\
-\exec{pwtk scan.pwtk >\& scan.log \& }
+to understand it.
 
-The resulting potential-energy-surface can be visualized as:\\
-\exec{gnuplot plot2D.gp}\\[0.5em]
 {\bf Beware:} this example takes quite long! Hence, it is better to
-submit it to HPC cluster. This can be achieved by:\\
+submit it to HPC cluster. This can be achieved by:\\[0.5em]
 \exec{remote\_pwtk scan.pwtk}\\[0.5em]
-After calculation finishes, download the output and data files as:\\
-\exec{rsync\_from\_nsc *.out *.dat}\\[0.5em]
+After calculation finishes, download the output and data files as:\\[0.5em]
+\exec{rsync\_from\_nsc .}\\[0.5em]
+The resulting potential-energy-surface can be visualized as:\\[0.5em]
+\exec{gnuplot plot2D.gp}\\[0.5em]
 Then plot the result with gnuplot. You should obtain something like
-this.
-\centerline{\includegraphics[width=0.47\textwidth]{figs/PES-2D.png}}
+this.\\
+
+\centerline{\includegraphics[width=0.475\textwidth]{figs/PES-2D.png}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -589,7 +610,7 @@ The analysis reveals the charge-donation from the CO $\sigma$ HOMO
 orbital into metal states and back-donation of charge from metal
 states into the CO $\pi^*$ LUMO orbital.
 
-The master PWTK script that performs the whole anlysis is
+The master PWTK script that performs the whole analysis is
 \file{run-all.pwtk}. This file imports several script, each performing
 specific task(s), in particular:
 

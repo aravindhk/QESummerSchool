@@ -4,7 +4,10 @@
 
 ### First example: graphane
 
-Steps to perform:
+Note that there are several `pw.*.in` input files in this directory
+(the `pw.*.scf.in` files are here for comparison only).
+
+**Steps to perform:**
 
 1. Read the `pw.graphane.relax.in` input file and try to understand
    it. Notice the new &IONS namelist. Beware that "IONS" is a jargon
@@ -31,6 +34,12 @@ Steps to perform:
 
 The structure of this example is an oxygen atom chemisorbed onto a
 (3x3) supercell of graphene (file: `pw.graphene3x3-O.relax.in`).  The
-steps to perform are analogous to those described above.
+steps to perform are analogous to those described above, i.e.:
+
+        pw.x < pw.graphene3x3-O.relax.in > pw.graphene3x3-O.relax.out &
+
+You can visualize the evolving structure as:
+
+        xcrysden --pwo pw.graphane.relax.out
 
 

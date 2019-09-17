@@ -7,22 +7,30 @@ energy scan of lateral positions of O @ Al(111). It introduces the
 PWTK's concept of input-data stacking (i.e. `input_pushpop { ... }`).
 
 For further explanation, see the comments within the PWTK `scan.pwtk`
-script. To run the whole example, execute:
+script. 
 
-       pwtk scan.pwtk >& scan.log &
+**BEWARE** this example takes quite long, hence run the calculation
+remotely, i.e.:
 
-**BEWARE** this example takes quite long. 
-TODO: consider to change this example as to run on the cluster !!!
+        remote_pwtk scan.pwtk
+        
+To download the calculated output files, use:
+	
+	    rsync_from_nsc .
+		
+But wait some time before doing that; give the remote computer
+some time to make the calculation.
 
 The resulting potential-energy-surface can be visualized as:
 
        gnuplot plot2D.gp
        
+       
 ### "Tabulation" of all pw.x output files
 
 The above PWTK run (i.e., `pwtk scan.pwtk`) produced 25 different pw.x
 output files. One can automatically "tabulate" the structures from all
-those pw.x output files with PWTK. In particular, PWTK has a
+those `pw.x` output files with PWTK. In particular, PWTK has a
 `::pwtk::pwo::tabulateStructs` command, which automatically plots
 (that is, prints to PNG file) structures from the supplied pw.x output
 files and arranges them into a table as a LaTeX document. An example

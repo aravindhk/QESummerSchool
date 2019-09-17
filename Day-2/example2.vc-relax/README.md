@@ -43,7 +43,7 @@ the example, execute:
        pw.x < pw.urea.vc-relax.in > pw.urea.vc-relax.out &
 
 
-### How to run example-2 on the HCP cluster
+### How to run example-2 (molecular crystal of urea) on the HCP cluster
 ----------------------------------------
 
 To submit the `pw.urea.vc-relax.in` calculation to the HCP cluster, use:
@@ -59,5 +59,5 @@ output file `pw.urea.vc-relax.out`. You can do that via:
 
        rsync_from_nsc *.out
 
-(but wait some time before doing that; give the remote computer some time to
-make the calculation)
+But wait some time before doing that; give the remote computer some
+time to make the calculation.
