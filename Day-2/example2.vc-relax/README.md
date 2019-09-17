@@ -37,9 +37,27 @@ Steps to perform:
 ----------------------------------------
 
 Example-2 is analogous to example-1, just the structure is different.
-Beware that it is computationally heavier than the example-1. To run
+**Beware** that it is **computationally heavier** than the example-1. To run
 the example, execute:
 
        pw.x < pw.urea.vc-relax.in > pw.urea.vc-relax.out &
 
 
+### How to run example-2 on the HCP cluster
+----------------------------------------
+
+To submit the `pw.urea.vc-relax.in` calculation to the HCP cluster, use:
+
+      remote_mpirun pw.x -in pw.urea.vc-relax.in
+
+**Beware #1:** in this case you must use **-in** (or **-inp**) instead of
+"<". Notice also that there is no redirection to standard-output
+(i.e. the "**> pw.urea.vc-relax.out**" is not specified).
+
+**Beware #2:** note that you will need to download the calculated
+output file `pw.urea.vc-relax.out`. You can do that via:
+
+       rsync_from_nsc *.out
+
+(but wait some time before doing that; give the remote computer some time to
+make the calculation)

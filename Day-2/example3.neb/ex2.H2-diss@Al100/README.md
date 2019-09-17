@@ -23,7 +23,7 @@ PWTK script.
    understand it (this input file will be used by the PWTK
    script). The initial reaction path can be visualized by:
 
-       xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in
+        xcrysden --pwi neb.H2-diss.Al100-2x1-2L.in
 
 
 2. Read the `neb.pwtk` script and try to understand it.  **BEWARE**
@@ -31,12 +31,22 @@ PWTK script.
    (`path_thr = 0.2`) as to speed-up the calculation.
 
 
-3. To run the example, execute:
-
-       pwtk neb.pwtk >& neb.log &
-
-   **BEWARE** that this example may take several tens of minutes on a
-   laptop computer, hence we run it in background.
+3. The example be run by `pwtk neb.pwtk >& neb.log &`.  **BUT
+   BEWARE:** this example takes **several tens of minutes** on a laptop
+   computer, hence run it remotely on the HCP cluster. To submit the
+   `neb.pwtk` calculation to the HCP cluster, use:
+   
+        remote_pwtk neb.pwtk
+		
+	To download the calculated output files, use:
+	
+	    rsync_from_nsc *.out
+		
+    But wait some time before doing that; give the remote computer
+	some time to make the calculation. To download other data files
+	that were produced by `neb.x`, use:
+	
+	    rsync_from_nsc .
 
 4. When calculation finishes you can analyze the outputs
    (`neb.noCI.out` and `neb.auto.out`); check how many steps was
@@ -44,8 +54,8 @@ PWTK script.
    what is the reaction energy barrier. Converged minimum-energy-path
    graph can be plotted with gnuplot as:
 
-       gnuplot H2-diss.Al100-2x1-2L.gp
+        gnuplot H2-diss.Al100-2x1-2L.gp
 
    while the corresponding reaction-path structures can be visualized as:
 
-       xcrysden --axsf H2-diss.Al100-2x1-2L.axsf
+        xcrysden --axsf H2-diss.Al100-2x1-2L.axsf
