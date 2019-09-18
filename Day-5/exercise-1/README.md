@@ -61,7 +61,8 @@ running the `configure` command of QE?
 
 **Solution**: multiple options are possible. For example, you may have chosen to load 
 `ScaLAPACK/2.0.2-gompi-2018b-OpenBLAS-0.3.1` that silently loads also OpenMPI and BLAS 
-libraries.
+libraries. Another (better) option is to use the last version of Intel's MKL library,
+by loading the module `mkl_2019.4.243`.
 
 Here we will instead use OpenMPI from this module
      

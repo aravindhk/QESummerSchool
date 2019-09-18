@@ -15,7 +15,7 @@ Run the first simulation without any parallel parameter, i.e.:
     
     module load mpi/openmpi-x86_64 MKL/mkl_2019.4.243
     
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you foget this.
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you forget this.
     
     srun --mpi=pmix /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
 

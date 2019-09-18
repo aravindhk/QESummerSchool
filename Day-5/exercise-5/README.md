@@ -6,6 +6,11 @@ These are available on most clusters and can be freely downloaded from the PGI w
 
 ## Preparing the environment
 
+The IJS system configuration requires to compile codes on a compute node.
+If you haven't done it already, you can reach a compute node with:
+
+    ssh nsc-fp001
+
 The accelerated version of QE requires PGI compilers and a set of libraries provided by the CUDA Toolkit.
 In order to proceed, 
 

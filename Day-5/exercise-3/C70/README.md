@@ -13,7 +13,7 @@ Modify the jobscript
     
     module load mpi/openmpi-x86_64 MKL/mkl_2019.4.243
     
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you foget this.
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you forget this.
     
     srun --mpi=pmix /path/to/bin/pw.x -inp  pw.C70.scf.in > pw.C70.scf.out
 
