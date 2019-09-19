@@ -11,11 +11,17 @@ If you haven't done it already, you can reach a compute node with:
 
     ssh nsc-fp001
 
+Once logged in, run:
+
+    cd ~ && source QE-2019/Day-5/prepare_node.sh && cd -
+
+## GPU accelerated QE
+
 The accelerated version of QE requires PGI compilers and a set of libraries provided by the CUDA Toolkit.
 In order to proceed, 
 
-* load the *OpenMPI* library that wraps PGI compilers (find it!) and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
-* the CUDA Toolkit is available in the modules and has been loaded.
+* load the *OpenMPI* library that wraps **PGI compilers** (find it!) and check that mpif90 points to pgf90. To this aim, `mpif90 --version` will do.
+* check that the CUDA Toolkit is available in the modules and has been loaded.
 
 The GPU version also strongly benefits from linking to the MKL library
 thus, when possible, use it.
@@ -58,14 +64,14 @@ generally $CUDA_HOME), `Y.y` is the version of the CUDA Toolkit (`Y` and `y` are
 Note that a helper script is also available in the `dev-tools` directory and can be used like this: `python get_device_props.py` but you must run it on the target compute node.
 
 
-Notice that sometime the configure script may pick up the wrong Fortran compiler
+Notice that sometimes the configure script may pick up the wrong Fortran compiler
 if more than one is available. This is the case for the nodes used in this
 hands-on so the PGI compilers must be specified manually and the configure command
 becomes:
 
-     ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=ZZ --with-cuda-runtime=Y.y --with-cuda=$SET_ME --with-scalapack=no
+     ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=ZZ --with-cuda-runtime=YY --with-cuda=$SET_ME --with-scalapack=no
 
-> **Task**: replace `Y.y`, `SET_ME` and `ZZ` with the appropriate values. Use `module show CUDA/10.1.105` to check the path where CUDA is installed. Hint: this is generally set in a variable called `CUDA_HOME`.
+> **Question**: replace `YY`, `SET_ME` and `ZZ` with the appropriate values. Use `module show CUDA/10.1.105` to check the path where CUDA is installed. ❓ [Answer](#A3)
 
 Once the configure script finishes, you should get something similar to this output:
 
@@ -126,3 +132,4 @@ Only the `pw.x` is available for the time being. You compile it in the usual way
 
 The NVIDIA V100 cards have compute capability 7.0, thus ZZ=70, for the NVIDIA Tesla K40: ZZ=35.
 
+<a name="A3"></a> **Answer 3**: The cuda runtime is 10.1, the compute capabilities are 35, the path where CUDA resides is set by the module as the `CUDA_HOME` variables, thus: `--with-cuda-cc=35 --with-cuda-runtime=10.1 --with-cuda=$CUDA_HOME`.

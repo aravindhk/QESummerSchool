@@ -2,15 +2,6 @@
 
 ## System preparation
 
-In order to compile an optimized version of QE you need:
-
-* a library for linear algebra
-* a library for FFT
-* (possibly) a parallel eigenvalue solver
-* (possibly) an optimized compiler
-
-Let's find these requirements in the system used for this hands-on.
-
 The configuration of the IJS cluster requires, as a first step, to move to a
 compute node. This can be done for example with:
 
@@ -31,6 +22,15 @@ executed at each login on `nsc-fp001`
 ---
 
 # Information on the environment
+
+In order to compile an optimized version of QE you need:
+
+* a library for linear algebra
+* a library for FFT
+* (possibly) a parallel eigenvalue solver
+* (possibly) an optimized compiler
+
+Let's find these requirements in the system used for this hands-on.
 
 Information about the module environment can be obtained using:
 
@@ -70,7 +70,7 @@ The command
 can be used to check how each module modifies the environment by adding
 binaries to the `PATH` or by adding additional environment variables.
 This is also a good way to verify where the applications and the
-libraries actually reside.
+libraries actually reside. Try for example: `module show mpi/openmpi-x86_64`.
 
 The aim of this first (very short) exercise is to identify the best options
 you have on this cluster. 

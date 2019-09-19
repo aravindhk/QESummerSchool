@@ -24,4 +24,4 @@ i. try to improve the time to solution using the `-ndiag` and `-ntg`; Is the tim
 
 ii. reduce the number of MPI processes and increase the number of OpenMP threads. Is the time to solution reduced?
 
-You should eventually be able to run the simulation in **about 6 min**.
+If you perform 10 scf steps, you should eventually be able to run the simulation in **about 6 min**.

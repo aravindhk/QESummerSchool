@@ -33,7 +33,10 @@ with an interactive job. You can do this with the following command:
     # Run me!
     srun --time=00:10:00 -N 1 --ntasks-per-node=1 --gres=gpu:1 --reservation=qe2019 --pty /bin/bash
     
-Once the interactive job starts, run and check the output of `./deviceQuery`.
+Once the interactive job starts, run and check the output of:
+
+    # Run me!
+    ./deviceQuery
 
 You should see something like this:
 
@@ -85,7 +88,16 @@ Notice that, if you run this command after submitting the job reported above,
 you will only see a single GPU device. Replacing `--gres=gpu:1` with `--gres=gpu:2`
 will allow `./deviceQuery` to report on both the devices installed on each node.
 
-The other tool, `nvidia-smi`, can be seen as the `top` command for GPUs.
+Try recompiling the code with a different CUDA version. You can find available
+ones with `module av cuda`
+
+    # From the same directory, i.e. ~/QE-2019/Day-5/exercise-4/cuda-samples-master/Samples/deviceQuery
+    make clean
+    module load <SETME>
+    CUDA_PATH=$CUDA_HOME SMS="30 35 37 50 52 60 61 70" make
+
+
+Finally, the second tool, `nvidia-smi`, can be seen as the `top` command for GPUs.
 It gives a snapshot of the GPUs power consumption and memory usage and
 reports GPU usage by each running process.
 Run it on a GPU enabled compute node with

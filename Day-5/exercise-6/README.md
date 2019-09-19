@@ -17,8 +17,8 @@ Here's a number of rules that you should generally follow:
 ## Fe
 
 Try to obtain the magnetic ground state of Iron with and without GPU acceleration.
-Modify the jobscript file of one of the previous examples in order to efficiently
-run the GPU version of the code.
+**Modify the jobscript file** of one of the previous examples in order to efficiently
+run the GPU version of the code ([Answer](#A1)).
 Do you observe any speed-up?
 
     # Run it!
@@ -27,23 +27,6 @@ Do you observe any speed-up?
     # The pseudopotential can be downloaded from https://www.quantum-espresso.org/upf_files/Fe.pbe-nd-rrkjus.UPF
     wget https://www.quantum-espresso.org/upf_files/Fe.pbe-nd-rrkjus.UPF
 
-You can use this as a template for the jobscript:
-
-    #!/bin/bash
-    #SBATCH --exclusive
-    #SBATCH --nodes=1
-    #SBATCH --ntasks=2           # Number of MPI processes
-    #SBATCH --ntasks-per-node=2  # Number of MPI processes
-    #SBATCH --cpus-per-task=4    # Number of OpenMP thredas
-    #SBATCH --ntasks-per-core=1
-    #SBATCH --reservation=qe2019
-    #SBATCH --gres=gpu:2
-    
-    module load OpenMPI/3.1.3-PGI-19.4 MKL/mkl_2019.4.243 CUDA/10.1.105
-    
-    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you forget this.
-    
-    srun --mpi=pmix /path/to/bin/pw.x -inp  pw.Fe.scf.in > pw.Fe.scf.out
     
 
 ## CuO
@@ -67,3 +50,22 @@ to use the correct number of MPI processes when running without GPUs.
     # Run it!
     cd Si255Ge
 
+---
+
+<a name="H1"></a>Hint: You can use this as a template for the jobscript:
+
+    #!/bin/bash
+    #SBATCH --exclusive
+    #SBATCH --nodes=1
+    #SBATCH --ntasks=2           # Number of MPI processes
+    #SBATCH --ntasks-per-node=2  # Number of MPI processes
+    #SBATCH --cpus-per-task=4    # Number of OpenMP thredas
+    #SBATCH --ntasks-per-core=1
+    #SBATCH --reservation=qe2019
+    #SBATCH --gres=gpu:2
+    
+    module load OpenMPI/3.1.3-PGI-19.4 MKL/mkl_2019.4.243 CUDA/10.1.105
+    
+    export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you forget this.
+    
+    srun --mpi=pmix /path/to/bin/pw.x -inp  pw.Fe.scf.in > pw.Fe.scf.out

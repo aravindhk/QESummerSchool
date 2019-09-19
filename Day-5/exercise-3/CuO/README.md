@@ -38,4 +38,4 @@ ii. try to further reduce the time to solution using the `-ndiag` options.
 
 iii. try to further reduce the time to solution using the `-ntg` options.  Does the time to solution improve? Why not?
 
-You should eventually be able to complete the 10 SCF steps in **about 6 min**.
+You should eventually be able to complete 10 SCF steps in **about 6 min**.
