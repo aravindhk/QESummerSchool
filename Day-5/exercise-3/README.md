@@ -27,5 +27,5 @@ This is done for example in `C70`
 ## OpenMP
 
 When parallel performance saturation is reached, an additional level of parallelism based on OpenMP can further reduce the time to solution.
-This is shown again in `C70`.
+This can be tested with the `C70` input.
 

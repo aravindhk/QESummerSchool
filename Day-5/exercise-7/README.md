@@ -30,6 +30,7 @@ can be setup by recent versions of OpenMPI.
 The following command can be used to check whether the OpenMPI version installed on your system 
 support sending and receiving data residing on the GPU memory:
 
+    module load WHAT?
     ompi_info --parsable -l 9 --all | grep mpi_built_with_cuda_support:value
 
 if the answer is:

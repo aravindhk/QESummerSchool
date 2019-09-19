@@ -3,6 +3,13 @@
 In this exercise we find out the relevant details of the GPU(s)
 installed on the cluster used in this hands-on.
 
+First remember to go back to the computer node and source `node_preparation.sh`:
+
+    # From percolator.ijs.si
+    ssh nsc-fp001
+    cd ~ && source QE-2019/Day-5/prepare_node.sh && cd -
+
+
 There are two tools that are quite effective in gathering information on the GPUs 
 installed on the system: `deviceQuery` and `nvidia-smi`.
 
@@ -85,4 +92,4 @@ Run it on a GPU enabled compute node with
 
 
     #Run me!
-    nvidia-smi
+    nvidia-smi -l 1

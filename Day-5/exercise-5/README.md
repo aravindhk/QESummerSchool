@@ -65,7 +65,7 @@ becomes:
 
      ./configure FC=pgf90 CC=pgcc MPIF90=mpif90 --enable-parallel --enable-openmp --with-cuda-cc=ZZ --with-cuda-runtime=Y.y --with-cuda=$SET_ME --with-scalapack=no
 
-> **Task**: replace `Y.y`, `SET_ME` and `ZZ` with the appropriate values.
+> **Task**: replace `Y.y`, `SET_ME` and `ZZ` with the appropriate values. Use `module show CUDA/10.1.105` to check the path where CUDA is installed. Hint: this is generally set in a variable called `CUDA_HOME`.
 
 Once the configure script finishes, you should get something similar to this output:
 

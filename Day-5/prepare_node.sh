@@ -4,3 +4,7 @@
 
 export http_proxy=http://www-proxy.ijs.si:8080
 export https_proxy=http://www-proxy.ijs.si:8080
+
+unalias sbatch
+
+echo "====> Your scratch dir is: $ESPRESSO_TMPDIR"

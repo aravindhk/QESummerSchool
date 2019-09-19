@@ -1,5 +1,6 @@
 # Exercise 1
 
+## System preparation
 
 In order to compile an optimized version of QE you need:
 
@@ -13,10 +14,27 @@ Let's find these requirements in the system used for this hands-on.
 The configuration of the IJS cluster requires, as a first step, to move to a
 compute node. This can be done for example with:
 
+    # From percolator.ijs.si
     ssh nsc-fp001
+
+Update the hands-on repository and source the environment
+
+    cd QE-2019/
+    git pull
+    cd Day-5
+    # Update environment and report scratch space path
+    source prepare_node.sh
+
+The command `cd ~ && source QE-2019/Day-5/prepare_node.sh && cd -` has to be
+executed at each login on `nsc-fp001`
+
+---
+
+# Information on the environment
 
 Information about the module environment can be obtained using:
 
+    # Run me!
     module av
 
 This will allow you to find the compilers, the libraries, etc.
@@ -34,6 +52,7 @@ You should obtain an output similar to this one:
 
 The command
 
+    # Run me!
     module load xxx
 
 can be used to prepare the environment (replace xxx with the appropriate module names).
@@ -54,23 +73,23 @@ This is also a good way to verify where the applications and the
 libraries actually reside.
 
 The aim of this first (very short) exercise is to identify the best options
-you have on this cluster. Can you list the modules that you will have to load *before*
-running the `configure` command of QE?
+you have on this cluster. 
+
+> **Question**: Can you list the modules that you will have to load *before* running the `configure` command of QE❓ [Answer](#A1)
 
 ---
 
-**Solution**: multiple options are possible. For example, you may have chosen to load 
+<a name="A1"></a> **Answer 1**: multiple options are possible. For example, you may have chosen to load 
 `ScaLAPACK/2.0.2-gompi-2018b-OpenBLAS-0.3.1` that silently loads also OpenMPI and BLAS 
 libraries. Another (better) option is to use the last version of Intel's MKL library,
-by loading the module `mkl_2019.4.243`.
+by loading the module `mkl_2019.4.243`. An implementation of MPI is, however, still required.
 
 Here we will instead use OpenMPI from this module
      
     $ module load mpi/openmpi-x86_64
 
 since it provides the most recent version of this library and wraps gfortran v9.1,
-
 and the BLAS, LAPACK and ScaLAPACK implementation from the MKL library,
-that can be loaded with the command:
+that you should have already loaded with the command:
 
     $ module load MKL/mkl_2019.4.243

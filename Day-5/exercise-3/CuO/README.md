@@ -5,10 +5,11 @@ Complete the input file by setting a scratch directory and prepare a jobscript t
 Run the first simulation without any parallel parameter, i.e.:
 
     #!/bin/bash
+    #SBATCH --exclusive
     #SBATCH --nodes=1
-    #SBATCH --ntasks=16
-    #SBATCH --ntasks-per-node=16
-    #SBATCH --cpus-per-task=1
+    #SBATCH --ntasks=16             # Number of MPI processes
+    #SBATCH --ntasks-per-node=16    # Number of MPI processes
+    #SBATCH --cpus-per-task=1       # Number of OpenMP threads
     #SBATCH --ntasks-per-core=1
     #SBATCH --reservation=qe2019
     #SBATCH --gres=gpu:2
@@ -17,7 +18,7 @@ Run the first simulation without any parallel parameter, i.e.:
     
     export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK   # you may also check what happens if you forget this.
     
-    srun --mpi=pmix /path/to/qe/bin/pw.x -inp pw.CuO.scf.in > pw.CuO.scf.out 
+    srun --mpi=pmix /path/to/qe/bin/pw.x -inp pw.CuO.scf.in -npool 1 -ndiag 1 > pw.CuO.scf.out 
 
 and record the time to solution by inspecting the output. The relevant 
 parameter is the wall time taken by the PWSCF clock. You can get it with

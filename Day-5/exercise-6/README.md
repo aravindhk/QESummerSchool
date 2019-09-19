@@ -30,10 +30,11 @@ Do you observe any speed-up?
 You can use this as a template for the jobscript:
 
     #!/bin/bash
+    #SBATCH --exclusive
     #SBATCH --nodes=1
-    #SBATCH --ntasks=2
-    #SBATCH --ntasks-per-node=2
-    #SBATCH --cpus-per-task=4
+    #SBATCH --ntasks=2           # Number of MPI processes
+    #SBATCH --ntasks-per-node=2  # Number of MPI processes
+    #SBATCH --cpus-per-task=4    # Number of OpenMP thredas
     #SBATCH --ntasks-per-core=1
     #SBATCH --reservation=qe2019
     #SBATCH --gres=gpu:2
@@ -47,9 +48,9 @@ You can use this as a template for the jobscript:
 
 ## CuO
 
-Try to run the CuO input with GPU acceleration by change the jobscript given in 
-the previous step.
-Try with `-npool 1` and `-npool 2` and remember to exploit OpenMP parallelism.
+Try to run the CuO input with GPU acceleration. Start from
+the jobscript given above and remember to exploit OpenMP parallelism.
+Try with `-npool 1` and `-npool 2`.
 Can you obtain a speedup with respect to the CPU only run?
 
     # Run it!
@@ -60,7 +61,8 @@ Can you obtain a speedup with respect to the CPU only run?
 Try to run the Si255Ge input with and without GPU acceleration. 
 Can you obtain at least a 2x speedup with respect to the CPU run on the same node?
 Pro tip: you can disable the GPU acceleration with the command `export USEGPU=no`, 
-you can re-enable it with `export USEGPU=yes` or with `unset USEGPU`.
+you can re-enable it with `export USEGPU=yes` or with `unset USEGPU`. Remember
+to use the correct number of MPI processes when running without GPUs.
 
     # Run it!
     cd Si255Ge
