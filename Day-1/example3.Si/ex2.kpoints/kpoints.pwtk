@@ -17,4 +17,4 @@ close $fid
 
 
 # plot the result with gnuplot
-exec gnuplot plot.gp
+# exec gnuplot plot.gp

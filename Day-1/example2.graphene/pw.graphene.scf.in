@@ -1,7 +1,7 @@
  &CONTROL
     calculation = 'scf',
     prefix      = 'Graphene_1x1_PBE',
-    ! otudir      = '/tmp',
+    !outdir      = '$ESPRESSO_TMPDIR/graphene/',
     !pseudo_dir  = 'directory with pseudopotentials',        
  /
 
@@ -13,7 +13,7 @@
     ntyp = 1,
     ecutwfc = 20.0,
     ecutrho = 200.0, 
-
+    occupations='tetrahedra'
 !    occupations = 'smearing',
 !    smearing = 'gaussian',
 !    degauss = 0.01,

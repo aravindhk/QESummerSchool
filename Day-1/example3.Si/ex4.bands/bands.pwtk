@@ -2,16 +2,16 @@ load_fromPWI ../pw.si.scf.in
 
 # please insert values as determined in the "alat" & "ecutwfc" excercises
 
-#SYSTEM {
-#    celldm(1) = ...insert...
-#    ecutwfc   = ...insert...
-#}
+SYSTEM {
+    celldm(1) = 10.3
+    ecutwfc   = 32
+}
 
 # please insert values as determined in the "kpoints" excercise
 
-#K_POINTS automatic {
-#    ...insert...
-#}
+K_POINTS automatic {
+    "6 6 6 1 1 1"
+}
 
 set name Si
 
@@ -43,4 +43,4 @@ runBANDS bands.$name.in
 
 
 # plot the result with gnuplot
-exec gnuplot plot.gp
+# exec gnuplot plot.gp

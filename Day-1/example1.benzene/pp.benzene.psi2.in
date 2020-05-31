@@ -1,6 +1,6 @@
  &INPUTPP
     prefix    =  'benzene',
-    ! outdir    =  '/tmp',
+    outdir    =  '/scratch/groups/saraswat/aravind2/qe/benzene/',
     filplot   =  'psi2.benzene',
 
     plot_num  =  7,

@@ -34,7 +34,7 @@ K_POINTS automatic
 EOF
 
     # run the pw.x calculation
-    pw.x -in pw.si.scf.in > pw.si.scf.out
+    mpirun pw.x -in pw.si.scf.in > pw.si.scf.out
 
     # collect the ecutwfc and total-energy from the pw.si.scf.out output-file
     

@@ -1,7 +1,7 @@
 # insert here the correct Fermi energy:
-Efermi=0.0
+Efermi=5.7842
 # .. and uncomment the next line:
-#set xzeroaxis lt -1
+set xzeroaxis lt -1
 
 set grid xtics lt -1 lw 1
 set format y "%5.1f"

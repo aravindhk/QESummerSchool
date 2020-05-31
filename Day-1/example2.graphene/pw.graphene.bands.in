@@ -11,10 +11,11 @@
     celldm(3) = 3.0,
     nat  = 2,
     ntyp = 1,
+    nbnd = 8,
     ecutwfc = 20.0,
-    ecutrho = 200.0,
+    ecutrho = 200.0
 
-    occupations='tetrahedra'
+    !occupations='tetrahedra'
  /
  
  &ELECTRONS
