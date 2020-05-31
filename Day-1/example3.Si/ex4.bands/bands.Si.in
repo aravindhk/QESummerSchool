@@ -1,0 +1,8 @@
+ &BANDS
+   filband         =  'Si.bands.dat',
+   lsym            =  .true.,
+   outdir          =  '/scratch/groups/saraswat/aravind2/qe',
+   prefix          =  'silicon',
+ /
+
+
